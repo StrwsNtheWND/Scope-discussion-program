@@ -469,6 +469,14 @@ function init() {
   loadState();
   bindInfoFields();
   wireStaticButtons();
+
+  if (state.checklists.length === 0) {
+    const example = buildExampleChecklist();
+    state.checklists.push(example);
+    state.activeId = example.id;
+    persist();
+  }
+
   renderAll();
 }
 
