@@ -319,8 +319,13 @@ html, body {
   flex-shrink: 0;
 }
 
+.table-scroll {
+  overflow-x: auto;
+}
+
 .items-table {
   width: 100%;
+  min-width: 760px;
   border-collapse: collapse;
   table-layout: fixed;
 }
@@ -335,10 +340,10 @@ html, body {
   border-bottom: 1px solid var(--border);
 }
 
-.col-item { width: 26%; }
-.col-status { width: 14%; }
-.col-response { width: 24%; }
-.col-notes { width: 24%; }
+.col-item { width: 24%; }
+.col-status { width: 170px; }
+.col-response { width: 25%; }
+.col-notes { width: 25%; }
 .col-actions { width: 36px; }
 
 .items-table td {
@@ -370,6 +375,7 @@ html, body {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .cell-status[data-status="confirmed_included"] { background: var(--status-included-bg); color: var(--status-included-text); }
