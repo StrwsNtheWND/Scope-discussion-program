@@ -415,9 +415,16 @@ html, body {
   .main { padding: 0; overflow: visible; }
   body { background: #fff; }
   .info-grid { grid-template-columns: repeat(3, 1fr); }
-  .scope-section, .info-card, .notes-card { break-inside: avoid; border-color: #ccc; }
+  .scope-section, .info-card, .notes-card { border-color: #ccc; }
+  .info-card, .notes-card { break-inside: avoid; }
   .cell-status { border: 1px solid #ccc; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   textarea, input { border: none !important; }
+  .table-scroll { overflow: visible; }
+  .items-table { min-width: 0; }
+  .items-table tr, .items-table td {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 }
 
 @media (max-width: 900px) {
