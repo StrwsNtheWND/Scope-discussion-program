@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scope Discussion Checklist Builder</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>Scope Checklists</h1>
+        <p class="tagline">Buyout scope discussion tool</p>
+      </div>
+
+      <div class="sidebar-actions">
+        <button id="btn-new" class="btn btn-primary">+ New Checklist</button>
+        <button id="btn-example" class="btn btn-ghost">Load Example</button>
+      </div>
+
+      <div class="sidebar-list" id="checklist-list">
+        <!-- checklist entries injected here -->
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="btn-import" class="btn btn-link">Import JSON</button>
+        <input type="file" id="file-import" accept="application/json" hidden />
+      </div>
+    </aside>
+
+    <main class="main">
+      <div id="empty-state" class="empty-state">
+        <h2>No checklist selected</h2>
+        <p>Create a new checklist or load the example to get started.</p>
+      </div>
+
+      <div id="editor" class="editor" hidden>
+        <header class="editor-toolbar">
+          <div class="toolbar-left">
+            <input id="f-project-name" class="title-input" placeholder="Project name" />
+            <span id="save-indicator" class="save-indicator">Saved</span>
+          </div>
+          <div class="toolbar-right">
+            <button id="btn-export-csv" class="btn btn-ghost">Export CSV</button>
+            <button id="btn-export-json" class="btn btn-ghost">Export JSON</button>
+            <button id="btn-print" class="btn btn-ghost">Print / PDF</button>
+            <button id="btn-duplicate" class="btn btn-ghost">Duplicate</button>
+            <button id="btn-delete" class="btn btn-danger">Delete</button>
+          </div>
+        </header>
+
+        <section class="info-grid">
+          <div class="info-card">
+            <h3>Project</h3>
+            <label>Location <input id="f-project-location" /></label>
+            <label>Job No. <input id="f-project-jobno" /></label>
+            <label>Date <input id="f-project-date" type="date" /></label>
+            <label>Prepared By <input id="f-project-preparedby" /></label>
+          </div>
+          <div class="info-card">
+            <h3>General Contractor</h3>
+            <label>Company <input id="f-gc-company" /></label>
+            <label>Contact <input id="f-gc-contact" /></label>
+            <label>Phone <input id="f-gc-phone" /></label>
+            <label>Email <input id="f-gc-email" /></label>
+          </div>
+          <div class="info-card">
+            <h3>Subcontractor / Bidder</h3>
+            <label>Company <input id="f-bidder-company" /></label>
+            <label>Trade / CSI Section <input id="f-bidder-trade" /></label>
+            <label>Contact <input id="f-bidder-contact" /></label>
+            <label>Phone <input id="f-bidder-phone" /></label>
+            <label>Email <input id="f-bidder-email" /></label>
+            <label>Bid Amount <input id="f-bidder-amount" /></label>
+          </div>
+        </section>
+
+        <section id="sections-container" class="sections-container">
+          <!-- checklist sections injected here -->
+        </section>
+
+        <button id="btn-add-section" class="btn btn-ghost btn-add-section">+ Add Section</button>
+
+        <section class="notes-card">
+          <h3>General Meeting Notes</h3>
+          <textarea id="f-general-notes" rows="4" placeholder="Overall notes, open items, and next steps from the scope discussion..."></textarea>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <template id="tpl-section">
+    <div class="scope-section" data-section-id="">
+      <div class="section-header">
+        <input class="section-title" placeholder="Section title" />
+        <div class="section-header-actions">
+          <button class="btn btn-ghost btn-sm btn-add-item">+ Item</button>
+          <button class="btn btn-danger btn-sm btn-delete-section">Remove Section</button>
+        </div>
+      </div>
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th class="col-item">Scope Item</th>
+            <th class="col-status">Status</th>
+            <th class="col-response">Bidder Response / Proposal Language</th>
+            <th class="col-notes">Discussion Notes / Resolution</th>
+            <th class="col-actions"></th>
+          </tr>
+        </thead>
+        <tbody class="items-body"></tbody>
+      </table>
+    </div>
+  </template>
+
+  <template id="tpl-item-row">
+    <tr class="item-row" data-item-id="">
+      <td class="col-item"><textarea class="cell-text cell-item" rows="1" placeholder="Describe the scope item..."></textarea></td>
+      <td class="col-status">
+        <select class="cell-status">
+          <option value="confirmed_included">Confirmed Included</option>
+          <option value="confirmed_excluded">Confirmed Excluded</option>
+          <option value="needs_clarification">Needs Clarification</option>
+          <option value="alternate_credit">Alternate / Credit</option>
+          <option value="acknowledged">Acknowledged</option>
+        </select>
+      </td>
+      <td class="col-response"><textarea class="cell-text cell-response" rows="1" placeholder="What the bid/proposal says..."></textarea></td>
+      <td class="col-notes"><textarea class="cell-text cell-notes" rows="1" placeholder="Notes from the discussion..."></textarea></td>
+      <td class="col-actions"><button class="btn-icon btn-delete-item" title="Delete item">&times;</button></td>
+    </tr>
+  </template>
+
+  <script src="example-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
