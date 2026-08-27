@@ -437,6 +437,10 @@ function wireStaticButtons() {
     createChecklist(buildExampleChecklist());
   });
 
+  document.getElementById("btn-example-esi").addEventListener("click", () => {
+    createChecklist(buildEsiExampleChecklist());
+  });
+
   document.getElementById("btn-add-section").addEventListener("click", () => {
     const cl = getActive();
     if (!cl) return;
@@ -471,9 +475,10 @@ function init() {
   wireStaticButtons();
 
   if (state.checklists.length === 0) {
-    const example = buildExampleChecklist();
-    state.checklists.push(example);
-    state.activeId = example.id;
+    const concreteExample = buildExampleChecklist();
+    const esiExample = buildEsiExampleChecklist();
+    state.checklists.push(concreteExample, esiExample);
+    state.activeId = concreteExample.id;
     persist();
   }
 
