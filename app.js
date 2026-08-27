@@ -203,6 +203,7 @@ function renderEditor() {
   setVal("f-bidder-amount", cl.bidder.amount);
 
   setVal("f-general-notes", cl.generalNotes);
+  autoResize(document.getElementById("f-general-notes"));
 
   renderSections(cl);
 }
@@ -319,6 +320,7 @@ function bindInfoField(id, getObj, key) {
     if (!cl) return;
     getObj(cl)[key] = el.value;
     if (id === "f-project-name") renderSidebarList();
+    if (el.tagName === "TEXTAREA") autoResize(el);
     touchActive();
   });
 }
