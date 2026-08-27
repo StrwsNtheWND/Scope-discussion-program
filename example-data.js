@@ -258,14 +258,15 @@ function buildExampleChecklist() {
 }
 
 // Example checklist seeded from a real buyout scope discussion package:
-// Alta Vista (Centennial, CO) - CSI 32 1200 Asphalt Paving & Site Concrete
+// Alta Vista (Centennial, CO) - CSI 32 1216 Asphalt Paving
 // GC: Garrett Construction | Bidder: ESI - Elite Surface Infrastructure
 //
 // Built from: the "32-1216 Asphalt Paving" bid comparison tracker, the
-// Division 32-Asphalt Paving and Division 32-Site Concrete scope checklists
-// (with their checked/unchecked boxes), ESI's combined Asphalt & Site
-// Concrete proposal (Bid #TJ26074, 6/2/26), and ESI's 2026 Time & Material
-// rate sheet.
+// Division 32-Asphalt Paving scope checklist (with its checked/unchecked
+// boxes), the Asphalt portion of ESI's proposal (Bid #TJ26074, 6/2/26 -
+// ESI's proposal also prices Site Concrete work, which is a different
+// scope/cost code and is tracked on its own checklist, not here), and
+// ESI's 2026 Time & Material rate sheet.
 
 function buildEsiExampleChecklist() {
   const now = new Date().toISOString();
@@ -297,39 +298,37 @@ function buildEsiExampleChecklist() {
     },
     bidder: {
       company: "ESI - Elite Surface Infrastructure",
-      trade: "32 1200 - Asphalt Paving & Site Concrete",
+      trade: "32 1216 - Asphalt Paving",
       contact: "Tyler Jacovetti",
       phone: "720-556-1070",
       email: "tyler.jacovetti@elitesi.com",
-      amount: "$723,030.32 per Div 32-1216 Asphalt Paving bid tracker (Bid #TJ26074, 6/2/26). ESI's full combined Asphalt & Site Concrete proposal totals $3,397,775.60 - see Pricing section for reconciliation.",
+      amount: "$723,030.32 per Div 32-1216 Asphalt Paving bid tracker (Bid #TJ26074, 6/2/26). ESI's proposal itself prices two mutually exclusive pavement section options: Base/Option A (direct FD asphalt) $873,569.85, or Alternate/Option B (Class 6 ABC + thinner FD asphalt + patch-back) $901,153.20 - neither matches the tracker figure exactly. See Pricing section for reconciliation.",
     },
     generalNotes:
-      "Two scope gaps are the priority items to resolve before award: (1) the pool deck is marked 'confirmed' on the " +
-      "Div 32-Site Concrete checklist, but ESI's proposal has no pool-deck line item and states standard gray concrete, " +
-      "broom finish only - get written confirmation of where the colored pool deck is priced. (2) Concrete footings for " +
-      "the trash compactor, monument sign, light poles, bollards, and amenity items (fire pit/BBQ/seat walls/planters) " +
-      "are unchecked on the Div 32-Site Concrete checklist, and ESI's proposal excludes 'structural concrete' as " +
-      "performed by others with no matching line items - this mirrors the same monument-sign gap found on the concrete " +
-      "(03 3800) package and needs the same resolution. Also flag: the bid tracker shows ESI marked 'Y' (included) for " +
-      "Traffic Control, but ESI's proposal explicitly excludes traffic control in both the Asphalt and Concrete " +
-      "sections - get this reconciled in writing. Note the tracker also shows Colorado Asphalt Services (CASI, Bid 7) " +
-      "marked 'Selected Bidder' on this same cost code - confirm the scope split between ESI and CASI, if any, before " +
-      "issuing a subcontract to either.",
+      "This form covers ESI's Asphalt Paving scope only (Division 32-1216). ESI's proposal also prices Site Concrete " +
+      "work, but that is a different scope/cost code and should be tracked on its own, separate checklist. Two items " +
+      "to resolve before award: (1) the bid tracker total of $723,030.32 doesn't match either of ESI's two priced " +
+      "pavement section options ($873,569.85 Base/Option A vs $901,153.20 Alternate/Option B) - get the reconciliation " +
+      "and confirm which option the GC is carrying to contract. (2) The bid tracker shows Traffic Control marked \"Y\" " +
+      "(included), but ESI's asphalt exclusions list explicitly excludes traffic control - get this reconciled in " +
+      "writing; T&M rates are available if it needs to be added by others. Also note the tracker shows Colorado " +
+      "Asphalt Services (CASI, Bid 7) also marked \"Selected Bidder\" on this same cost code - confirm the scope split " +
+      "between ESI and CASI, if any, before issuing a subcontract to either.",
     sections: [
       {
         id: uid(),
         title: "Pricing",
         items: [
           item(
-            "Bid tracker total vs. full proposal total reconciled",
+            "Bid tracker total vs. proposal pavement-option totals reconciled",
             "needs_clarification",
-            "Div 32-1216 Asphalt Paving bid tracker shows $723,030.32 for ESI. ESI's combined proposal (Asphalt + Site Concrete) totals $3,397,775.60 (Asphalt Base $873,569.85 + Asphalt Alternates $901,153.20 + Concrete Base $1,531,206.30 + Concrete Alternates $91,846.25).",
-            "Confirm how $723,030.32 was derived/allocated across cost codes and that the remaining items are being tracked elsewhere (e.g. a separate Site Concrete cost code)."
+            "Div 32-1216 Asphalt Paving bid tracker shows $723,030.32 for ESI. ESI's proposal prices two options: Base/Option A (items 10-90) = $873,569.85; Alternate/Option B (items 200-250) = $901,153.20.",
+            "Confirm how $723,030.32 was derived and which pavement option (or subset of items) it corresponds to."
           ),
           item(
             "Sales tax applied at correct rate on materials only (4%)",
             "confirmed_included",
-            "Marked \"Y\" on both Division 32 scope checklists (Asphalt Paving and Site Concrete).",
+            "Marked \"Y\" on the Division 32-Asphalt Paving scope checklist.",
             ""
           ),
           item(
@@ -339,16 +338,10 @@ function buildEsiExampleChecklist() {
             "Confirm GC is comfortable with unit-price/field-measured billing vs. the turnkey lump-sum structure used on other trade packages."
           ),
           item(
-            "Asphalt pricing valid through 07/02/2026; renegotiated at market rates after",
+            "Pricing valid through 07/02/2026; renegotiated at market rates after",
             "needs_clarification",
             "\"Pricing Valid through 07/02/2026. Pricing past 7/02/2026 to be negotiated based on market rates.\" Also subject to liquid AC oil price increases if the market moves significantly; firm pricing available at the start of each month.",
             "Confirm current validity relative to today's date and get updated firm pricing if the window has lapsed."
-          ),
-          item(
-            "Concrete pricing valid through 12/31/2026, then a scheduled increase",
-            "acknowledged",
-            "Concrete material price valid through 12/31/2026. Effective 1/1/2027, a $13.25/CY increase applies. Pricing expires 3/31/2027; anything placed after is at then-current market rates.",
-            ""
           ),
           item(
             "Pricing based on Monday-Friday, 50-hour work week",
@@ -378,7 +371,7 @@ function buildEsiExampleChecklist() {
             "Includes scarification / subgrade prep",
             "confirmed_included",
             "Assumes the Earthwork Contractor carries 24\" moisture-conditioned subgrade prep; ESI scarifies 12\" deep, moisture-conditions, re-compacts, fine grades, and proof-rolls prior to paving. Grade received at +/-1/10' and within 3% of optimum moisture, dirt to balance on site.",
-            ""
+            "Confirm the Earthwork Contractor's scope actually includes the assumed 24\" moisture-conditioned subgrade prep - if not, this is a gap."
           ),
           item(
             "Includes all water valve adjustments",
@@ -414,76 +407,30 @@ function buildEsiExampleChecklist() {
       },
       {
         id: uid(),
-        title: "Site Concrete Scope Confirmation (per Division 32-Site Concrete checklist)",
-        items: [
-          item(
-            "Take-off completed for unit plans and amenity areas",
-            "confirmed_included",
-            "",
-            ""
-          ),
-          item(
-            "Includes all site concrete (curb & gutter, sidewalks, stairs, pans, etc.)",
-            "confirmed_included",
-            "Itemized in the proposal: C&G 1'/2' Pan, Mow Curb 4\"/8\", Handicap Ramp, Sidewalk 4\", Concrete Pavement 6\", Drive Pan 8\", Valley Pan 2'/4', Trash Enclosure 6.5\", Stairs (items 305-365).",
-            ""
-          ),
-          item(
-            "Includes pool deck per Civil & Landscape Drawing - colored, as specified",
-            "needs_clarification",
-            "Checked \"confirmed\" on the Division 32-Site Concrete checklist, but no pool-deck line item appears anywhere in ESI's itemized proposal, and the proposal's general notes state \"standard gray concrete with broom finish only.\"",
-            "Get written confirmation from ESI of which bid item covers the pool deck and that colored/decorative finish is actually included and priced - as written this looks like a gap."
-          ),
-          item(
-            "Includes concrete footings for trash compactor, monument sign, light poles, bollards, and amenity items",
-            "needs_clarification",
-            "Left unchecked on the Division 32-Site Concrete checklist. ESI's proposal states \"All structural concrete will be performed by others\" and has no line items for monument sign, light pole, or bollard footings.",
-            "Same gap identified on the concrete (03 3800) package - confirm which trade is carrying these footings before award."
-          ),
-          item(
-            "Includes all necessary preparation and compaction with grade at 0.1'",
-            "confirmed_included",
-            "Left unchecked on the checklist (not yet reviewed), but the proposal itself states \"Subgrade is to be within +/-0.10' and pass all moisture and compaction testing.\"",
-            "Matches the requirement - recommend GC check this box off once confirmed."
-          ),
-          item(
-            "Includes all reinforcement, as outlined in the plans",
-            "needs_clarification",
-            "Proposal only reinforces specific items (mow curb 4\"/8\", pavers underlayment, rubberized play surface, ROW curb/gutter/handicap/sidewalk with fibermesh only, ROW drive pan #4@18\"O.C.). States \"All other concrete shall be non-reinforced.\"",
-            "Confirm against structural/civil plans - e.g. the trash enclosure (item 360) has no reinforcement called out in the proposal."
-          ),
-          item(
-            "Take-off completed per plans",
-            "confirmed_included",
-            "",
-            ""
-          ),
-        ],
-      },
-      {
-        id: uid(),
         title: "Inclusions / Assumptions (per ESI Proposal)",
         items: [
           item("Haul, place and compact HMA Grade S-75 (lower layers) and Grade SX-75 (top layer); tack coat included as required", "confirmed_included"),
-          item("Up to (4) concrete mobilizations included; additional mobilizations billed at $2,750.00 per occurrence", "confirmed_included"),
-          item("Concrete meets CDOT Class B/D/P 4500 PSI specifications", "confirmed_included"),
-          item("Bid assumes ability to use an on-site concrete washout provided and maintained by others", "acknowledged"),
-          item("Conveyance of concrete included as needed", "confirmed_included"),
+          item(
+            "Mobilizations priced as quoted",
+            "confirmed_included",
+            "Four separate asphalt mobilization line items: Subgrade Prep x2 ($2,540 + $2,570), Asphalt Paving ($3,050), Asphalt Patching ($1,550).",
+            "Additional mobilizations beyond these will be charged at the quoted unit prices per scope and occurrence."
+          ),
         ],
       },
       {
         id: uid(),
-        title: "Exclusions (per ESI Proposal)",
+        title: "Exclusions (per ESI Proposal - Asphalt)",
         items: [
           item(
             "Traffic control",
             "needs_clarification",
-            "Excluded per both the Asphalt exclusions list and the Concrete section (\"Permitting, testing, traffic control, and street closures are excluded\"), but the bid tracker shows ESI marked \"Y\" (included) for the Traffic Control line item.",
+            "Excluded per the Asphalt exclusions list, but the bid tracker shows ESI marked \"Y\" (included) for the Traffic Control line item.",
             "Get this reconciled in writing before contract. T&M rate sheet has a Traffic Control Supervisor with Truck ($130/hr) and Flagger ($60/hr) if it needs to be added by T&M."
           ),
           item("Polymer asphalt / additives, sawcutting, removals, ADA compliance", "confirmed_excluded"),
           item("Engineering permits, inspection fees, testing, surveying, staking", "confirmed_excluded"),
-          item("Bond (2.0% rate if required)", "confirmed_excluded"),
+          item("Bond (2.0% rate if required); Textura fees; special insurance policies/programs & associated fees", "confirmed_excluded"),
           item("De-watering, pavement markings, latrines", "confirmed_excluded"),
           item(
             "Soil sterilant",
@@ -492,21 +439,14 @@ function buildEsiExampleChecklist() {
             ""
           ),
           item("Prime coat, joint sealant, concrete backfill", "confirmed_excluded"),
+          item(
+            "Subgrade prep other than specified",
+            "needs_clarification",
+            "Only the 12\" scarify/recompact/fine-grade/proof-roll scope described above is included.",
+            "Confirm any subgrade work beyond that scope (e.g. if the Earthwork Contractor's 24\" prep assumption doesn't hold) is not silently expected of ESI."
+          ),
           item("Import or export of subgrade material", "confirmed_excluded"),
           item("Frost mitigation, winter protection, or winter paving", "confirmed_excluded"),
-          item(
-            "Winter concrete measures/protection (hot water, accelerators, concrete blankets)",
-            "confirmed_excluded",
-            "",
-            "Relevant to confirm against the project schedule if any concrete placement is expected in cold weather."
-          ),
-          item("Construction water, survey and layout", "confirmed_excluded", "To be provided by others.", ""),
-          item(
-            "All structural concrete",
-            "confirmed_excluded",
-            "\"All structural concrete will be performed by others.\"",
-            "Ties directly to the monument sign / amenity footings gap above - confirm what counts as \"structural\" here."
-          ),
         ],
       },
       {
