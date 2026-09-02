@@ -443,6 +443,10 @@ function wireStaticButtons() {
     createChecklist(buildEsiExampleChecklist());
   });
 
+  document.getElementById("btn-example-ctf").addEventListener("click", () => {
+    createChecklist(buildCtfExampleChecklist());
+  });
+
   document.getElementById("btn-add-section").addEventListener("click", () => {
     const cl = getActive();
     if (!cl) return;
@@ -479,7 +483,8 @@ function init() {
   if (state.checklists.length === 0) {
     const concreteExample = buildExampleChecklist();
     const esiExample = buildEsiExampleChecklist();
-    state.checklists.push(concreteExample, esiExample);
+    const ctfExample = buildCtfExampleChecklist();
+    state.checklists.push(concreteExample, esiExample, ctfExample);
     state.activeId = concreteExample.id;
     persist();
   }
