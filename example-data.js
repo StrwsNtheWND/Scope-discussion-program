@@ -506,16 +506,17 @@ function buildEsiExampleChecklist() {
   };
 }
 
+
 // Example checklist seeded from a real buyout scope discussion package:
 // Alta Vista Apartments (Centennial, CO) - CSI 32 1600 Site Concrete
 // GC: Garrett Construction | Bidder: CTF Construction
 //
 // Built from: the "32-1600 Site Concrete" bid comparison tracker (9 bidders,
-// including ESI's separate site concrete bid), CTF Construction's Phase 1
-// proposal (dated 6/3/2026, expires 7/3/2026 - including its exclusions,
-// inclusions, qualifications, price-increase terms, and cold weather rate
-// table), and the civil (CD6) and landscape (LC.4/LC.5) construction plans
-// showing the Rain Garden exclusion and clubhouse/pool amenity quantities.
+// including ESI's separate site concrete bid), the civil (CD6) and landscape
+// (LC.4/LC.5) construction plans, and CTF Construction's REVISED Phase 1
+// proposal (Job #260207, dated 7/8/2026, expires 8/8/2026 - superseding an
+// earlier version dated 6/3/2026 that had been reviewed first). Notes below
+// flag what changed between the two CTF proposal versions where relevant.
 
 function buildCtfExampleChecklist() {
   const now = new Date().toISOString();
@@ -535,13 +536,13 @@ function buildCtfExampleChecklist() {
     project: {
       name: "Alta Vista",
       location: "7400 S Alton St, Centennial, CO",
-      jobNo: "RC26015",
-      date: "2026-06-03",
+      jobNo: "260207",
+      date: "2026-07-08",
       preparedBy: "",
     },
     gc: {
       company: "Garrett Construction",
-      contact: "",
+      contact: "Nathan Orfanedes",
       phone: "317.886.7923",
       email: "AltaVista@TheGarrettCo.com",
     },
@@ -551,21 +552,26 @@ function buildCtfExampleChecklist() {
       contact: "Michael Bukowski, Estimator",
       phone: "720.790.1600 / 720.532.3554",
       email: "MichaelB@CTFconst.com",
-      amount: "$1,121,137.36 - Phase 1 Estimate Total, per 6/3/2026 proposal (Proposal Exp. 7/3/2026).",
+      amount: "$1,103,685.51 - REVISED proposal, 7/8/2026 (Job #260207, Exp. 8/8/2026). Phase 1 $1,018,131.02 + ROW $64,030.31 + Alternate-Offsite $21,524.18. Supersedes the original 6/3/2026 proposal, which totaled $1,121,137.36.",
     },
     generalNotes:
-      "PRIORITY: this proposal expired 7/3/2026 and today's date is well past that - get updated, current pricing " +
-      "from CTF before contract, especially given the 12/31/2026 supplier pricing escalator and the open-ended price " +
-      "increase clauses for inflation/tariffs/shortages. Also flag: (1) CTF's bid is conditioned on the AIA A401-1997 " +
-      "subcontract form and excludes any requirement to name additional insureds or waive subrogation rights - this " +
-      "needs GC risk/legal review before using Garrett's standard subcontract form. (2) Rubberized Play Surface is on " +
-      "the master Site Concrete scope checklist but is not a line item anywhere in CTF's proposal - ESI's separate " +
-      "site concrete bid (per the same bid tracker) priced this at $28,518; confirm which bidder is actually carrying " +
-      "it. (3) A number of CTF's line items are qualified \"ASSUMED\" (no structural/civil detail was available when " +
-      "priced) - see the Assumed / Unconfirmed Details section; get real detail sheets to CTF and have them re-confirm " +
-      "pricing once available, since assumptions on rebar and dimensions are a common source of change orders. " +
-      "(4) CTF's default position is no retainage unless mutually agreed - confirm Garrett's retainage requirement " +
-      "up front.",
+      "This checklist has been updated to CTF's REVISED proposal (received 7/8/26, Job #260207), which supersedes the " +
+      "6/3/26 version reviewed earlier. PRIORITY: this revised proposal has ALSO now expired (Exp. 8/8/2026, today is " +
+      "well past that) - a third, current pricing confirmation will be needed before contract, on top of the existing " +
+      "12/31/2026 supplier escalator and open-ended inflation/tariff/shortage clauses. Net effect of the revision: the " +
+      "Estimate Total actually DECREASED by $17,451.85 ($1,121,137.36 -> $1,103,685.51) even though CTF added newly " +
+      "priced ROW and Offsite Alternate scope that wasn't broken out before - driven by lower per-unit costs on curb, " +
+      "sidewalk, and paving items; get an explanation for the swing before relying on it. New in this revision: (1) two " +
+      "additional \"ASSUMED\" wall items, one of which explicitly flags that the civil wall detail sheet and the " +
+      "landscape plans CONTRADICT each other on wall material (concrete vs. CMU) - this is a real design conflict that " +
+      "needs architect/civil resolution before it can be accurately scoped or priced; (2) Garage Apron now explicitly " +
+      "excludes rebar, which wasn't called out in the original version - confirm the structural requirement; (3) " +
+      "Hammock Footer and Emergency Switch Footer dropped off the written exclusions list - confirm whether they're " +
+      "now intended to be included or were just omitted. Carried over unchanged from the original: Rubberized Play " +
+      "Surface is still not addressed anywhere in CTF's proposal despite being on the master scope checklist (ESI's " +
+      "separate site concrete bid priced it at $28,518); several line items remain priced on ASSUMED details pending " +
+      "real structural sheets (A/LWF.2, S7.0); and the AIA A401 conditioning plus no-retainage-by-default position " +
+      "still need GC risk/legal review.",
     sections: [
       {
         id: uid(),
@@ -578,16 +584,28 @@ function buildCtfExampleChecklist() {
             ""
           ),
           item(
+            "Estimate Total reconciled across Phase 1 / ROW / Offsite Alternate",
+            "needs_clarification",
+            "Phase 1 Sub-Total $1,018,131.02 + ROW Sub-Total $64,030.31 + Alternate-Offsite Sub-Total $21,524.18 = Estimate Total $1,103,685.51. Down $17,451.85 from the original 6/3/26 proposal's $1,121,137.36, despite ROW and Offsite being newly broken out as priced scope.",
+            "Get CTF to explain the net decrease - largely lower unit costs on curb/sidewalk/paving items - before carrying this number to contract."
+          ),
+          item(
             "Rubberized Play Surface",
             "needs_clarification",
-            "Listed as a PRICING line on the master Site Concrete scope checklist, but no rubberized play surface item appears anywhere in CTF's itemized proposal.",
+            "Listed as a PRICING line on the master Site Concrete scope checklist, but no rubberized play surface item appears anywhere in CTF's itemized proposal (original or revised).",
             "ESI's separate site concrete bid on the same tracker priced this at $28,518 - confirm which bidder carries it, or get CTF to add it."
           ),
           item(
             "Proposal pricing validity",
             "needs_clarification",
-            "Proposal Date 6/3/2026, Proposal Exp. 7/3/2026. \"Concrete Suppliers Guarantee Pricing for 30 Days Only. Pricing Can Vary After. There Will Be A General Pricing Escalator As Of 12.31.2026.\"",
-            "Proposal has expired as of today - get current, re-confirmed pricing from CTF before issuing a subcontract."
+            "Revised Proposal Date 7/8/2026, Proposal Exp. 8/8/2026 (up from Exp. 7/3/2026 on the original 6/3/26 version). \"Concrete Suppliers Guarantee Pricing for 30 Days Only. Pricing Can Vary After. There Will Be A General Pricing Escalator As Of 12.31.2026.\"",
+            "This revised proposal has itself now expired - get current, re-confirmed pricing from CTF before issuing a subcontract."
+          ),
+          item(
+            "Mobilization & Administration pricing",
+            "needs_clarification",
+            "Reduced from $15,000.00 to $4,800.00 between the two proposal versions.",
+            "Confirm this reduction is intentional and not an error, given every other mobilization-adjacent cost stayed flat or dropped only modestly."
           ),
           item(
             "Change-order labor rate",
@@ -604,7 +622,7 @@ function buildCtfExampleChecklist() {
           item(
             "Cold weather pricing (Nov 1 - Mar 31)",
             "acknowledged",
-            "Winter Time Service Charge $4.16/CY; NCA $9.88/CY per 1%; Subgrade Blanket Covering $1.00/LF; Concrete Blanket Covering $3.13/LF; Saw Cutting Blanket Covering $1.00/LF.",
+            "Winter Time Service Charge $4.16/CY; NCA $9.88/CY per 1%; Subgrade Blanket Covering $1.00/LF; Concrete Blanket Covering $3.04/LF (was $3.13/LF); Saw Cutting Blanket Covering $1.00/LF.",
             "Relevant if any Phase 1 concrete placement falls within the cold weather window per the project schedule."
           ),
         ],
@@ -616,49 +634,79 @@ function buildCtfExampleChecklist() {
           item(
             "Take-off completed per plans",
             "confirmed_included",
-            "Full Phase 1 itemized take-off provided (34 line items), Estimate Total $1,121,137.36.",
+            "Full itemized take-off across three sub-sections (Phase 1, ROW, Alternate-Offsite), 40 line items total.",
             ""
           ),
           item(
             "Includes all site concrete (curb & gutter, sidewalks, stairs, pans, etc.)",
             "confirmed_included",
-            "Itemized: 6\" Vertical Curb w/ 2' and 1' Pan, Mountable CG w/ 2' Pan, multiple sidewalk widths, HCR w/ Truncated Domes, Crosspan 12\", Valley Pan 4'/2', ADA Parking Paving, Step Concrete, Check Wall @ Stairs.",
+            "Itemized: 6\" Vertical Curb w/ 2' and 1' Pan, Mountable CG w/ 2' Pan, multiple sidewalk widths, HCR w/ Truncated Domes, Crosspan, Valley Pan 4'/2', ADA Parking Paving, Step Concrete, Check Wall @ Stairs.",
             ""
+          ),
+          item(
+            "ROW scope",
+            "confirmed_included",
+            "Now separately broken out: Mobilization, HCR w/ Truncated Domes (4 EA), Crosspan (1,055 SF), Sidewalk 6'-0\"x6\" (544 LF), 6\" Vertical Curb w/ 2' Pan (510 LF) - ROW Sub-Total $64,030.31.",
+            "Resolves the \"Offsite/ROW\" open item flagged against the original proposal, which didn't break this out separately."
+          ),
+          item(
+            "Alternate - Offsite paving",
+            "confirmed_included",
+            "Now separately priced as an alternate: Mobilization, 6\" Vertical Curb w/ 2' Pan (108 LF), Sidewalk 6'-0\"x6\" (117 LF), Crosspan 12\" (762 SF) - Alternate-Offsite Sub-Total $21,524.18.",
+            "Confirm whether Garrett wants this alternate carried into the base contract or held as a true alternate."
+          ),
+          item(
+            "Offsite Storm Sewer Exhibit",
+            "needs_clarification",
+            "Still not addressed in either CTF proposal version, even with ROW and Offsite Alternate now separately priced.",
+            "Confirm whether this applies to the site concrete package or is being tracked under a different trade's cost code."
+          ),
+          item(
+            "Vehicular Paving 6\", Rebar",
+            "needs_clarification",
+            "New line item in the revised proposal - 267 SF @ $8.42 = $2,248.14. Not present in the original 6/3/26 version.",
+            "Confirm what area this covers and why it was added in the revision."
           ),
           item(
             "Includes pool deck per Civil & Landscape Drawings - colored, as specified",
             "confirmed_included",
-            "\"Enhanced Concrete Paving 4\", Davis Outback 677, Top Cast 05 Exposed, Saw Cut (LC.A)\" - 4,315 SF @ $7.51 = $32,405.65.",
+            "\"Enhanced Concrete Paving 4\", Davis Outback 677, Top Cast 05 Exposed, Saw Cut (LC.A)\" - 4,315 SF @ $7.21 = $31,111.15 (unit cost reduced from $7.51 in the original).",
             "Confirm this line item is in fact the pool deck area shown on LC.4/LC.5 and that the Davis Outback 677 color/finish matches spec."
+          ),
+          item(
+            "Garage Apron rebar",
+            "needs_clarification",
+            "Revised description now explicitly reads \"EXCLUDES Expansion & Sealing @ BLDG EXCLUDES REBAR (CD6)\" - the original proposal only excluded expansion/sealing, with rebar status ambiguous.",
+            "Confirm whether the garage apron requires rebar per the structural plans and, if so, who is now furnishing/installing it."
           ),
           item(
             "Includes concrete footings for trash compactor, monument sign, light poles, bollards, and amenity items",
             "needs_clarification",
-            "Trash Pad + Footer, Light Pole Base, Kitchen Wall Footer, and BBQ Pit Footer are itemized. No monument sign or bollard footing line item found.",
+            "Trash Pad + Footer, Light Pole Base, Kitchen Wall Footer, and BBQ Pit Footer are itemized. No monument sign or bollard footing line item found in either proposal version.",
             "Confirm monument sign and bollard footings are covered elsewhere (bollards themselves are explicitly excluded below - see Exclusions) or get them added."
           ),
           item(
             "Includes pavers (flat slab included in site concrete; pavers included in landscaping)",
             "confirmed_included",
-            "\"Concrete Base @ Pavers 4\", #3 @ 18\" OCEW (EXCLUEDES GeoTextile Fabric)\" - 3,906 SF @ $6.16 = $24,060.96.",
+            "\"Concrete Base @ Pavers 4\", #3 @ 18\" OCEW (EXCLUEDES GeoTextile Fabric)\" - 3,906 SF @ $5.90 = $23,045.40 (unit cost reduced from $6.16).",
             "Confirms the split: CTF provides the concrete base under pavers only; the paver units/setting are carried by the landscaping trade, per the tracker note."
           ),
           item(
             "Includes dumpster pad and foundations",
             "confirmed_included",
-            "\"Trash Pad 6\", No Rebar (ASSUMED NO DETAIL)\" 2,514 SF @ $6.26, plus \"Trash Pad Footer\" 173 LF @ $105.00.",
+            "\"Trash Pad 6\", No Rebar (ASSUMED NO DETAIL)\" 2,514 SF @ $5.94 (was $6.26), plus \"Trash Pad Footer\" 173 LF @ $105.00 (unchanged).",
             "Trash pad rebar is an assumption - see Assumed / Unconfirmed Details."
           ),
           item(
             "Includes foundations for CMU perimeter walls and columns",
             "needs_clarification",
-            "No line item explicitly labeled CMU perimeter wall or column foundation appears in CTF's proposal.",
-            "Confirm whether \"Decorative Concrete Wall\" or \"Check Wall @ Stairs\" covers this, or whether it's a genuine gap."
+            "No line item explicitly labeled CMU perimeter wall or column foundation appears in either proposal version. Notably, the revised proposal's new Low Decorative Wall item flags that the landscape plans call for CMU where the civil detail shows concrete - see Assumed / Unconfirmed Details.",
+            "Confirm whether \"Decorative Concrete Wall,\" \"Check Wall @ Stairs,\" or the new low wall items cover this, or whether it's a genuine gap."
           ),
           item(
             "Includes all reinforcement, as outlined in the plans",
             "needs_clarification",
-            "Inclusions state \"Furnish and Install wire mesh and rebar per plan,\" but 6 separate line items qualify reinforcement/dimensions as \"ASSUMED\" due to missing detail.",
+            "Inclusions state \"Furnish and Install wire mesh and rebar per plan,\" but 9 separate line items now qualify reinforcement/dimensions/material as \"ASSUMED\" due to missing or contradictory detail (up from 6 in the original version).",
             "See Assumed / Unconfirmed Details section - get actual structural sheets to CTF for re-confirmation."
           ),
           item(
@@ -670,26 +718,14 @@ function buildCtfExampleChecklist() {
           item(
             "Rain Garden",
             "acknowledged",
-            "Excluded - \"Rain Garden Concrete\" is listed under CTF's excluded items, and the CD6 civil paving plan itself calls out \"EXCLUSION - RAIN GARDEN A\" directly on the plan near the unit 3H area.",
+            "Still excluded - \"Rain Garden Concrete\" remains on CTF's excluded items list in the revised proposal, and the CD6 civil paving plan itself calls out \"EXCLUSION - RAIN GARDEN A\" directly on the plan near the unit 3H area.",
             "Consistent between the proposal and the civil plan - confirm which trade/scope carries the rain garden concrete instead."
-          ),
-          item(
-            "Offsite / ROW",
-            "needs_clarification",
-            "Not addressed in CTF's Phase 1 take-off, which appears to be entirely on-site.",
-            "Confirm whether any offsite/ROW concrete is anticipated and, if so, get it priced separately."
           ),
           item(
             "Site decorative wall / free standing wall",
             "confirmed_included",
-            "\"Decorative Concrete Wall 1'-6\"x4'-6\", Board Form, Rebar (F/LWF.2)\" 68 LF @ $214.00 = $14,552.00.",
+            "\"Decorative Concrete Wall 1'-6\"x4'-6\", Board Form, Rebar (F/LWF.2)\" 68 LF @ $214.00 = $14,552.00 (unchanged). Two additional wall items added in the revision - see Assumed / Unconfirmed Details for the CMU conflict on one of them.",
             ""
-          ),
-          item(
-            "Offsite Storm Sewer Exhibit",
-            "needs_clarification",
-            "Not addressed in CTF's proposal.",
-            "Confirm whether this applies to the site concrete package or is being tracked under a different trade's cost code."
           ),
         ],
       },
@@ -697,6 +733,18 @@ function buildCtfExampleChecklist() {
         id: uid(),
         title: "Assumed / Unconfirmed Details (per CTF Proposal)",
         items: [
+          item(
+            "Low Decorative Wall - material conflict between civil and landscape plans",
+            "needs_clarification",
+            "NEW in the revised proposal: \"Low Decorative Wall 1'-6\"x4'-0\"Max, #4@12\" OCEW EF, Board Form Finish (F/LWF.2)(Plans Contradict Lanscape Plans State CMU)(ASSUMED MISSING DETAIL)\" - 67 LF @ $190.00 = $12,730.00. CTF is flagging, in its own words, that the civil wall detail sheet and the landscape plans disagree on wall material (concrete vs. CMU masonry).",
+            "This needs architect/civil resolution before it can be accurately scoped or priced - a material change (concrete to CMU) would likely also change which trade performs this work entirely."
+          ),
+          item(
+            "Concrete Wall 1'-0\"x6'-0\" - detail missing",
+            "needs_clarification",
+            "NEW in the revised proposal: \"Concrete Wall 1'-0\"x6'-0\", #4@12\" OCEW (6)#4 Cont (A/LWF.2)(ASSUMED MISSING DETAILS)\" - 22 LF @ $190.00 = $4,180.00.",
+            ""
+          ),
           item(
             "Trash Pad reinforcement",
             "needs_clarification",
@@ -718,7 +766,7 @@ function buildCtfExampleChecklist() {
           item(
             "Stem Wall @ Paver Base @ Pool",
             "needs_clarification",
-            "\"Stem Wall @ Paver Base @ Pool 6\"x3'-0\", #3@18\" OCEW (ASSUMED MISSING)\" - 280 LF.",
+            "\"Stem Wall @ Paver Base @ Pool 6\"x3'-0\", #3@18\" OCEW (ASSUMED MISSING)\" - still 280 LF, unchanged between proposal versions.",
             "Landscape plan (LC.5) quantity call-out for this area appears meaningfully lower than 280 LF - verify the take-off quantity against the actual civil/structural detail once available."
           ),
           item(
@@ -736,7 +784,7 @@ function buildCtfExampleChecklist() {
           item(
             "Transformer Pad detail",
             "needs_clarification",
-            "\"Transformer Pad (ASSUMED 8\" NO DETAIL)\" - 22 EA @ $538.65.",
+            "\"Transformer Pad (ASSUMED 8\" NO DETAIL)\" - 22 EA @ $516.95 (unit cost reduced from $538.65).",
             ""
           ),
           item(
@@ -762,7 +810,7 @@ function buildCtfExampleChecklist() {
             "",
             "Confirm which trade is providing the 1/10' fine grade - same assumption pattern seen on the concrete and asphalt packages."
           ),
-          item("Concrete pump as needed", "confirmed_included"),
+          item("Concrete pump as needed", "confirmed_included", "Concrete Pumping line item reduced from $8,000.00 to $5,000.00 between proposal versions.", "Confirm this reduction reflects an updated pump-hour estimate, not a scope cut."),
         ],
       },
       {
@@ -770,10 +818,10 @@ function buildCtfExampleChecklist() {
         title: "Exclusions (per CTF Proposal)",
         items: [
           item(
-            "10 Mil vapor barrier & reinforcement @ sidewalks; bollard light concrete bases; rain garden concrete; hammock footer; emergency switch footer; topping slab concrete (C/LCD.4); road base under concrete",
+            "10 Mil vapor barrier & reinforcement @ sidewalks; bollard light concrete bases; rain garden concrete; topping slab concrete (C/LCD.4); road base under concrete",
             "confirmed_excluded",
-            "\"Items Below Can Be Added Upon Direct Request.\"",
-            "Review this list against spec - anything required gets added by change order, not assumed included."
+            "\"Items Below Can Be Added Upon Direct Request.\" Note: \"Hammock Footer\" and \"Emergency Switch Footer\" were on this excluded list in the original 6/3/26 proposal but do not appear in the revised 7/8/26 version.",
+            "Confirm whether Hammock Footer and Emergency Switch Footer are now intended to be included, or were just dropped from the list in error - get this in writing either way."
           ),
           item("Removals, saw cutting, washout and traffic control", "confirmed_excluded"),
           item("Sealers, hardeners, and joint sealant", "confirmed_excluded"),
@@ -803,7 +851,7 @@ function buildCtfExampleChecklist() {
           item(
             "Bid conditioned on AIA A401-1997 subcontract form",
             "needs_clarification",
-            "\"This Bid Is Conditioned Upon The Use Of The AIA A401-1997 Subcontract Form, And Upon The Exclusion Of Any Requirement To Name Additionally Insured Parties, Or To Waive Rights Of Subrogation... If An Alternate Contract Form Is To Be Executed, All Terms Shall Be Mutually Agreed Upon Prior To Start Of Any Work.\"",
+            "\"This Bid Is Conditioned Upon The Use Of The AIA A401-1997 Subcontract Form, And Upon The Exclusion Of Any Requirement To Name Additionally Insured Parties, Or To Waive Rights Of Subrogation... If An Alternate Contract Form Is To Be Executed, All Terms Shall Be Mutually Agreed Upon Prior To Start Of Any Work.\" Unchanged from the original proposal.",
             "Needs GC risk/legal review - this conflicts with a typical requirement to name the GC/owner as additional insured and waive subrogation."
           ),
           item("No Saturday/Sunday/holiday/night work in base bid; such work billed at separately agreed rates", "acknowledged"),
