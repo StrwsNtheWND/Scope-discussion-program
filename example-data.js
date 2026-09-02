@@ -886,3 +886,289 @@ function buildCtfExampleChecklist() {
     ],
   };
 }
+
+// Example checklist seeded from a real buyout scope discussion package:
+// Alta Vista (Centennial, CO) - CSI Division 05 Metals (Structural Steel,
+// Metal Stairs, Ladders, Handrails & Railings, Misc. Metals)
+// GC: Garrett Construction | Bidder: W Baker Steel LLC
+//
+// Built primarily from W Baker Steel's own itemized proposal (dated
+// 6/2/2026, valid through 8/31/2026 - covering stairs, balcony/Juliet
+// rails, elevator steel, dog park and pool fencing/gates, handrails,
+// amenity steel, and trash enclosure gates/bollards), cross-referenced
+// against the Division 5 Metals bid comparison tracker's master scope
+// checklist questions (Structural Steel, Metal Stairs, Ladders, and
+// Handrails & Railings cost codes) and its Kone elevator credit notes.
+
+function buildBakerExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "7400 S Alton St, Centennial, CO",
+      jobNo: "RC26015",
+      date: "2026-06-02",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes",
+      phone: "317.886.7923",
+      email: "AltaVista@TheGarrettCo.com",
+    },
+    bidder: {
+      company: "W Baker Steel LLC",
+      trade: "05 1200 - Structural Steel, Stairs, Railings & Misc. Metals",
+      contact: "Victor Montoya, Project Manager",
+      phone: "(281) 741-3064 Ext. 105 / (346) 313-1247",
+      email: "Victor@wbakersteel.com",
+      amount: "$766,074.91 - Sub Total $741,064.00 + Sales Tax (6.75%) $25,010.91, per 6/2/2026 proposal, valid through 8/31/2026.",
+    },
+    generalNotes:
+      "PRIORITY: Baker's proposal applies 6.75% sales tax to the entire $741,064.00 subtotal (which includes labor and " +
+      "fabrication), but the master Division 5 checklist calls for the correct rate to be 4% on materials only - this " +
+      "looks like a real overcharge on both rate and base, and is worth resolving before contract; it alone accounts " +
+      "for $25,010.91 of the total. Also: this proposal expired 8/31/2026 and today's date is past that - get current " +
+      "pricing before award. Baker explicitly states \"This bid is not a GMP quote to cover all steel items. It is " +
+      "limited to what is specifically listed here with items and quantities\" - given the sheer number of building- " +
+      "type-specific line items, do a careful cross-check against the full drawing set for anything not itemized, " +
+      "since nothing implied is included. Three flagged gaps: (1) Metal Canopies are excluded entirely - the bid " +
+      "tracker shows Baker marked \"Plug - NO Metal Canopies\" - a separate bidder or allowance is needed. (2) Juliet " +
+      "Rails are priced two ways, Option A (Per Detail) and Option B (Per Exterior Elevations), both totaling exactly " +
+      "$53,300 - the GC needs to pick one before this can go to contract, since both are currently live in the " +
+      "proposal as alternates. (3) The bid tracker notes \"Kone does not need hoistbeams credit\" (-$16,800) and " +
+      "\"Ladders by Kone\" (-$8,400) against a different bidder's pricing, but Baker's own proposal includes full " +
+      "elevator hoist beam and pit ladder pricing per building type with no credit taken - confirm whether Kone " +
+      "(the elevator installer) is picking up this scope from Baker, and if so get the credit applied. Minor: the bid " +
+      "tracker lists Baker's contact as \"Brent Franklin/Victor Mendoza\" at 281-541-0389, while the signed proposal " +
+      "itself is from \"Victor Montoya\" at (281) 741-3064 - confirm the correct current contact before the scope call.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Correct sales tax percentage on materials only at 4%",
+            "needs_clarification",
+            "Baker's proposal instead applies 6.75% Sales Tax to the full $741,064.00 subtotal (labor + fabrication + material) = $25,010.91, arriving at a $766,074.91 total.",
+            "This is both the wrong rate and the wrong base per the master checklist - get this corrected before contract; could meaningfully reduce the total."
+          ),
+          item(
+            "Provide T&M rates (hourly labor $; equipment $; material $)",
+            "needs_clarification",
+            "No T&M rate sheet included with this proposal.",
+            "Request T&M rates for any add/change-order work, consistent with what other trades on this project have provided."
+          ),
+          item(
+            "Proposal pricing validity",
+            "needs_clarification",
+            "\"The validity of this proposal expires at the end of business day of 08/31/2026.\" Based on Bidding Set dated 05-07-2026.",
+            "Proposal has expired - get current, re-confirmed pricing from Baker before issuing a subcontract."
+          ),
+          item(
+            "Proposal is not divisible; must be accepted in its entirety",
+            "acknowledged",
+            "\"This Proposal is not divisible and is to be accepted in its entirety. Reduction of the scope of work may involve a change in unit price.\"",
+            "Confirm Garrett is prepared to award the full package as-is, since removing any single area may reprice the rest."
+          ),
+          item(
+            "Proposal will be revised upon new construction drawings",
+            "acknowledged",
+            "\"W Baker Steel LLC will revise the proposal when receiving a new set(s) of construction drawings\" and \"any change to specifications will affect the unit price(s) and a new revised proposal will be issued.\"",
+            "If drawings have revised since the 05-07-2026 bidding set, expect a repriced proposal - check for a newer version before contract, per the pattern seen on other trade packages."
+          ),
+          item(
+            "Machinery rental included, except elevator shaft scaffolding and cranes",
+            "confirmed_included",
+            "\"W Baker Steel LLC will rent any machinery necessary to lift up material and erect steel items without an additional charge with the exception of Scaffolding for elevator shafts steel and any cranes.\" Man lift and forklift listed as included equipment.",
+            "Confirm who is providing scaffolding for elevator shaft steel work and any cranes required, since both are carved out."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope Confirmation (per Division 5 Metals bid tracker)",
+        items: [
+          item(
+            "Take-off completed per plans",
+            "confirmed_included",
+            "Full itemized take-off across every building type and amenity area, based on the 05-07-2026 bidding set.",
+            ""
+          ),
+          item(
+            "Engineered shop drawings included",
+            "needs_clarification",
+            "Not explicitly addressed as a line item in Baker's proposal.",
+            "Confirm engineered shop drawings (and any associated engineering/stamp fees) are included in the quoted price."
+          ),
+          item(
+            "Verified beam dimensions with wood framing and overall ceiling plan",
+            "needs_clarification",
+            "Not explicitly addressed in Baker's proposal.",
+            "Confirm this coordination step has actually been done, particularly for elevator hoist/life line beams."
+          ),
+          item(
+            "Includes elevator hoist beam, as required",
+            "confirmed_included",
+            "Elevator Hoist Beams, Pit Ladders, Grating Decks for Sum Pits, Life Line Beams, and Sill Angles itemized per building type (Types I, IA, II) - Elevator section total $56,560.00.",
+            "See the Kone credit flag in the general notes - confirm this scope is still with Baker and not moving to the elevator installer."
+          ),
+          item(
+            "Includes wet-set embeds / bolts, as required",
+            "confirmed_included",
+            "Covers embeds Baker needs for its own connections.",
+            "Distinct from \"Embeds for other trades,\" which is explicitly excluded below - don't conflate the two."
+          ),
+          item(
+            "Includes all stair flights, as per plans",
+            "confirmed_included",
+            "Stair 1 and Stair 2 towers itemized for Building Types I, IA, and II (steel stairs); Types III and IV use wood treads/stringers by others with Baker providing only wall-mounted handrails.",
+            "Confirm the Type III/IV wood-stair-by-others split matches the architectural intent."
+          ),
+          item(
+            "Includes pre-cast stair treads with metal closures",
+            "confirmed_included",
+            "Tread material specified as \"42\" x 12\" x 2 1/4\" P.C.T.\" (precast concrete tread) throughout the stair sections.",
+            ""
+          ),
+          item(
+            "Includes rails for stair landings, guardrails, cane rails, and stairs",
+            "confirmed_included",
+            "Full Stair Rails w/Grab Bar and Connecting Rails, Wall Mounted Hand Rails w/exts, Return Rails, Public Rails, and Cane Detection all itemized per stair tower.",
+            ""
+          ),
+          item(
+            "Includes elevator pit grates and elevator ladders",
+            "needs_clarification",
+            "Bid tracker's Ladders cost code shows Baker's answer as \"SEE Structural Steel $13,341.00\" - i.e. priced under a different cost code than the tracker expected.",
+            "Confirm this scope isn't being double-counted or dropped between cost codes when the budget is reconciled."
+          ),
+          item(
+            "Roof Access Ladders (19/A6020)",
+            "confirmed_included",
+            "\"Roof Access Ladder\" itemized once per stair tower for Building Types I and IA (3 and 2 towers respectively), and once per Building Type II (\"Roof Access Ladder @ Stair 1 Only\").",
+            ""
+          ),
+          item(
+            "Includes all balcony railings",
+            "confirmed_included",
+            "\"3'-6\"H Balcony Rails\" itemized with embeds for Building Types I, IA, II, III, and IV - section total $211,858.00.",
+            ""
+          ),
+          item(
+            "Fabricated materials prime painted",
+            "confirmed_included",
+            "\"All materials to receive one coat of shop primer - Red Oxide,\" listed as \"Coated: Red Primer\" throughout.",
+            ""
+          ),
+          item(
+            "Includes all roof railings at mechanical",
+            "needs_clarification",
+            "No line item for roof-level railings at mechanical equipment/screening found anywhere in Baker's itemized proposal.",
+            "Confirm whether this scope exists on this project and, if so, get it added or confirm it's carried by another trade."
+          ),
+          item(
+            "Includes mobilizations for field measure and multiple phase installation",
+            "needs_clarification",
+            "Unlike the concrete, asphalt, and site concrete packages, Baker's proposal has no explicit mobilization line item anywhere.",
+            "Confirm mobilization/remobilization for field measurement and phased installation across 14 buildings is baked into the unit prices, not billed as an extra."
+          ),
+          item(
+            "Verify railings for slopes, as per plans",
+            "needs_clarification",
+            "Not explicitly addressed in Baker's proposal.",
+            "Confirm sloped-condition railings (stairs, ramps) have been verified against the plans, not just flat-condition assumptions."
+          ),
+          item(
+            "3'-6\" H Juliet Rails",
+            "needs_clarification",
+            "Priced twice as alternates: Option A (Per Detail) and Option B (Per Exterior Elevations) - both total exactly $53,300.00 across the same building types.",
+            "GC must select Option A or B before contract - only one should be carried, not both."
+          ),
+          item(
+            "Includes bollards",
+            "confirmed_included",
+            "\"3'-6\"H Bollards,\" 6\" Sch. 40, itemized under Trash Enclosure - 6 pcs @ $410.00 = $2,460.00.",
+            ""
+          ),
+          item(
+            "Metal Canopies",
+            "confirmed_excluded",
+            "Bid tracker shows Baker marked \"Plug - NO Metal Canopies.\" No canopy line items anywhere in Baker's proposal.",
+            "This scope needs a separate bidder or allowance - it is not part of Baker's package at all."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope Areas & Totals (per W Baker Steel Proposal)",
+        items: [
+          item("Stairs (Building Types I, IA, II - steel stairs; III, IV - wood stairs by others, Baker rails only)", "confirmed_included", "Section Total $240,068.00", ""),
+          item("3'-6\"H Balcony Rails (all building types)", "confirmed_included", "Section Total $211,858.00", ""),
+          item("3'-6\"H Juliet Rails - Option A and Option B (alternates, select one)", "needs_clarification", "Each option totals $53,300.00", "See Scope Confirmation - only one option should be carried to contract."),
+          item("Elevator steel (hoist beams, pit ladders, grating decks, life line beams, sill angles)", "confirmed_included", "Section Total $56,560.00", "See Kone credit flag in general notes."),
+          item("Dog Park Fence & Gate", "confirmed_included", "Section Total $26,360.00", ""),
+          item("5'-0\"H Pool Fence & Gate", "confirmed_included", "Section Total $23,715.00", ""),
+          item("3'-0\"H Step Handrails / Core Drilling", "confirmed_included", "Section Total $6,548.00", ""),
+          item("3'-6\"H Guardrails at Retaining Walls", "confirmed_included", "Section Total $54,970.00", ""),
+          item("Pool safety signage post, pool safety equipment posts, hose bib post, fire table controls/emergency switch post, hammock posts", "confirmed_included", "Combined total $5,450.00 ($450 + $900 + $1,400 + $900 + $1,800)", ""),
+          item("Bike Rack, VE Option", "needs_clarification", "Section Total $1,290.00 - a shop-built value-engineering substitute \"similar to Metro 40 Ride Bike Rack by Landscape Forms.\"", "Confirm this VE substitution is acceptable to the design team/owner if a specific product was originally specified."),
+          item("Steel at Outdoor Kitchen (countertop frame, posts, barbecue/bar top steel plate)", "confirmed_included", "Section Total $6,290.00", ""),
+          item("Steel Frame at Inset of TV Recess", "confirmed_included", "Priced within the Outdoor Kitchen section per Detail D/LWF.3; no separate subtotal shown.", "Confirm this line item's price is captured correctly since it has no standalone total."),
+          item("Steel at Spa Accent Wall", "confirmed_included", "Section Total $12,645.00 (plus a related $1,700.00 steel frame item).", ""),
+          item("Trellis (15'-0\"x24'-0\"x9'-9\"H)", "confirmed_included", "Section Total $8,000.00. Faux wood roof slats and their connection clips are by others.", ""),
+          item("Trash Enclosure (bollards and gates)", "confirmed_included", "Section Total $32,310.00. Concrete and crown cap for bollards by others.", ""),
+          item("Fireplace / kitchen accent wall steel (per LC.B note)", "needs_clarification", "Bid tracker note references \"Spa accent wall, fire place, kitchen accent wall - See LC.B.\" Baker's proposal covers the spa accent wall and outdoor kitchen steel, but no line item clearly addresses a fireplace.", "Confirm whether any fireplace steel scope exists on LC.B and, if so, who is carrying it."),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Exclusions & Qualifications (per W Baker Steel Proposal)",
+        items: [
+          item("This bid is not a GMP quote - limited strictly to items and quantities listed", "acknowledged", "", "Cross-check the full drawing set for any steel scope not explicitly itemized - nothing implied is included."),
+          item("Simpson hanger installation not included", "alternate_credit", "\"We can provide a price to weld a hanger provided by others if requested.\"", ""),
+          item("Flitch plates not included", "alternate_credit", "\"We can provide if requested.\"", ""),
+          item("Embeds for other trades not included", "alternate_credit", "\"We can provide if requested.\" Distinct from Baker's own wet-set embeds, which are included.", ""),
+          item("No light gauge materials, specialty metals, holes for other trades, masonry anchors, or louvers", "confirmed_excluded"),
+          item("No aluminum, stainless steel, or their components (unless specifically noted)", "confirmed_excluded"),
+          item("No vinyl railing/fencing, standard steel doors and frames, or flashing/sheet metal", "confirmed_excluded"),
+          item("No third-party testing or inspections", "confirmed_excluded"),
+          item("Permits not included unless specified", "confirmed_excluded"),
+          item("No access control locks/card readers at gates; standard single-hole boxes and standard hinges only", "confirmed_excluded", "", "Coordinate with the access-control vendor for all gates (dog park, pool)."),
+          item("No blocking or waterproofing", "confirmed_excluded", "\"Provided by others.\"", ""),
+          item("Awning/canopy roofs bid as standard PBU panel only - no standing seam or wood component; no exotic/composite woods", "confirmed_excluded"),
+          item("Specialty roofing, wood-slat roofing, and wood columns for trellis/cabanas not included unless otherwise noted", "confirmed_excluded"),
+          item("Removal of temporary stairs, silt fencing, lintels (unless noted), and carports not included", "confirmed_excluded"),
+          item(
+            "Any Powdercoat items are standard Gloss/Flat Black",
+            "acknowledged",
+            "\"Any other colors will require an additional cost component.\" Bike rack is the only item specified as powder coated in this proposal.",
+            "Confirm Gloss/Flat Black matches the specified color, or budget for the upcharge."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "General Terms",
+        items: [
+          item("Change orders must be approved in writing and executed before any work is performed", "acknowledged"),
+          item("Not a bid for Design/Build features; submittals based on current documents only", "acknowledged", "", "Confirm no design/build steel scope is expected of Baker - additional cost if so."),
+          item("Compensation includes all applicable sales tax and duties as required by law", "needs_clarification", "", "See the Pricing section - the tax calculation itself needs correcting, so this statement needs to be re-verified once fixed."),
+          item("Term of agreement runs from date of agreement through completion of drawings & fabrication services", "acknowledged"),
+        ],
+      },
+    ],
+  };
+}
