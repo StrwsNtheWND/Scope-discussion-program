@@ -1203,7 +1203,7 @@ function buildInsulationExampleChecklist() {
       name: "Alta Vista",
       location: "Centennial, CO",
       jobNo: "RC26015",
-      date: "2026-06-12",
+      date: "2026-08-07",
       preparedBy: "",
     },
     gc: {
@@ -1218,22 +1218,26 @@ function buildInsulationExampleChecklist() {
       contact: "Jason Gattis, Estimator/Project Manager",
       phone: "936.900.3201",
       email: "Jason.Gattis@diversified-insulation.com",
-      amount: "$973,662.00 combined (Apartments $693,915.00 + Townhomes $279,747.00), per revised 6/12/2026 proposals. Bid tracker shows $952,000.00 / Prepared Amount $1,125,219.40 for this bidder - see Pricing for reconciliation.",
+      amount: "$952,000.00 combined (Apartments $681,000.00 + Townhomes $271,000.00), per REVISED 8/7/2026 proposals (Rev 1.2) - down from $973,662.00 on the 6/12/26 version. Now matches the bid tracker's TOTAL figure exactly.",
     },
     generalNotes:
-      "PRIORITY: Diversified's proposal Exclusions list explicitly excludes \"Tenting,\" but the master 07-2100 " +
-      "Insulation scope checklist calls for tenting of fire suppression lines in soffit areas to be included - this " +
-      "is a direct conflict that needs resolving before contract, given its life-safety relevance. Also unresolved: " +
-      "Nathan's 6/11/26 email asked \"What's the credit for coming down to the R-49 insulation per plans on A0040?\" " +
-      "- Jason's 6/12/26 reply listed five alternates but never answered this specific question; get it answered in " +
-      "writing. The combined proposal total ($973,662.00) doesn't match the bid tracker's figures for Diversified " +
-      "($952,000.00 total / $1,125,219.40 prepared amount) - reconcile which number reflects the current, revised " +
-      "scope. This proposal is also subject to withdrawal if not accepted within 15 days of 6/12/26 - that window " +
-      "has long since closed, so get current pricing confirmed. Finally, Jason's 6/11/26 email flagged unspecified " +
-      "\"discrepancies in the plans\" before Nathan's directive resolved the interstitial/attic scope split - confirm " +
-      "with Jason that ALL plan discrepancies were addressed, not just the specific items Nathan's email covered, " +
-      "and get his written confirmation that NFPA 13R/D does not require full-fill insulation at the townhome " +
-      "interstitial space or attic, since the GC is relying on that code reading to exclude significant scope there.",
+      "Updated to Diversified's REVISED proposal (Rev 1.2, dated 8/7/26), which lowered pricing on both phases - " +
+      "Apartments $693,915.00 -> $681,000.00, Townhomes $279,747.00 -> $271,000.00, combined $973,662.00 -> " +
+      "$952,000.00 - with no change to scope, specs, or exclusions, and no email explaining the reduction was " +
+      "provided with this revision. This resolves the earlier reconciliation flag: the new combined total now " +
+      "matches the bid tracker's TOTAL figure exactly (the tracker's separate $1,125,219.40 Prepared Amount still " +
+      "doesn't match either version - likely Garrett's own internal check figure, worth a quick confirmation but " +
+      "lower priority). Everything else carries forward unresolved: PRIORITY - the Exclusions list still excludes " +
+      "\"Tenting,\" directly conflicting with the master 07-2100 checklist's expectation that tenting of fire " +
+      "suppression lines is included - resolve before contract given the life-safety relevance. Nathan's question " +
+      "\"What's the credit for coming down to the R-49 insulation per plans on A0040?\" was never answered in the " +
+      "6/12/26 thread and nothing in this revision addresses it either. This revised proposal has its own 15-day " +
+      "acceptance window (from 8/7/26) which has also since expired - get current pricing reconfirmed. Also confirm " +
+      "whether the five alternates quoted 6/12/26 are still valid at these lower base numbers, since they were " +
+      "priced against the prior base bid. Finally, get Jason's written confirmation that NFPA 13R/D does not require " +
+      "full-fill insulation at the townhome interstitial space or attic, since the GC is relying on that code " +
+      "reading to exclude significant scope there, and confirm all of Jason's originally-flagged \"discrepancies in " +
+      "the plans\" were actually resolved, not just the interstitial/attic items Nathan's directive addressed.",
     sections: [
       {
         id: uid(),
@@ -1253,15 +1257,15 @@ function buildInsulationExampleChecklist() {
           ),
           item(
             "Combined proposal total reconciled against bid tracker",
-            "needs_clarification",
-            "Apartments $693,915.00 + Townhomes $279,747.00 = $973,662.00 combined. Bid tracker shows Diversified's TOTAL as $952,000.00 and Prepared Amount as $1,125,219.40.",
-            "Confirm which figure - the combined proposal total, or one of the tracker's figures - reflects the current, revised scope before carrying a number to contract."
+            "confirmed_included",
+            "Rev 1.2 (8/7/26): Apartments $681,000.00 + Townhomes $271,000.00 = $952,000.00 combined - matches the bid tracker's TOTAL for Diversified exactly.",
+            "Resolved by the 8/7/26 revision (down from $973,662.00 on the 6/12/26 version). The tracker's separate $1,125,219.40 Prepared Amount still doesn't match - likely Garrett's own internal check figure, worth a quick confirmation but lower priority."
           ),
           item(
             "Proposal pricing validity",
             "needs_clarification",
-            "\"This proposal may be withdrawn by us if not accepted within 15 days\" of the 6/12/2026 proposal date.",
-            "That acceptance window has long since closed - get current, re-confirmed pricing from Diversified before issuing a subcontract."
+            "\"This proposal may be withdrawn by us if not accepted within 15 days\" of the 8/7/2026 proposal date (Rev 1.2), up from the 6/12/2026 date on the prior version.",
+            "That acceptance window has also since closed - get current, re-confirmed pricing from Diversified before issuing a subcontract."
           ),
           item(
             "Payment terms and late charges",
