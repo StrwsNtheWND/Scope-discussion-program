@@ -1172,3 +1172,272 @@ function buildBakerExampleChecklist() {
     ],
   };
 }
+
+// Example checklist seeded from a real buyout scope discussion package:
+// Alta Vista (Centennial, CO) - CSI 07 2100 Building Insulation
+// GC: Garrett Construction | Bidder: Diversified Insulation, LLC
+//
+// Built from: the "07-2100 Insulation" bid comparison tracker's master
+// scope checklist, Diversified's two revised proposals dated 6/12/2026
+// (Apartments $693,915.00 and Townhomes $279,747.00), and the 6/3-6/12/26
+// email thread between Nathan Orfanedes and Jason Gattis, which contains
+// Nathan's exact base-bid scope directive by building type, an unanswered
+// pricing question, and five priced alternates.
+
+function buildInsulationExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "Centennial, CO",
+      jobNo: "RC26015",
+      date: "2026-06-12",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "O: 317.886.7923 / M: 303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "Diversified Insulation, LLC",
+      trade: "07 2100 - Building Insulation",
+      contact: "Jason Gattis, Estimator/Project Manager",
+      phone: "936.900.3201",
+      email: "Jason.Gattis@diversified-insulation.com",
+      amount: "$973,662.00 combined (Apartments $693,915.00 + Townhomes $279,747.00), per revised 6/12/2026 proposals. Bid tracker shows $952,000.00 / Prepared Amount $1,125,219.40 for this bidder - see Pricing for reconciliation.",
+    },
+    generalNotes:
+      "PRIORITY: Diversified's proposal Exclusions list explicitly excludes \"Tenting,\" but the master 07-2100 " +
+      "Insulation scope checklist calls for tenting of fire suppression lines in soffit areas to be included - this " +
+      "is a direct conflict that needs resolving before contract, given its life-safety relevance. Also unresolved: " +
+      "Nathan's 6/11/26 email asked \"What's the credit for coming down to the R-49 insulation per plans on A0040?\" " +
+      "- Jason's 6/12/26 reply listed five alternates but never answered this specific question; get it answered in " +
+      "writing. The combined proposal total ($973,662.00) doesn't match the bid tracker's figures for Diversified " +
+      "($952,000.00 total / $1,125,219.40 prepared amount) - reconcile which number reflects the current, revised " +
+      "scope. This proposal is also subject to withdrawal if not accepted within 15 days of 6/12/26 - that window " +
+      "has long since closed, so get current pricing confirmed. Finally, Jason's 6/11/26 email flagged unspecified " +
+      "\"discrepancies in the plans\" before Nathan's directive resolved the interstitial/attic scope split - confirm " +
+      "with Jason that ALL plan discrepancies were addressed, not just the specific items Nathan's email covered, " +
+      "and get his written confirmation that NFPA 13R/D does not require full-fill insulation at the townhome " +
+      "interstitial space or attic, since the GC is relying on that code reading to exclude significant scope there.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Correct sales tax percentage on materials only at 4%",
+            "needs_clarification",
+            "Marked \"Y?\" on the bid tracker - not affirmatively confirmed.",
+            ""
+          ),
+          item(
+            "Provide T&M rates (hourly labor $; equipment $; material $)",
+            "needs_clarification",
+            "No T&M rate sheet included with either proposal.",
+            "Request rates for any add/change-order work."
+          ),
+          item(
+            "Combined proposal total reconciled against bid tracker",
+            "needs_clarification",
+            "Apartments $693,915.00 + Townhomes $279,747.00 = $973,662.00 combined. Bid tracker shows Diversified's TOTAL as $952,000.00 and Prepared Amount as $1,125,219.40.",
+            "Confirm which figure - the combined proposal total, or one of the tracker's figures - reflects the current, revised scope before carrying a number to contract."
+          ),
+          item(
+            "Proposal pricing validity",
+            "needs_clarification",
+            "\"This proposal may be withdrawn by us if not accepted within 15 days\" of the 6/12/2026 proposal date.",
+            "That acceptance window has long since closed - get current, re-confirmed pricing from Diversified before issuing a subcontract."
+          ),
+          item(
+            "Payment terms and late charges",
+            "needs_clarification",
+            "\"PAYMENT IS DUE AFTER COMPLETION OF WORK. JOBS NOT PAID IN 30 DAYS ARE SUBJECT TO A LATE CHARGE OF 1.5%, ANNUAL LATE CHARGE OF 18%.\" Mechanic's lien filed after 45 days unpaid.",
+                "Confirm this payment structure (due on completion, not progress payments) works with Garrett's standard billing cycle - it differs from the monthly progress payment terms seen on other trade packages."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Base Bid Scope Directive & Open Items (per 6/11-6/12/26 email exchange)",
+        items: [
+          item(
+            "Apartments: interstitial space (between floors) fully filled",
+            "confirmed_included",
+            "Proposal: \"Between Floors R-60 'Full Fill' W/ Netting.\" Matches Nathan's 6/11/26 directive: \"Include the apartments areas interstitial space as fully filled.\"",
+            ""
+          ),
+          item(
+            "Apartments: attic full-fill excluded from base bid",
+            "confirmed_excluded",
+            "Proposal base bid only includes \"R-49 Batt Insulation - Laid on RC Channel @ Perimeter Attic Areas ONLY,\" not a full fill. Matches Nathan's directive to exclude fully-filled attic from the base bid.",
+            "Full attic fill is priced separately as an add alternate - see Alternates section."
+          ),
+          item(
+            "Townhomes: interstitial space and attic full-fill excluded from base bid",
+            "needs_clarification",
+            "Proposal shows standard batt (R-11 between floors, R-49 batt at attic), not full-fill, consistent with Nathan's directive. Nathan's stated rationale: \"My understanding is that you do not have to sprinkle or fully fill the interstitial space or attic in NFPA 13R/D - Please let me know if you believe differently.\"",
+            "No written confirmation from Jason on this NFPA 13R/D reading was found in the thread - get Diversified's written agreement, since the GC is relying on this code interpretation to exclude significant scope."
+          ),
+          item(
+            "Credit for reducing to R-49 insulation per plan A0040",
+            "needs_clarification",
+            "Nathan asked this directly in his 6/11/26 email. Jason's 6/12/26 reply listed five alternates but did not address this question.",
+            "Get an explicit answer - the proposal's attic scope already appears to reflect R-49, so confirm whether any credit is still owed or the pricing already accounts for it."
+          ),
+          item(
+            "Prior \"discrepancies in the plans\"",
+            "needs_clarification",
+            "Jason's 6/11/26 email: \"There's some discrepancies in the plans, can you call me when you're available?\" - raised before Nathan's directive on interstitial/attic scope.",
+            "Confirm with Jason that all plan discrepancies were resolved by Nathan's directive, not just the specific interstitial/attic items it addressed."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Alternates (per 6/12/26 email)",
+        items: [
+          item(
+            "Add Alternate - Apartments: fully fill attic space, roof assembly 1R1",
+            "needs_clarification",
+            "Add $173,219.40. Per Nathan's email, this depends on cost versus installing a dry fire sprinkler system instead - hence why it's an alternate rather than base scope.",
+            "Confirm with the design team/fire protection engineer which approach (full-fill insulation vs. dry sprinkler) is being carried forward."
+          ),
+          item(
+            "R-49 Blown Insulation w/ netting in lieu of Poly Iso @ roof deck, roof assembly 1R1",
+            "needs_clarification",
+            "Add $113,554.94 per the 6/12/26 email, but the bid tracker notes this figure as \"Included in above\" - i.e. already bundled inside the $173,219.40 attic full-fill alternate, not additive on top of it.",
+            "Confirm this is bundled, not double-counted, if both alternates are being considered together."
+          ),
+          item(
+            "Deduct Alternate - Apartments: R-21 Kraft Faced @ Exterior Walls in lieu of R-21 Unfaced w/ 6 Mil Vapor Barrier",
+            "needs_clarification",
+            "Deduct $13,869.18.",
+            "Confirm which wall facing option (unfaced + vapor barrier, base bid, vs. kraft-faced, deduct alternate) is being carried to contract."
+          ),
+          item(
+            "Deduct Alternate - Townhomes: delete R-11 Between Floors",
+            "needs_clarification",
+            "Deduct $17,554.00 - matches the bid tracker's figure for this line exactly.",
+            ""
+          ),
+          item(
+            "Deduct Alternate - Townhomes: R-21 Kraft Faced @ Exterior Walls in lieu of R-21 Unfaced w/ 6 Mil Vapor Barrier",
+            "needs_clarification",
+            "Deduct $7,280.10.",
+            "Confirm which wall facing option is being carried to contract, consistent with the apartments decision above."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope Confirmation (per 07-2100 Insulation bid tracker)",
+        items: [
+          item("Take-off completed per plans", "confirmed_included", "", ""),
+          item("Material quoted per plan insulation chart", "confirmed_included", "", ""),
+          item(
+            "Option for Kraft Faced insulation (or vapor barrier equivalent) for exterior walls",
+            "confirmed_included",
+            "Base bid is unfaced with 6 mil vapor barrier; kraft-faced is offered as a deduct alternate on both Apartments and Townhomes - see Alternates.",
+            ""
+          ),
+          item(
+            "Includes sound insulation at resident separation walls, floors, ceilings",
+            "confirmed_included",
+            "Party Walls (both sides) and Corridor Walls are itemized as unfaced batt at both properties.",
+            ""
+          ),
+          item(
+            "Excludes insulation at Mechanical/Laundry room walls within same unit",
+            "needs_clarification",
+            "Not explicitly called out as a separate work area in either proposal.",
+            "Confirm both parties understand this exclusion boundary the same way."
+          ),
+          item(
+            "Includes tenting of fire suppression lines in soffit areas",
+            "needs_clarification",
+            "Proposal Exclusions state: \"Tenting, Fire Caulking & Rigid Insulation\" (both Apartments and Townhomes proposals).",
+            "Direct conflict with the master scope checklist, which expects tenting to be included - resolve before contract."
+          ),
+          item(
+            "Includes installing materials to fill voids and cavity spaces, as detailed on plans",
+            "confirmed_included",
+            "",
+            ""
+          ),
+          item(
+            "Fire caulking and rigid insulation",
+            "needs_clarification",
+            "Both explicitly excluded on both proposals: \"Tenting, Fire Caulking & Rigid Insulation.\"",
+            "Confirm whether fire caulking and rigid insulation are required anywhere in this scope per spec, and if so, get them priced from Diversified or another source."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Inclusions - Wall & Ceiling Assemblies (per Diversified Proposals)",
+        items: [
+          item("Apartments - Exterior Walls: 9' R-21x15\"x105\" Unfaced w/ 6 Mil Vapor Barrier", "confirmed_included"),
+          item("Apartments - Corridor Walls: 9' R-11x15\"x105\" Unfaced", "confirmed_included"),
+          item("Apartments - Party Walls: 9' R-11x15\"x105\" Unfaced, both sides", "confirmed_included"),
+          item("Apartments - Between Floors: R-60 \"Full Fill\" w/ Netting", "confirmed_included"),
+          item("Apartments - Corridor Ceilings: R-60 \"Full Fill\" w/ Netting", "confirmed_included"),
+          item("Apartments - Garage Ceilings: R-60 \"Full Fill\" w/ Netting", "confirmed_included"),
+          item("Apartments - Air Seal Package: Foam Can/Each", "confirmed_included"),
+          item("Apartments - Attic: R-49 Batt, laid on RC Channel @ perimeter attic areas ONLY", "confirmed_included", "", "Full attic fill is a separate add alternate - see Alternates section."),
+          item("Townhomes - Exterior Walls: 9' R-21x15\"x105\" Unfaced w/ 6 Mil Vapor Barrier", "confirmed_included"),
+          item("Townhomes - Garage Walls: 9' R-21x15\"x105\" Unfaced w/ 6 Mil Vapor Barrier", "confirmed_included"),
+          item("Townhomes - Party Walls: 9' R-11x15\"x105\" Unfaced, both sides", "confirmed_included"),
+          item("Townhomes - Between Floors: R-11x24\"x48\" Unfaced, laid on RC Channel", "confirmed_included", "", "Deletable via deduct alternate - see Alternates section."),
+          item("Townhomes - Garage Ceilings: R-38x24\"x48\" Unfaced, laid on RC Channel", "confirmed_included"),
+          item("Townhomes - Air Seal Package: Foam Can/Each", "confirmed_included"),
+          item("Townhomes - Attic: R-49 Batt Insulation, laid on RC Channel", "confirmed_included", "", "Unlike Apartments, not limited to \"perimeter areas only\" in the proposal language - confirm this is intentional."),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Exclusions (per Diversified Proposal)",
+        items: [
+          item(
+            "Tenting",
+            "needs_clarification",
+            "\"Exclusions: Tenting, Fire Caulking & Rigid Insulation\" (both proposals).",
+            "See the conflict flagged in Scope Confirmation and General Notes."
+          ),
+          item("Fire caulking", "confirmed_excluded"),
+          item("Rigid insulation", "confirmed_excluded"),
+        ],
+      },
+      {
+        id: uid(),
+        title: "General Terms",
+        items: [
+          item(
+            "Proposal withdrawal after 15 days if not accepted",
+            "needs_clarification",
+            "",
+            "Window has expired relative to today's date - reconfirm pricing before award."
+          ),
+          item("Alterations/deviations only upon written change order, at extra charge", "acknowledged"),
+          item("Work contingent upon strikes, accidents, or delays beyond Diversified's control", "acknowledged"),
+          item("Workers covered by workers' compensation insurance", "confirmed_included"),
+          item("All material guaranteed as specified; work completed per standard workmanlike practices", "acknowledged"),
+        ],
+      },
+    ],
+  };
+}
