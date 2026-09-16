@@ -1445,3 +1445,235 @@ function buildInsulationExampleChecklist() {
     ],
   };
 }
+
+// Example checklist seeded from a real buyout scope discussion package:
+// Alta Vista (Centennial, CO) - CSI 21 1100 Fire Protection / Fire Suppression
+// GC: Garrett Construction | Bidder: Viking Fire Protection
+//
+// Built from: the "21-1100 Fire Protection" bid comparison tracker's master
+// scope checklist (Division 21 Fire Suppression, 9 bidders), and Viking Fire
+// Protection's Bid #0000042 (dated 5/25/2026, $1,579,100.00 turnkey for 7
+// apartment buildings, 7 townhome buildings, and the clubhouse).
+
+function buildFireProtectionExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "Centennial, CO",
+      jobNo: "RC26015",
+      date: "2026-05-25",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "O: 317.886.7923 / M: 303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "Viking Fire Protection",
+      trade: "21 1100 - Fire Protection / Fire Suppression",
+      contact: "",
+      phone: "",
+      email: "vikingfireprotections@gmail.com",
+      amount: "$1,579,100.00 - Bid #0000042, 5/25/2026 (7 apartment buildings $1,275,300.00 + 7 townhome buildings $210,000.00 + Fire Caulking Alt $42,000.00 + Clubhouse Dry System $51,800.00). Bid tracker shows Current Selected Bid for this cost code at $1,710,000.00 - see Pricing for reconciliation.",
+    },
+    generalNotes:
+      "PRIORITY: the bid tracker shows Viking's NFPA 13 @ apartments figure as $1,100,300.00, but Viking's own " +
+      "proposal prices the same scope (7 four-story apartment buildings) at $1,275,300.00 - a ~$175,000 discrepancy " +
+      "that needs reconciling before contract. Also flag: \"Clubhouse Tenting\" is on the master scope checklist as " +
+      "an item to confirm included (with a $10,000 GC plug figure), but Viking's own Exclusions list excludes " +
+      "\"Tenting of CPVC Pipe\" outright with no clubhouse carve-out - the same tenting gap pattern seen on the " +
+      "insulation trade package, worth resolving holistically rather than trade-by-trade. The tracker also shows a " +
+      "separate \"NFPA 13R @ Townhomes\" line ($15,897.00) that Viking's own proposal never mentions - it only lists " +
+      "\"NFPA 13D for townhomes\" as included - confirm whether 13R is additive scope or a code-path question, since " +
+      "13R and 13D are different sprinkler standards. Two attic dry-system alternates ($280,000.00 for the 4-story " +
+      "attic, and a $100,000.00 GC plug for the tall/5th-level attic) don't clearly reconcile with Viking's base-bid " +
+      "language of \"dry systems in all 4 story apartment building (High areas only)\" - get firm, itemized pricing " +
+      "and confirm what's already bundled versus additive. Viking's proposal states no pricing validity/expiration " +
+      "period at all (unlike every other trade on this project) - get current pricing reconfirmed given how much " +
+      "time has passed since the 5/25/26 bid date. Finally, Viking's total ($1,579,100.00) doesn't clearly match the " +
+      "tracker's $1,710,000.00 Current Selected Bid figure even after adding the alternates - get an itemized " +
+      "reconciliation showing exactly what sums to the number being carried forward, and get a complete contact " +
+      "(named person, phone, and company email) on file, since only a generic gmail address is currently listed.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Correct sales tax percentage on materials only at 4%",
+            "needs_clarification",
+            "Marked \"Y?\" on the bid tracker - not affirmatively confirmed.",
+            ""
+          ),
+          item(
+            "Provide T&M rates (hourly labor $; equipment $; material $)",
+            "needs_clarification",
+            "Bid tracker marks this \"Y\" for Viking, but no rate sheet is included with the proposal itself.",
+            "Get the actual rate sheet in writing for any add/change-order work."
+          ),
+          item(
+            "Total bid amount reconciled against bid tracker",
+            "needs_clarification",
+            "Viking's proposal totals $1,579,100.00. The bid tracker's \"Current Selected Bids\" for this cost code shows $1,710,000.00 - doesn't clearly match Viking's total even after adding the priced alternates.",
+            "Get an itemized reconciliation from Viking/GC showing exactly which base and alternate line items sum to the number being carried to contract."
+          ),
+          item(
+            "Pricing validity period",
+            "needs_clarification",
+            "No expiration or validity clause is stated anywhere in Viking's proposal, unlike every other trade proposal reviewed on this project.",
+            "Given the time elapsed since the 5/25/26 bid date, get current pricing reconfirmed regardless of the absence of a stated deadline."
+          ),
+          item(
+            "Complete contact information on file",
+            "needs_clarification",
+            "Bid tracker lists Viking's phone as a placeholder (\"XXX-XXX-XXXX\") and email as a generic gmail address; Viking's own proposal letterhead lists no phone number or named contact at all.",
+            "Get a named contact, direct phone number, and company-domain email on file before contract."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope Confirmation (per 21-1100 Fire Protection bid tracker)",
+        items: [
+          item("Take-off completed per plans", "confirmed_included", "", ""),
+          item(
+            "Design-Build contract to furnish design, installation, and commissioning",
+            "confirmed_included",
+            "Matches Viking's note that this is a \"turn key system\" and its Inclusions list, which includes Design.",
+            ""
+          ),
+          item(
+            "Includes shop drawings and permit fees",
+            "confirmed_included",
+            "Matches Viking's Inclusions: Permits.",
+            ""
+          ),
+          item(
+            "Includes installation in interstitial space where required",
+            "confirmed_excluded",
+            "Marked \"Y\\N\" (unconfirmed) for every bidder on the tracker, including Viking. Viking's own Exclusions list excludes \"Interstitial Coverage in floor trusses.\"",
+            "Confirm which trade, if any, is providing interstitial fire protection coverage."
+          ),
+          item(
+            "Includes heat trace for unacclimated areas & crossings",
+            "needs_clarification",
+            "Bid tracker marks this \"Y\" for Viking, but heat trace is not mentioned anywhere in Viking's own proposal document.",
+            "Confirm this is genuinely included and get it added to a revised written proposal."
+          ),
+          item(
+            "NFPA 13 @ apartments",
+            "needs_clarification",
+            "Bid tracker shows $1,100,300.00; Viking's own proposal prices \"7 four story apartment buildings\" at $1,275,300.00 - a ~$175,000 discrepancy.",
+            "Reconcile which figure is current and correct before carrying a number to contract."
+          ),
+          item(
+            "NFPA 13 @ clubhouse",
+            "confirmed_included",
+            "Bid tracker shows $51,800.00, matching Viking's own \"Clubhouse Dry system\" line item exactly.",
+            ""
+          ),
+          item(
+            "NFPA 13D @ townhomes",
+            "confirmed_included",
+            "Bid tracker shows $210,003.00, closely matching Viking's own \"7 town home buildings\" line item of $210,000.00.",
+            ""
+          ),
+          item(
+            "NFPA 13R @ Townhomes",
+            "needs_clarification",
+            "Bid tracker shows a separate line item at $15,897.00. Viking's own proposal only mentions \"NFPA 13D for townhomes\" and never references NFPA 13R.",
+            "NFPA 13R and 13D are different sprinkler standards - confirm whether this is additive scope above the base 13D system or a code-path question, and get Viking to address it in a revised written proposal."
+          ),
+          item(
+            "Clubhouse Tenting",
+            "needs_clarification",
+            "Bid tracker shows a GC plug figure of $10,000.00 (\"Y-Plug\") expecting this confirmed included, but Viking's Exclusions list excludes \"Tenting of CPVC Pipe\" outright with no clubhouse-specific carve-out.",
+            "Direct conflict - resolve before contract. Same tenting gap pattern flagged on the insulation trade package."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Alternates",
+        items: [
+          item(
+            "Fire pumps",
+            "confirmed_excluded",
+            "Excluded per Viking's proposal (\"Fire Pumps\" is the last item on the Not Included list). Bid tracker shows a $364,000.00 figure attributed to a different bidder for this alternate.",
+            "If fire pumps are required for this project, price them from another source."
+          ),
+          item(
+            "Fire Caulking",
+            "confirmed_included",
+            "$42,000.00 - exact match between Viking's own proposal (\"Fire Caulking for apartments and town homes ALT\") and the bid tracker.",
+            ""
+          ),
+          item(
+            "Dry system at attic of 4-story",
+            "needs_clarification",
+            "Bid tracker shows $280,000.00 for Viking, but Viking's proposal has no separate line item at this price - it only bundles \"dry systems in all 4 story apartment building (High areas only)\" into the base apartments price, while separately excluding \"Dry System in lower attic spaces.\"",
+            "Confirm what this $280,000.00 alternate actually covers, and whether it's genuinely additive or already bundled into the base bid."
+          ),
+          item(
+            "Dry system at the tall attic/5th level attic ceilings",
+            "needs_clarification",
+            "Bid tracker shows \"Y-Plug $100,000.00 - Not Included\" for Viking - reads as the GC's own placeholder estimate, not a firm quote from Viking.",
+            "Get an actual firm number from Viking for this scope, or confirm it's genuinely not included and needs a different source."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Inclusions (per Viking Fire Protection Bid #0000042)",
+        items: [
+          item("Design", "confirmed_included"),
+          item("Permits", "confirmed_included"),
+          item("Labor", "confirmed_included"),
+          item("Materials", "confirmed_included"),
+          item("NFPA 13 for apartments", "confirmed_included", "", "See pricing discrepancy flagged in Scope Confirmation."),
+          item("NFPA 13D for townhomes", "confirmed_included"),
+          item("NFPA 13 for Clubhouse", "confirmed_included"),
+          item("Fire Caulking", "confirmed_included", "", "Per the base Inclusions list; also separately priced as an Alternate at $42,000.00 - confirm these aren't double-counted."),
+          item("Dry systems in all 4-story apartment buildings (high areas only)", "confirmed_included", "", "\"High areas only\" - confirm exactly what this excludes relative to the attic dry-system alternates."),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Exclusions (per Viking Fire Protection Bid #0000042)",
+        items: [
+          item("VS1 dry heads", "confirmed_excluded"),
+          item("Interstitial coverage in floor trusses", "confirmed_excluded"),
+          item("Insulation", "confirmed_excluded"),
+          item("Soffits", "confirmed_excluded"),
+          item("Concealed heads", "confirmed_excluded"),
+          item(
+            "Tenting of CPVC pipe",
+            "needs_clarification",
+            "",
+            "See the Clubhouse Tenting conflict flagged in Scope Confirmation."
+          ),
+          item("Dry system in lower attic spaces in apartment buildings", "confirmed_excluded", "", "Confirm this doesn't conflict with the \"Dry system at attic of 4-story\" alternate."),
+          item("Galvanized pipe on attic dry systems", "confirmed_excluded"),
+          item("Dry systems in townhomes", "confirmed_excluded"),
+          item("Wet system for clubhouse", "confirmed_excluded", "", "Consistent - clubhouse is fully a dry system per the Inclusions list."),
+          item("Fire pumps", "confirmed_excluded", "", "See Alternates section."),
+        ],
+      },
+    ],
+  };
+}
