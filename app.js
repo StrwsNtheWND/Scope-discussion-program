@@ -459,6 +459,10 @@ function wireStaticButtons() {
     createChecklist(buildFireProtectionExampleChecklist());
   });
 
+  document.getElementById("btn-example-sce").addEventListener("click", () => {
+    createChecklist(buildSceExampleChecklist());
+  });
+
   document.getElementById("btn-add-section").addEventListener("click", () => {
     const cl = getActive();
     if (!cl) return;
@@ -499,7 +503,8 @@ function init() {
     const bakerExample = buildBakerExampleChecklist();
     const insulationExample = buildInsulationExampleChecklist();
     const fireProtectionExample = buildFireProtectionExampleChecklist();
-    state.checklists.push(concreteExample, esiExample, ctfExample, bakerExample, insulationExample, fireProtectionExample);
+    const sceExample = buildSceExampleChecklist();
+    state.checklists.push(concreteExample, esiExample, ctfExample, bakerExample, insulationExample, fireProtectionExample, sceExample);
     state.activeId = concreteExample.id;
     persist();
   }

@@ -1677,3 +1677,281 @@ function buildFireProtectionExampleChecklist() {
     ],
   };
 }
+
+// Example checklist seeded from a real buyout scope discussion package:
+// Alta Vista (Centennial, CO) - Electrical, EV Infrastructure & Low Voltage
+// GC: Garrett Construction | Bidder: SCE (SCE Power Plus)
+//
+// SCE appears as a bidder across three separate bid-tab "entries" spanning
+// two divisions: Division 26 Electrical (cost code 26-0500, where SCE is
+// BID1), Division 26 EV Infrastructure (cost code 26-6000, listed as
+// "SCE - infrastructure"), and Division 27 Communications/Low Voltage
+// (cost code 27-0513 Cable/Phone Service, where SCE is BID2). No standalone
+// SCE proposal letter was provided - all figures and scope notes below are
+// sourced from the GC's own bid comparison trackers for these three cost
+// codes, split into their own sections per the source entry.
+
+function buildSceExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "Centennial, CO",
+      jobNo: "RC26015",
+      date: "2026-07-07",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "O: 317.886.7923 / M: 303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "SCE (SCE Power Plus)",
+      trade: "26 0500 / 26 6000 / 27 0513 - Electrical, EV Infrastructure & Low Voltage",
+      contact: "Jonathan Brannan",
+      phone: "832-706-0194",
+      email: "jbrannan@scepowerplus.com",
+      amount: "Approx. $4,930,500.00 (Division 26 Electrical, per bid tracker Proposal Amount) + $52,000.00 (Division 26 EV Infrastructure) = ~$4,982,500.00 combined. SCE also bids Division 27 Cable/Phone Service (27-0513), but at least two of those line items are noted as already included in the Division 26 number - see Pricing and Cross-Division sections before treating any Division 27 figure as additive.",
+    },
+    generalNotes:
+      "SCE shows up as three separate bid-tab entries: Division 26 Electrical Sub (26-0500, BID1), Division 26 EV " +
+      "Infrastructure (26-6000, listed as \"SCE - infrastructure\"), and Division 27 Cable/Phone Service (27-0513, " +
+      "BID2). No standalone SCE proposal letter was provided for this trade, unlike every other trade package built " +
+      "so far - everything here is sourced from the GC's own bid trackers, so get an actual signed proposal/scope " +
+      "letter from SCE for the file. PRIORITY: two Division 27 line items - \"Conduits from MDF to IDF throughout " +
+      "the property\" and \"Site Telecom Plug\" - are explicitly annotated on the tracker as \"Included in DIV 26,\" " +
+      "meaning their cost already sits inside SCE's Division 26 number rather than being additive under Division 27. " +
+      "Get an itemized, single reconciled number from SCE across all three entries before carrying a combined total " +
+      "to contract, so nothing gets double-counted or dropped. Also flag: SCE explicitly EXCLUDES primary conduit " +
+      "furnish/install under Division 26 - that needs a separate source (likely the utility or a site utility " +
+      "contractor). The Emergency Responder System (DAS) is excluded from SCE's Division 26 scope with a note to " +
+      "\"See DIV 28\" - confirm it's being carried under Division 28 Electronic Safety & Security instead. Lighting " +
+      "fixtures/material are sourced through a separate Division 26-5100 Light Fixtures bid (Lonestar/Integris/etc.) " +
+      "- SCE's number only covers handling and installation labor. Finally, a large block of base Division 26 scope " +
+      "items (panel/breaker/device rough-in, paddle switches, HVAC relays, unit heaters, smoke detectors, trash " +
+      "compactor power, pool/spa bonding, and more) was left unconfirmed by every single bidder on the tracker, " +
+      "including SCE - this isn't a gap specific to SCE, but it means none of it has actually been confirmed by " +
+      "anyone and needs a direct written answer before award.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Combined total reconciled across all three entries",
+            "needs_clarification",
+            "Division 26 Electrical Proposal Amount ~$4,930,500.00 (tracker's adjusted/Prepared figure runs closer to $5,404,500.00) + Division 26 EV Infrastructure $52,000.00. Division 27 Cable/Phone Service total not clearly attributable from the tracker, and at least two of its line items are noted as already included in Division 26.",
+            "Get a single itemized reconciliation from SCE covering all three entries before carrying a combined number to contract."
+          ),
+          item(
+            "Correct sales tax percentage on materials only at 4% - Division 26 Electrical",
+            "confirmed_included",
+            "Marked plain \"Y\" for SCE on the Division 26 Electrical Sub tracker.",
+            ""
+          ),
+          item(
+            "Correct sales tax percentage on materials only at 4% - Division 27 Cable/Phone",
+            "needs_clarification",
+            "Marked \"Y\\N\" (unconfirmed) for SCE on the Division 27 tracker - inconsistent with their confirmed answer under Division 26.",
+            ""
+          ),
+          item(
+            "Provide T&M rates (hourly labor $; equipment $; material $)",
+            "needs_clarification",
+            "Marked \"Y\\N\" (unconfirmed) for SCE on both the Division 26 and Division 27 trackers.",
+            "Request rates for any add/change-order work across all three entries."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Division 26 - Electrical (per 26-0500 Electrical Sub bid tracker)",
+        items: [
+          item(
+            "Includes secondary conduit & wire furnish and installed + grounding",
+            "confirmed_included",
+            "$166,850.00.",
+            ""
+          ),
+          item(
+            "Includes primary conduit furnish and installed",
+            "confirmed_excluded",
+            "Marked \"N - Excluded.\"",
+            "Get this priced from another source - likely the utility (Xcel) or a site utility contractor."
+          ),
+          item(
+            "Includes firestopping | provide deduct option",
+            "confirmed_included",
+            "Marked \"Y\" - included. No specific deduct-alternate dollar figure quoted by SCE.",
+            "If the deduct option is being pursued, get a firm number from SCE."
+          ),
+          item(
+            "Includes installation of unit lighting and site lighting",
+            "confirmed_included",
+            "$111,500.00, with a tracker note: \"Lonestar pref SCE.\"",
+            "Fixtures/material are sourced via the separate Division 26-5100 Light Fixtures bid (Lonestar/Integris/etc.) - SCE's number covers installation labor only."
+          ),
+          item(
+            "Excludes any lighting material (handling/install included)",
+            "acknowledged",
+            "",
+            "Consistent with the above - lighting material is a separate procurement, not part of SCE's electrical scope."
+          ),
+          item(
+            "Pathways for access control, telecom, AOR, fire alarm, etc. (ME 101)",
+            "confirmed_included",
+            "$189,585.00.",
+            ""
+          ),
+          item(
+            "Emergency Responder System (DAS) testing/pathways & backbone",
+            "confirmed_excluded",
+            "Marked \"N - See DIV 28.\"",
+            "Confirm this is being carried under Division 28 Electronic Safety & Security instead."
+          ),
+          item(
+            "CREEP Fault Current Limiters/Gear scope modifications - Xcel requirement",
+            "confirmed_included",
+            "$199,629.93.",
+            "Utility (Xcel Energy) driven requirement - confirm this stays current if utility requirements change before construction."
+          ),
+          item(
+            "EV scope (included in 26-6000)",
+            "needs_clarification",
+            "Marked \"Y? No Charging stations\" - i.e. EV-related work is priced elsewhere (cost code 26-6000) and charging stations themselves are not included.",
+            "See the Division 26 - EV Infrastructure section below."
+          ),
+          item(
+            "Site Telecom/data conduits (trenching, empty conduits/pull string, and backfill)",
+            "needs_clarification",
+            "Marked \"Y\\N\" (unconfirmed) for SCE. A separate \"Site Telecom - Allowance\" bidder also appears on this tracker.",
+            "Confirm whether this is SCE's scope or covered by the separate allowance bidder."
+          ),
+          item(
+            "Includes low voltage homerun wiring per service provider (e.g. RG6) IDF to unit",
+            "needs_clarification",
+            "Marked \"Y\\N\" (unconfirmed) for SCE. One competing bidder's row references \"DIV 27 - 604000\" for this same scope item.",
+            "Confirm whether this sits under SCE's Division 26 entry or their Division 27 (Low Voltage) entry - don't let it fall through the gap between the two."
+          ),
+          item(
+            "Parcel Pending power",
+            "needs_clarification",
+            "Marked \"Y\\N\" (unconfirmed) for SCE.",
+            ""
+          ),
+          item(
+            "Base rough-in scope left unconfirmed by every bidder on the tracker",
+            "needs_clarification",
+            "Every bidder, including SCE, left the following marked \"Y\\N\" (unconfirmed): unit/building panels, breakers, devices, wiring, trim plates; paddle switches; trenching/sleeving/boring; mechanical HVAC relay (Kidde SM120X or equivalent); unit and common area heaters (supply & install); unit smoke/CO detector combos; trash compactor power; access control gate conduit; lighted vanity mirrors; pool & spa bonding/equipment hook-up; exterior power pedestals; SOHO enclosure; USB outlets; door bell chime kit; temporary power & lighting; unit fan coil/hood shutdown relay; and occupancy-sensor/photovoltaic lighting controls.",
+            "This isn't specific to SCE - nobody on the tracker confirmed this scope. Get explicit written confirmation from SCE on all of it before award, since none of it can be assumed included."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Division 26 - EV Infrastructure (per 26-6000 EV bid tracker)",
+        items: [
+          item(
+            "EV infrastructure (rough-in J-boxes)",
+            "confirmed_included",
+            "$52,000.00. Tracker note: \"Included rough in J-boxes per plans. #40 in the building and corridors sections in base electrical. Count 33 [additional] locations.\"",
+            ""
+          ),
+          item(
+            "EV chargers (actual charging equipment/stations)",
+            "confirmed_excluded",
+            "Tracker note: \"chargers themselves excluded.\"",
+            "Confirm who is furnishing/installing the actual charging equipment - likely owner-furnished or a separate EV-specialty bidder."
+          ),
+          item(
+            "EV Ready (dedicated 240V branch circuit for a future charger)",
+            "needs_clarification",
+            "Other bidders on this tracker show figures of $37,800.00 and $48,000.00 for this scope; not clearly attributable to SCE from the tracker.",
+            "Confirm directly with SCE whether EV Ready circuits are included in their $52,000.00 infrastructure number or priced separately."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Division 27 - Cable/Phone Service (per 27-0513 Low Voltage bid tracker)",
+        items: [
+          item("Take-off completed per plans", "needs_clarification", "Marked \"Y\\N\" (unconfirmed) for SCE.", ""),
+          item(
+            "Units (low-voltage rough-in per unit)",
+            "needs_clarification",
+            "Tracker shows dollar figures for this line, but attribution to SCE specifically isn't clear from the raw data.",
+            "Get a firm, written per-unit number directly from SCE."
+          ),
+          item(
+            "Fiber backbone",
+            "needs_clarification",
+            "Tracker shows a figure of approximately $320,312.00 that may correspond to SCE, but attribution is uncertain given the tracker's formatting.",
+            "Confirm this figure directly with SCE in writing."
+          ),
+          item(
+            "Commons plug",
+            "needs_clarification",
+            "\"Y-Plug $25,000.00\" - reads as the GC's own placeholder estimate, not SCE's firm quote.",
+            "Get an actual number from SCE."
+          ),
+          item(
+            "Conduits from MDF to IDF throughout the property",
+            "confirmed_included",
+            "\"Y - $97,100 - Included in DIV 26.\"",
+            "Confirmed included, but the cost is already inside SCE's Division 26 number - not a separate additive charge here."
+          ),
+          item(
+            "Site Telecom Plug",
+            "needs_clarification",
+            "\"Y-Plug $75,000 - Included in DIV 26\" - a GC plug figure noted as already bundled into Division 26.",
+            "Get SCE's own written confirmation that this is genuinely already covered, rather than relying on the GC's plug note alone."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Cross-Division Coordination / Open Items",
+        items: [
+          item(
+            "Double-counting risk between Division 26 and Division 27 entries",
+            "needs_clarification",
+            "Two Division 27 line items (Conduits from MDF to IDF, and Site Telecom Plug) are noted as already included in the Division 26 total.",
+            "Get SCE to confirm, in writing, the full scope split across both divisions so nothing is paid for twice or missed."
+          ),
+          item(
+            "Lighting fixture supply vs. installation split",
+            "acknowledged",
+            "",
+            "Fixtures/material come from the separate Division 26-5100 Light Fixtures bid; SCE's Division 26 number covers handling and installation labor only."
+          ),
+          item(
+            "DAS (Emergency Responder System) carried under Division 28",
+            "acknowledged",
+            "",
+            "Confirm a Division 28 bidder is actually carrying this scope, since SCE explicitly excludes it from Division 26."
+          ),
+          item(
+            "No standalone SCE proposal letter on file",
+            "needs_clarification",
+            "Unlike every other trade package reviewed on this project, no signed SCE proposal/scope letter was provided - only the GC's bid tracker entries.",
+            "Request SCE's actual proposal document for the file before contract."
+          ),
+        ],
+      },
+    ],
+  };
+}
