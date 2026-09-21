@@ -1955,3 +1955,451 @@ function buildSceExampleChecklist() {
     ],
   };
 }
+
+function buildPjdExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "Centennial, CO",
+      jobNo: "RC26015",
+      date: "2026-06-04",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "O: 317.886.7923 / M: 303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "Colorado Gypsum LLC (DBA Paul Johnson Drywall)",
+      trade: "03 5319 / 03 5413 - Lightweight Concrete/Hardrock & Waterproofing + Gypcrete Underlayment",
+      contact: "Brandon Hauswald",
+      phone: "615-295-6699",
+      email: "bhauswald@pauljohnsondrywall.com",
+      amount: "$760,543.00 total before options (Gypsum $659,252.00 + Hardrock/Waterproofing $101,291.00), plus a $1,673.19 Textura fee = $762,216.19. Two priced options on top: +$224,020.00 for a 1-1/4\" GYP assembly alternate, and +$20,510.00 to add sealer (furnish only) to the gypcrete. Proposal dated 6/4/2026 (drawings dated 5/7/2026); the GC's bid tracker instead shows a $825,000.00/$855,000.00 figure sourced from an earlier 3/17/2026 submission - see Pricing section, this needs reconciling before carrying a number to contract.",
+    },
+    generalNotes:
+      "Colorado Gypsum LLC does business as Paul Johnson Drywall (PJD) - the proposal and license are issued under the " +
+      "Colorado Gypsum LLC name, so expect both names on contract documents. Their combo scope splits cleanly into two " +
+      "cost codes on the GC's bid tracker: 03-5319 (Lightweight Concrete, which on PJD's own proposal is actually their " +
+      "Hardrock & Waterproofing @ Balconies line) and 03-5413 (Gypcrete/Gypsum Underlayment). PRIORITY: the bid tracker's " +
+      "Gypcrete pricing ($825,000.00 / $855,000.00) does not reconcile with the current signed proposal's gypsum total " +
+      "of $659,252.00 - the tracker shows a 3/17/2026 submission date, well before this proposal's 6/4/2026 date, so it " +
+      "is very likely carrying stale, superseded numbers. Get a current reconciled figure from PJD in writing before " +
+      "using either number. Also flag: PJD's proposal explicitly bids Regular Weight concrete (~150 PCF) at the elevated " +
+      "balconies and explicitly EXCLUDES True Lightweight Concrete (~115 PCF) - if the spec or plans call out lightweight " +
+      "concrete by name, confirm that substitution is acceptable to the design team before award. The proposal also " +
+      "excludes sheet-applied waterproofing entirely, yet the bid tracker carries a $25,000.00 placeholder (\"Y-Plug\") " +
+      "for sheet waterproofing against PJD - that placeholder should not be relied on as PJD's actual number. On the " +
+      "gypcrete side, sealer and the 1-1/4\" GYP assembly are both priced as adds/alternates, not base bid - confirm " +
+      "which (if either) the GC intends to carry before finalizing scope. Finally, the bid tracker carries a clean, " +
+      "attributable note tied to PJD's exact gypsum total: \"De-duct $94,590 from $659,252 if no gypcrete is required " +
+      "on the townhomes\" - worth pursuing if townhome gypcrete scope is in question.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Gypsum (gypcrete) total, all building types",
+            "needs_clarification",
+            "Proposal: $659,252.00 (Bldg I $232,431 / IA $158,716 / II $120,130 / III $29,960 / IV $118,015). Bid tracker's \"Proposal Amount\" row instead shows $825,000.00, with a second row of $855,000.00, sourced from a 3/17/2026 submission.",
+            "Reconcile the tracker's $825,000.00/$855,000.00 figures against the current 6/4/2026 proposal's $659,252.00 before carrying a number to contract - the tracker is very likely stale."
+          ),
+          item(
+            "Hardrock & Waterproofing @ Balconies Over Conditioned Space total",
+            "confirmed_included",
+            "$101,291.00 (Bldg III $10,378 + Bldg IV $16,107... proposal totals this line at $101,291.00). Matches the bid tracker's 03-5319 category, where PJD's base Proposal Amount is listed as $101,291.00.",
+            ""
+          ),
+          item(
+            "Total before options (Gypsum + Hardrock/Waterproofing)",
+            "confirmed_included",
+            "$760,543.00, plus a $1,673.19 Textura (payment application) fee.",
+            ""
+          ),
+          item(
+            "Option: 1-1/4\" GYP w/ 1/4\" @ hard surfaces & 1-1/4\" GYP (no SCM) @ carpet areas, in lieu of base bid assembly",
+            "needs_clarification",
+            "ADD: $224,020.00 over base bid.",
+            "Confirm whether the GC intends to carry this alternate assembly or the base bid assembly before award."
+          ),
+          item(
+            "Option: furnish sealer (furnish only) at gypcrete",
+            "confirmed_excluded",
+            "Base bid excludes sealer/topcoat. ADD: $20,510.00 to furnish only (does not include install). Bid tracker confirms: PJD marked \"N\" with a note \"20,510.00 - By DIV 03,\" consistent with the proposal's priced add.",
+            "Confirm who installs the sealer if this add is carried - PJD's option is furnish-only."
+          ),
+          item(
+            "Correct sales tax percentage on materials only at 4% - Lightweight Concrete/Hardrock (03-5319)",
+            "needs_clarification",
+            "Marked \"Y?\" for PJD on the bid tracker.",
+            ""
+          ),
+          item(
+            "Correct sales tax percentage on materials only at 4% - Gypcrete (03-5413)",
+            "confirmed_included",
+            "Marked \"Y\" for PJD on the bid tracker. Proposal's Bid Includes list also states \"Sales Tax\" as included.",
+            ""
+          ),
+          item(
+            "Provide T&M rates (hourly labor $; equipment $; material $) - both cost codes",
+            "confirmed_included",
+            "Marked \"Y\" for PJD on the Gypcrete tracker; marked blank/unconfirmed on the Lightweight Concrete tracker.",
+            "Get written T&M rates covering the Hardrock/Waterproofing scope as well, not just Gypcrete."
+          ),
+          item(
+            "Deduct if no gypcrete required on townhomes",
+            "needs_clarification",
+            "Bid tracker note: \"De-duct $94,590 from $659,252 if no gypcrete is required on the townhomes\" - the $659,252 reference matches PJD's exact proposal gypsum total, so this deduct is clearly attributable to PJD.",
+            "Confirm with PJD in writing whether townhome gypcrete is required by the current plan set, and if not, execute this deduct."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Hardrock & Waterproofing @ Balconies (03-5319 bid tracker / A0040 details)",
+        items: [
+          item(
+            "Includes lightweight concrete at applicable balconies over occupied spaces",
+            "needs_clarification",
+            "Proposal bids Regular Weight concrete (~150 PCF), not True Lightweight Concrete (~115 PCF), which is explicitly excluded.",
+            "If plans/specs call for lightweight concrete by name, confirm the regular-weight substitution is acceptable to the design team."
+          ),
+          item(
+            "Includes lightweight concrete at breezeways",
+            "needs_clarification",
+            "Not addressed in the proposal's Bid Includes list; bid tracker row left unconfirmed for PJD.",
+            "Confirm directly with PJD whether breezeways are included or need to be added."
+          ),
+          item(
+            "Includes waterproofing at all exterior lightweight concrete installations",
+            "needs_clarification",
+            "Proposal includes waterproofing only at the specific A0040/1F4 balcony condition described below; general exterior waterproofing scope is not confirmed beyond that.",
+            ""
+          ),
+          item(
+            "A0040/1F4 - Balconies Over Conditioned Spaces: 2\" Average Regular Weight Concrete (~150 PCF) & 90mil waterproofing system, base flashing, drain mat, T-bar & drip edge",
+            "confirmed_included",
+            "Included per proposal - 62 elevated balconies over conditioned spaces, Bldgs III & IV, 2nd floor only. Marked \"Y - Regular Weight\" on the bid tracker.",
+            ""
+          ),
+          item(
+            "3\" polyethylene foam perimeter isolation",
+            "confirmed_included",
+            "Included, but only where sound mat is installed - not a blanket perimeter isolation scope.",
+            ""
+          ),
+          item(
+            "Sheet-applied waterproofing per A6030 detail 17/22",
+            "confirmed_excluded",
+            "Proposal's Bid Excludes list explicitly lists \"Sheet Applied waterproofing.\" Bid tracker nonetheless carries a \"Y-Plug $25,000.00\" placeholder against PJD for this line.",
+            "The $25,000.00 on the tracker reads as a GC placeholder estimate, not PJD's number - treat sheet waterproofing as excluded and price it separately, or get PJD to confirm in writing if they will add it."
+          ),
+          item(
+            "Hardrock, waterproofing and/or flashing at Balconies & Juliet (0F2 - composite decking)",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            "Confirm who is carrying this scope - a composite decking installer, not PJD."
+          ),
+          item(
+            "Hot-applied waterproofing",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Sloping of concrete",
+            "confirmed_excluded",
+            "Explicitly excluded - proposal states framing must be sloped, not the concrete topping.",
+            "Confirm framing scope carries the required slope before PJD's topping goes down."
+          ),
+          item(
+            "Vertical or balcony fascia waterproofing",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Pre-molded drainage panel per A6030 detail 17/22",
+            "needs_clarification",
+            "Not addressed in the proposal's Bid Includes/Excludes lists; bid tracker row left unconfirmed for PJD.",
+            "Get explicit written confirmation from PJD."
+          ),
+          item(
+            "Extruded aluminum T-bar, fastened at 12\" OC w/ fasteners & bead of sealant, per A6030 detail 17/22",
+            "needs_clarification",
+            "Marked \"Y?\" for PJD on the bid tracker - referenced generally within the proposal's balcony assembly description (\"...Drain mat, T-Bar & Drip Edge...\") but not itemized to this fastening detail specifically.",
+            ""
+          ),
+          item(
+            "Flashing included - 26 GA sheet metal flashing w/ hemmed edge, per A6030 detail 17/22",
+            "confirmed_included",
+            "Marked \"Y - 4-EA\" for PJD on the bid tracker.",
+            ""
+          ),
+          item(
+            "Traffic coatings, transition strips, door pans at balcony closets",
+            "confirmed_excluded",
+            "All explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Scuppers / water testing patios/decks",
+            "confirmed_excluded",
+            "Both explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Z flashing",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Stair treads (precast) per A6060/11",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Mobilizations included",
+            "confirmed_included",
+            "4 mobs included for hardrock @ patios. Additional hardrock mobilization priced at $3,500.00 each if more are needed.",
+            ""
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Gypcrete / Gypsum Underlayment (03-5413 bid tracker / A0040 details)",
+        items: [
+          item(
+            "3/4\" gypsum underlayment (2500 PSI) w/ 1/8\" sound mat at all unit areas except units over garages and townhomes (A0040/1F2, per email)",
+            "confirmed_included",
+            "Included per proposal. Marked \"Y\" for PJD on the bid tracker for the related 1/8\" sound mat / units-only scope statement.",
+            ""
+          ),
+          item(
+            "3/4\" gypsum underlayment at units over garages, townhomes L2 & L3, corridors and landings (A0040/1F3, per email)",
+            "confirmed_included",
+            "Included per proposal.",
+            ""
+          ),
+          item(
+            "3/4\" gypcrete at units and hallway",
+            "confirmed_included",
+            "Marked \"Y\" for PJD on the bid tracker.",
+            ""
+          ),
+          item(
+            "Sound mat directly over garages",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal - consistent with the 1F2/1F3 split above (garage units get gypsum underlayment without the 1/8\" sound mat).",
+            ""
+          ),
+          item(
+            "Sound mat at townhomes",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Sound mat at tubs",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Excludes acoustical matting at locations with no living space below",
+            "confirmed_excluded",
+            "Marked \"Y\" for PJD on the bid tracker, confirming this exclusion applies.",
+            ""
+          ),
+          item(
+            "Furnish and installation of sealer",
+            "confirmed_excluded",
+            "Excluded from base bid; priced separately as a $20,510.00 furnish-only add (see Pricing section). Marked \"N - 20,510.00 - By DIV 03\" for PJD on the bid tracker.",
+            ""
+          ),
+          item(
+            "1-1/4\" sound mat - alternate assembly",
+            "needs_clarification",
+            "Tied to the proposal's priced alternate (\"1-1/4\\\" GYP w/ 1/4\\\" @ hard surfaces & 1-1/4\\\" GYP (no SCM) @ carpet areas ILO base bid assembly,\" ADD $224,020.00). Bid tracker's exact figure for PJD on this alternate line is not clearly legible/attributable.",
+            "Confirm the $224,020.00 add price directly with PJD if this alternate assembly is being considered."
+          ),
+          item(
+            "1/4\" sound mat - alternate",
+            "needs_clarification",
+            "Related to the same 1-1/4\" GYP alternate assembly above; bid tracker figure for PJD not clearly attributable.",
+            "Confirm directly with PJD."
+          ),
+          item(
+            "Includes mobilizations for pre-pours, tubs, showers, and party walls",
+            "confirmed_included",
+            "1 mob included for pre-pours; remaining pre-pours to be done with the unit pours. Bid tracker shows \"Y - 1-EA; remaining units\" for PJD, consistent with the proposal.",
+            ""
+          ),
+          item(
+            "Includes mobilizations for production pours",
+            "needs_clarification",
+            "Proposal states 22 total mobs for gyp @ units + corridors + landings. Bid tracker shows a figure that doesn't clearly reconcile to 22 for PJD's column.",
+            "Confirm the 22-mob count in writing and get the per-mob or additional-mobilization rate confirmed ($2,500.00 additional gypcrete mobilization per the proposal)."
+          ),
+          item(
+            "Material meets Specification PSI",
+            "needs_clarification",
+            "Bid tracker row left unconfirmed for PJD. Proposal states 2500 PSI gypsum underlayment.",
+            "Confirm 2500 PSI is the correct spec requirement and that it's what's being provided project-wide, not just at the unit areas called out."
+          ),
+          item(
+            "Includes acoustical matting at hard surfaces",
+            "confirmed_included",
+            "Marked \"Y\" for PJD on the bid tracker.",
+            ""
+          ),
+          item(
+            "Includes trimming of isolation strips prior to finish carpentry",
+            "confirmed_excluded",
+            "Proposal's Bid Excludes list states \"Independent mobilizations for trimming ISO strip\" - trimming itself may occur, but a separate mobilization to do it is not included.",
+            "Confirm whether trimming is included as part of the standard install sequence or needs its own coordinated mobilization."
+          ),
+          item(
+            "Takeoff completed per plans",
+            "needs_clarification",
+            "Bid tracker row left unconfirmed for PJD.",
+            ""
+          ),
+          item(
+            "Sloping of concrete / W.W.M. reinforcement at hardrock / reinforcement at gypsum",
+            "confirmed_excluded",
+            "All explicitly excluded per proposal - framing must be pre-sloped, and no wire mesh or reinforcement is included in either the hardrock or gypsum scope.",
+            ""
+          ),
+          item(
+            "Onsite water supply",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            "Confirm GC or another trade provides water supply to PJD's work areas."
+          ),
+          item(
+            "Ramps in areas receiving gypcrete",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Metal combo pockets",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Painting/powdercoating T-bar",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Scrapping/cleaning floors prior to install (required by GC)",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal, despite being noted as GC-required - meaning this needs a separate party to perform it before PJD mobilizes.",
+            "Confirm who performs floor prep/cleaning ahead of PJD's crews."
+          ),
+          item(
+            "Remove and/or replace damaged plywood prior to install",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            "Confirm framing/carpentry trade is responsible for subfloor repair ahead of PJD."
+          ),
+          item(
+            "Protection of floors after install",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            "Confirm which trade protects finished gypcrete/hardrock from subsequent trades."
+          ),
+          item(
+            "Reinforcement lath",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            ""
+          ),
+          item(
+            "Scrap haul off / scrapping to GC-supplied dumpsters",
+            "confirmed_included",
+            "Scrapping to GC-supplied dumpsters is included per proposal, but general \"scrap haul off\" is separately listed as excluded.",
+            "Confirm GC dumpsters will be staged and serviced - PJD is not responsible for hauling scrap off site."
+          ),
+          item(
+            "Out-of-sequence work",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            "Coordinate schedule carefully - re-mobilizations due to out-of-sequence work will be a change order."
+          ),
+          item(
+            "Vapor barrier",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            ""
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Cross-Trade / General Conditions",
+        items: [
+          item(
+            "Pricing valid through",
+            "acknowledged",
+            "Material & labor pricing valid through 12/31/2026.",
+            ""
+          ),
+          item(
+            "Retention",
+            "acknowledged",
+            "10% retention on labor only, released per building, within 60 days of Certificate of Occupancy.",
+            ""
+          ),
+          item(
+            "Payment terms",
+            "acknowledged",
+            "Monthly progress payments. A separate Textura (payment application platform) fee of $1,673.19 applies.",
+            ""
+          ),
+          item(
+            "Insurance",
+            "needs_clarification",
+            "PJD carries $2MM excess/umbrella insurance. Proposal notes any coverage required above that limit will require additional cost, and excludes financial participation in an OCIP or WRAP insurance program.",
+            "Confirm project insurance requirements against PJD's $2MM umbrella limit, and confirm whether the project carries an OCIP/WRAP that PJD would need to be added to at additional cost."
+          ),
+          item(
+            "Payment or performance bonds",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            "Confirm whether bonding is required by contract and, if so, get a bond premium quote as an add."
+          ),
+          item(
+            "Radiant flooring",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal.",
+            "Confirm whether the project includes radiant flooring in any units, and if so, who provides it."
+          ),
+        ],
+      },
+    ],
+  };
+}
