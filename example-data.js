@@ -2403,3 +2403,253 @@ function buildPjdExampleChecklist() {
     ],
   };
 }
+
+function buildKgExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "Centennial, CO",
+      jobNo: "RC26015",
+      date: "2026-05-15",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "O: 317.886.7923 / M: 303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "KG Exterior Solutions, Inc.",
+      trade: "07 4000 - Siding & Trim (labor/install only)",
+      contact: "Eva M. Barraza, President",
+      phone: "720.203.2537 / 720.334.9093",
+      email: "exteriorsolutions@outlook.com (per bid tracker - address is truncated in the source, confirm exact spelling)",
+      amount: "$803,832.00 for siding install (267,944 SF @ $3.00/SF), per the 07-4000 Siding & Trim bid tracker - matches KG's own proposal exactly. Tracker's second row adds a $25,000.00 caulking plug for $828,832.00 tracked on this cost code. KG's own signed proposal, however, totals $1,227,764.00 combined: Siding $803,832.00 + House Wrap $161,482.00 + Windows $177,700.00 + Patio Rails $84,750.00 - see Pricing section, roughly $424K of that combined proposal total is not reflected on the Siding & Trim bid tracker.",
+    },
+    generalNotes:
+      "KG's proposal is explicit that this is a LABOR-ONLY installation contract: \"KG Exterior Solutions, Inc. will " +
+      "provide labor only installation for fiber cement lap siding, fiber cement panel siding, soffits, fascia, " +
+      "house wrap and windows. This includes fasteners, equipment, and primer.\" Materials themselves (siding panels, " +
+      "flashing, house wrap material, window units, primer coverage beyond what's listed) are furnished by others " +
+      "unless otherwise noted - keep this install-only framing in mind across every scope line below. PRIORITY: " +
+      "KG's own proposal totals $1,227,764.00 (Siding + House Wrap + Windows + Patio Rails), but the 07-4000 Siding " +
+      "& Trim bid tracker used to compare bidders only captures the $803,832.00/$828,832.00 siding figure - roughly " +
+      "$423,932.00 of House Wrap, Windows, and Patio Rails scope from KG's own signed proposal doesn't appear on this " +
+      "tracker at all. Confirm whether that scope is being awarded to KG under different cost codes (with its own " +
+      "bid comparison) or whether it's redundant with other trades already carrying that scope - Patio Rails in " +
+      "particular needs cross-checking against W Baker Steel's balcony/Juliet rail and guardrail scope so nothing is " +
+      "priced twice. Also flag: the bid tracker's Notes row for this cost code just shows the number \"567975\" with " +
+      "no label or context - unclear whether this is a PO number, an internal reference, or something else; confirm " +
+      "what it refers to before relying on it. Finally, KG's proposal itself is unsigned/undated in the signature " +
+      "block (no date filled in next to \"Date\") despite being typed 5/15/2026 at the top - get an executed copy on " +
+      "file.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Siding install pricing reconciled",
+            "confirmed_included",
+            "267,944 SF (approx., all buildings) @ $3.00/SF = $803,832.00 - matches exactly between KG's proposal and the bid tracker's base Proposal Amount.",
+            ""
+          ),
+          item(
+            "Caulking between components and dissimilar materials",
+            "needs_clarification",
+            "Bid tracker: \"Y-Plug $25,000.00\" - reads as a GC placeholder estimate, not a firm KG quote. Not itemized separately in KG's own proposal.",
+            "Get an actual number from KG, or confirm caulking is already folded into the $3.00/SF install rate."
+          ),
+          item(
+            "House Wrap - all buildings",
+            "needs_clarification",
+            "$161,482.00 per KG's proposal. Not reflected on the 07-4000 Siding & Trim bid tracker at all.",
+            "Confirm whether house wrap is being awarded to KG as part of this package or tracked/bid separately under a different cost code."
+          ),
+          item(
+            "Windows - all buildings",
+            "needs_clarification",
+            "$177,700.00 per KG's proposal (install of window units - material furnished by others per the labor-only scope statement). Not reflected on the 07-4000 Siding & Trim bid tracker at all.",
+            "Confirm whether window installation is being awarded to KG as part of this package or tracked/bid separately."
+          ),
+          item(
+            "Patio Rails",
+            "needs_clarification",
+            "$84,750.00 per KG's proposal. Not reflected on the 07-4000 Siding & Trim bid tracker, and not mentioned anywhere else in KG's scope-of-work description (which only lists siding, soffits, fascia, house wrap, and windows).",
+            "Cross-check against W Baker Steel's balcony rail, Juliet rail, and guardrail scope (Division 5 Metals) to confirm patio rails aren't being priced by two different trades."
+          ),
+          item(
+            "Combined proposal total",
+            "needs_clarification",
+            "$1,227,764.00 (Siding $803,832.00 + House Wrap $161,482.00 + Windows $177,700.00 + Patio Rails $84,750.00).",
+            "Get a single reconciled figure and confirm which line items are actually being carried to contract with KG before using this total."
+          ),
+          item(
+            "Correct sales tax percentage on materials only at 4%",
+            "needs_clarification",
+            "Bid tracker row left unconfirmed for KG. KG's proposal doesn't address sales tax at all - consistent with being a labor-only contract, but worth confirming explicitly since a materials tax line could still apply to fasteners/primer.",
+            ""
+          ),
+          item(
+            "Provide T&M rates (hourly labor $; equipment $; material $)",
+            "needs_clarification",
+            "Bid tracker row left unconfirmed for KG. No rate sheet included with the proposal.",
+            "Request T&M rates for any add/change-order work."
+          ),
+          item(
+            "Proposal signature/date",
+            "needs_clarification",
+            "Signature block lists \"Eva M. Barraza, President\" with a blank \"Date\" line, despite the proposal being typed 5/15/2026.",
+            "Get a fully executed, dated copy of the proposal on file before contract."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Siding, Trim & Flashing (per 07-4000 bid tracker)",
+        items: [
+          item(
+            "Labor-only installation of fiber cement lap siding, fiber cement panel siding, soffits, and fascia",
+            "confirmed_included",
+            "\"KG Exterior Solutions, Inc. will provide labor only installation for fiber cement lap siding, fiber cement panel siding, soffits, fascia, house wrap and windows. This includes fasteners, equipment, and primer.\"",
+            "Materials (siding panels, soffit/fascia material) are furnished by others - confirm the material supplier/procurement path is separately covered."
+          ),
+          item(
+            "Take-off completed per plans",
+            "needs_clarification",
+            "Bid tracker row left unconfirmed for KG.",
+            ""
+          ),
+          item(
+            "Includes exterior trim for doors, windows, accents",
+            "confirmed_included",
+            "Marked \"Y - Install ONLY\" for KG on the bid tracker - consistent with the proposal's labor-only framing.",
+            "Confirm trim material is furnished by others, not KG."
+          ),
+          item(
+            "Includes materials/metal flashing/flashing for fascia, rake, soffit",
+            "confirmed_excluded",
+            "Bid tracker row left blank/unconfirmed for KG, but KG's proposal is explicit this is a labor-only contract - flashing material would fall outside that unless separately called out.",
+            "Confirm who furnishes flashing material for fascia, rake, and soffit conditions, since KG's own scope statement doesn't list flashing material as included."
+          ),
+          item(
+            "Includes caulking between components and dissimilar materials",
+            "needs_clarification",
+            "See Pricing section - \"Y-Plug $25,000.00\" is a GC placeholder, not a confirmed KG number.",
+            ""
+          ),
+          item(
+            "Includes metal flashing for base, windows, & doors",
+            "needs_clarification",
+            "Marked \"Y?\" for KG on the bid tracker - not affirmatively confirmed.",
+            "Confirm whether this is furnish-and-install or install-only, consistent with the labor-only scope elsewhere."
+          ),
+          item(
+            "Includes complete system as detailed on plans (lap, panel, board & batten, etc.)",
+            "needs_clarification",
+            "Bid tracker row left unconfirmed for KG. Proposal only specifically names \"fiber cement lap siding, fiber cement panel siding\" - board & batten or other system types aren't explicitly addressed.",
+            "Confirm every siding system type shown on the elevations (not just lap and panel) is covered by KG's install pricing."
+          ),
+          item(
+            "Preferred materials \"ready for paint\"",
+            "needs_clarification",
+            "Bid tracker row left unconfirmed for KG. Proposal includes primer as part of KG's labor-only scope, which may address this.",
+            "Confirm whether primer application satisfies the \"ready for paint\" requirement or whether factory-primed/prefinished material is still expected."
+          ),
+          item(
+            "Includes mock-up material and labor",
+            "needs_clarification",
+            "Bid tracker row left unconfirmed for KG. Mock-up material would fall outside a labor-only contract unless separately addressed.",
+            "Confirm who furnishes mock-up material, and that KG's labor for the mock-up install is included at no extra charge."
+          ),
+          item(
+            "Includes fasteners, equipment, and primer",
+            "confirmed_included",
+            "Explicitly stated in KG's proposal scope-of-work paragraph.",
+            ""
+          ),
+          item(
+            "Alternate - Blue Horseshoe Framing, 6% markup",
+            "acknowledged",
+            "Marked \"n/a\" for KG on the bid tracker.",
+            "Confirm this alternate genuinely doesn't apply to KG's scope rather than being an overlooked line."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope Creep / Amenity Items (per bid tracker)",
+        items: [
+          item(
+            "Prefinished materials",
+            "needs_clarification",
+            "Bid tracker row left unconfirmed for KG.",
+            ""
+          ),
+          item(
+            "Fiber cement siding at back of outdoor kitchen wall / faux wood at barbeque area",
+            "needs_clarification",
+            "Marked \"Y\\N\" (unconfirmed) for KG on the bid tracker.",
+            "Confirm whether this amenity-area siding/faux wood work is included in KG's $3.00/SF rate or needs separate pricing."
+          ),
+          item(
+            "Decorative metal panel - spa accent wall, fireplace, kitchen accent wall (see LC.B)",
+            "needs_clarification",
+            "Marked \"Y\\N\" (unconfirmed) for KG. This is a metal panel scope, not fiber cement siding - may not belong to KG at all.",
+            "Confirm whether this is KG's scope or W Baker Steel's (who separately prices steel at the spa accent wall and outdoor kitchen) - avoid a gap or double-award between the two."
+          ),
+          item(
+            "Stucco panel siding",
+            "needs_clarification",
+            "Marked \"Y\\N\" (unconfirmed) for KG. Not a material type mentioned in KG's proposal, which only lists fiber cement lap and panel siding.",
+            "Confirm whether stucco panel siding exists on this project and, if so, whether it's KG's scope or a separate stucco subcontractor's."
+          ),
+          item(
+            "Primer for cut ends at PK2 - cost per Matt Anderson on 9/14",
+            "needs_clarification",
+            "Marked \"Y\\N\" (unconfirmed) for KG, with a note referencing a cost conversation with \"Matt Anderson\" on 9/14 that isn't otherwise documented here.",
+            "Get the actual cost/resolution from that 9/14 conversation with Matt Anderson in writing."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - House Wrap, Windows & Patio Rails (per KG Proposal - not on the Siding & Trim bid tracker)",
+        items: [
+          item(
+            "House wrap installation, all buildings",
+            "needs_clarification",
+            "$161,482.00. Included in KG's proposal scope-of-work paragraph (\"...house wrap and windows...\") and its pricing, but not itemized or compared on the 07-4000 Siding & Trim bid tracker.",
+            "Confirm this cost code/comparison exists elsewhere, or get it added to the Siding & Trim tracker so it's properly competitively reviewed."
+          ),
+          item(
+            "Window installation, all buildings",
+            "needs_clarification",
+            "$177,700.00. Included in KG's proposal scope-of-work paragraph and pricing, but not itemized or compared on the 07-4000 Siding & Trim bid tracker.",
+            "Confirm window units themselves are furnished by others (consistent with the labor-only framing) and that this figure is installation labor only."
+          ),
+          item(
+            "Patio rails",
+            "needs_clarification",
+            "$84,750.00. Priced in KG's proposal total, but never mentioned in the scope-of-work paragraph (which only lists siding, soffits, fascia, house wrap, and windows) and not on the Siding & Trim bid tracker.",
+            "This looks like it may not actually be KG's trade - get written confirmation of exactly what \"Patio Rails\" covers and cross-check against W Baker Steel's metals scope before treating this as additive."
+          ),
+        ],
+      },
+    ],
+  };
+}
