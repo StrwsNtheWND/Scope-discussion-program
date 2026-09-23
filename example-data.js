@@ -1445,3 +1445,306 @@ function buildInsulationExampleChecklist() {
     ],
   };
 }
+
+// Example checklist seeded from a real buyout scope discussion package:
+// Alta Vista (Centennial, CO) - 446 Units - Wood Trusses (CSI 06 1753)
+// GC: Garrett Construction | Bidder: BFS (Builders FirstSource)
+//
+// Built from: the 06-1753 Wood Truss bid-leveling tracker (10 bidders solicited:
+// RN Components, Truss Works, BFS, 3R Construction Group, Carter Lumber, RIGID
+// Components Systems, Simple Homes, 5 Starr Truss Company, Wheeler Lumber),
+// the GC's standard Division 06 - Wood Trusses & EWP scope statement template
+// (as previously used with BFS on the Parker II project in Parker, CO), and
+// BFS's own Multi-Family Services sales proposal format (Garrett Parker II,
+// AW #4204957, 10/25/24) used here as a reference for BFS's standard truss/
+// beam scope, inclusion, and exclusion language.
+function buildTrussesExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "Centennial, CO",
+      jobNo: "RC26015",
+      date: "2026-06-08",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "BFS - Builders FirstSource",
+      trade: "06 1753 - Wood Trusses",
+      contact: "Ronnie Snow, Multi-Family Services",
+      phone: "936.581.5972",
+      email: "ronnie.snow@bldr.com",
+      amount: "$1,920,705.94 awarded (per bid tab, savings of $341,374.06 off the $2,262,080.00 estimate) - reconcile against the bid-leveling tracker's BFS figures ($1,846,832.63 initial / $1,320,705.34 revised), which do not match the awarded amount.",
+    },
+    generalNotes:
+      "PRIORITY - EWP/beam scope boundary: BFS's own standard proposal format (see the Parker II reference " +
+      "package) normally bundles EWP flush and dropped beams into the truss package. The Alta Vista tracker " +
+      "instead shows EWP marked as excluded from BFS's scope and \"By Loose??\" with figures ($182,257 / " +
+      "$188,364.31) suggesting it is being carried under the 06-1100 Loose Lumber package (awarded to Apex) " +
+      "instead - confirm this boundary explicitly in writing with both BFS and Apex before subcontract issuance " +
+      "so EWP beams aren't double-priced or dropped between the two packages. Second priority: the awarded bid " +
+      "tab amount ($1,920,705.94) does not match either figure shown on the live tracker for BFS - get written " +
+      "confirmation of the final scope and price being carried to contract. Several scope items on the tracker " +
+      "were never cleanly resolved to a bidder-specific answer - Firewall Hangers (the tracker's own category " +
+      "name carries three question marks), the Collision Adder, and roof truss wind exposure rating per " +
+      "structural drawings - get BFS's specific written position on each rather than relying on the tracker. " +
+      "Also confirm BFS's engineering criteria (loading, deflection, wind exposure category, truss spacing) " +
+      "were pulled from Alta Vista's actual structural drawings and not carried over from a prior project's " +
+      "template, and get current pricing reconfirmed given the standard 30-day bid validity window has long " +
+      "since lapsed relative to the 6/8/26 submission date.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Base bid amount confirmed",
+            "needs_clarification",
+            "Bid tab shows $1,920,705.94 awarded. Bid-leveling tracker shows two different BFS figures: $1,846,832.63 and $1,320,705.34.",
+            "None of these three figures match. Get BFS's proposal in hand and confirm which number (and which scope revision) is being carried to the executed subcontract."
+          ),
+          item(
+            "Correct sales tax percentage on materials only (4%)",
+            "confirmed_included",
+            "BFS's standard proposal format applies 4.000% sales tax on materials (see Parker II reference: $32,954.86 tax on $823,871.45 of trusses/beams). Tracker marks this row ambiguously for several bidders.",
+            "Confirm the Alta Vista proposal states the same 4% rate explicitly, consistent with the other trade packages on this project."
+          ),
+          item(
+            "Provide T&M rates (hourly labor $; equipment $; material $)",
+            "acknowledged",
+            "Struck through on the GC's master Wood Truss scope statement template - not typically required for a material supply/delivery scope like this one.",
+            "Still worth requesting a rate sheet from BFS in case field-directed change order work (e.g. re-work from a framing error) comes up."
+          ),
+          item(
+            "Proposal pricing validity",
+            "needs_clarification",
+            "BFS's standard proposal format is valid 30 days from the quote date (per Parker II reference).",
+            "Submission was 6/8/26 - that window has long since closed. Get BFS to reconfirm current pricing in writing before issuing the subcontract."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope Confirmation (per 06-1753 Wood Truss scope statement / bid tracker)",
+        items: [
+          item("Take-off completed per plans", "confirmed_included", "\"Y\" - BFS bid tracker response.", ""),
+          item(
+            "Includes all Roof Truss materials for the apartment buildings, townhome buildings, clubhouse, and maintenance building",
+            "confirmed_included",
+            "\"Y\" across the building-type rows in the bid tracker.",
+            ""
+          ),
+          item(
+            "Includes all Floor Truss materials for the apartment and townhome buildings",
+            "confirmed_included",
+            "Implied by the awarded scope; BFS's standard proposal format prices Roof Trusses, Floor Trusses, and Beams as separate line items (see Parker II reference).",
+            "Confirm the Alta Vista proposal itemizes Roof Trusses vs. Floor Trusses the same way, so the two can be tracked/verified independently against the bid tab."
+          ),
+          item("Includes all required permits and licenses", "confirmed_included", "Per master scope statement template.", ""),
+          item(
+            "Includes Roof and Floor Truss blocking (roll blocking, shear blocking, etc.)",
+            "confirmed_included",
+            "Per master scope statement template; BFS's standard format includes shearblock language (see Parker II reference, item 6 under Roof Trusses).",
+            ""
+          ),
+          item("Associated stamped shop drawings, fees, and mobilizations", "confirmed_included", "Per master scope statement template.", ""),
+          item(
+            "Includes delivery of all truss material, site-delivered with freight included",
+            "confirmed_included",
+            "BFS's standard proposal format: \"These prices represent by building site delivered all freight included\" (Parker II reference).",
+            ""
+          ),
+          item(
+            "Includes supply and delivery of truss hardware (buckets, hangers, clips, etc.)",
+            "confirmed_included",
+            "\"Y\" - BFS bid tracker response. Standard proposal format: \"Truss to Truss and Truss to Beam hardware included.\"",
+            ""
+          ),
+          item(
+            "Includes Drag Trusses, Ladder Trusses, Girder Trusses (GT), and Structural Gable Trusses (SGT)",
+            "confirmed_included",
+            "Per master scope statement template; consistent with BFS's standard roof truss scope (jacks, hips, gables, drag trusses - see Parker II reference).",
+            ""
+          ),
+          item("Includes all draft stopping associated with this scope, per plans", "confirmed_included", "Per master scope statement template.", ""),
+          item("Includes truss collation (by building, floor, unit, etc.)", "confirmed_included", "Per master scope statement template.", ""),
+          item(
+            "Includes knee walls and roll blocks, per plans",
+            "confirmed_included",
+            "BFS's standard floor truss scope includes \"4x2 standard length kneewalls\" and \"balcony knee wall truss w/4x4 verts\" (Parker II reference).",
+            ""
+          ),
+          item(
+            "Includes mock-up material",
+            "needs_clarification",
+            "Struck through on the master scope statement template; tracker shows \"Y\" for one bidder only, not confirmed for BFS specifically.",
+            "Confirm whether a mock-up truss is required for this project and, if so, that BFS has it priced."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope Boundary & Open Items (per bid-leveling tracker)",
+        items: [
+          item(
+            "EWP (beams) excluded from BFS's Wood Truss scope",
+            "needs_clarification",
+            "Tracker: \"Excludes EWP (Included in Loose)\" with figures noted as \"By Loose??\" ($182,257 / $188,364.31). BFS's standard proposal format normally includes EWP flush/dropped beams as a priced line item within the truss package (Parker II reference: Flush $15,958.03 + Dropped $21,670.00).",
+            "PRIORITY - confirm in writing with both BFS and the Loose Lumber subcontractor (Apex) which package is actually carrying EWP beams for Alta Vista, since this differs from BFS's typical package structure. A gap here means EWP beams go unpriced; overlap means double payment."
+          ),
+          item(
+            "Firewall Hangers",
+            "needs_clarification",
+            "Tracker category itself is written as \"Firewall Hangers ???\" - unresolved even in the GC's own tracking.",
+            "BFS's standard proposal format does include a Fire Wall Hanger (FWH) line (\"Includes FWH per 10/SD2-1 and similar\" - Parker II reference). Get BFS's specific written confirmation this is included per Alta Vista's equivalent detail (tracker references SD2-2)."
+          ),
+          item(
+            "Collision Adder",
+            "needs_clarification",
+            "Tracker marks this row with unresolved \"?\"/\"N?\" answers; a $125,464 \"Not Included\" figure appears elsewhere in the same row but its bidder attribution is unclear from the tracker.",
+            "Get BFS's specific written position - confirm whether a collision adder applies to this project and, if so, whether BFS has it priced in or as an add."
+          ),
+          item(
+            "Roof truss wind exposure rating per structural drawings",
+            "needs_clarification",
+            "Tracker marks this unresolved (\"?\"). BFS's standard proposal format states wind speed explicitly (e.g. \"Wind Speed 110mph\" - Parker II reference) but that figure is project-specific.",
+            "Confirm BFS's Alta Vista proposal reflects Alta Vista's own structural drawings' wind exposure category and design wind speed, not a prior project's criteria."
+          ),
+          item(
+            "Top chord bearing condition in lieu of Fire Wall Hangers (SD2-2) at Fire Barrier Walls",
+            "needs_clarification",
+            "Tracker shows \"Included in base\" for at least one bidder on this row, but BFS's specific answer is not clearly attributable from the tracker.",
+            "Get BFS's written confirmation of their approach at fire barrier walls specifically."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Alternates",
+        items: [
+          item(
+            "Add Alternate - EWP (beams) included in BFS's scope instead of Loose Lumber",
+            "alternate_credit",
+            "Tracker shows \"Y\" for EWP as an alternate on at least one bidder's row.",
+            "Price this alternate from BFS in case the GC decides to consolidate truss + beam scope under one subcontractor rather than splitting it with the Loose Lumber package."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Building Scope Coverage (per bid tracker)",
+        items: [
+          item("7 Apartment Buildings - (3) Type I, (2) Type II, (2) Type IA", "confirmed_included", "\"Y\" - BFS bid tracker response.", ""),
+          item("7 Townhome Buildings - (5) Type IV, (2) Type III", "confirmed_included", "\"Y\" - BFS bid tracker response.", ""),
+          item("1 Stand-Alone Clubhouse", "confirmed_included", "\"Y\" - BFS bid tracker response.", ""),
+          item("1 Maintenance Building", "confirmed_included", "\"Y\" - BFS bid tracker response.", ""),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Material & Design Criteria",
+        items: [
+          item(
+            "Engineering criteria (loading, deflection, spacing) per Alta Vista's own structural drawings",
+            "needs_clarification",
+            "BFS's standard proposal format states these explicitly and project-specifically (Parker II reference: 40psf loading / 30psf ground snow / 110mph wind; L/240-L/180 deflection; 24\"oc spacing).",
+            "Confirm the Alta Vista proposal's criteria are pulled from Alta Vista's structural drawings, not copied forward from a prior project's proposal."
+          ),
+          item(
+            "Douglas Fir or Southern Yellow Pine",
+            "acknowledged",
+            "\"DF/SYP\" - BFS bid tracker response (both species referenced).",
+            "Confirm which species governs per spec, or whether it's the supplier's choice, and get it stated explicitly in the executed proposal."
+          ),
+          item(
+            "Included structural sloping of the roof at 1/4\":12",
+            "confirmed_included",
+            "\"Y - Confirmed on 7/7\" - BFS bid tracker response.",
+            ""
+          ),
+          item(
+            "Truss lumber minimum #2 chords, #3 webs or better",
+            "acknowledged",
+            "Per BFS's standard proposal format (Parker II reference).",
+            "Confirm the same lumber grade standard is stated in the Alta Vista proposal."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Exclusions (typical per BFS proposal format - confirm applicability to Alta Vista)",
+        items: [
+          item(
+            "Hold-down hardware",
+            "needs_clarification",
+            "Excluded on both Roof and Floor Trusses per BFS's standard proposal format (Parker II reference).",
+            "Confirm this same exclusion applies at Alta Vista and identify who carries hold-down hardware instead (likely the metals or framing package)."
+          ),
+          item("Crickets (roof)", "needs_clarification", "Excluded per BFS's standard proposal format.", "Confirm who carries this scope if excluded."),
+          item("Cripples (floor)", "needs_clarification", "Excluded per BFS's standard proposal format.", ""),
+          item(
+            "Conventionally-framed balconies",
+            "needs_clarification",
+            "BFS's standard floor truss scope excludes conventionally-framed balconies, covering only truss-framed balconies (Parker II reference).",
+            "Confirm Alta Vista's balcony framing approach matches the truss system BFS is assuming."
+          ),
+          item(
+            "Areas defined as 2x conventional framing per plans",
+            "needs_clarification",
+            "BFS's standard proposal format: \"Quoted per Plans and Excludes All Areas Defined as 2x Framing.\"",
+            "Confirm the framing subcontractor's scope picks up all 2x-framed areas with no gap against BFS's truss scope."
+          ),
+          item(
+            "Columns, 2x beams, rough-sawn, and treated materials",
+            "confirmed_excluded",
+            "Excluded per BFS's standard proposal format, consistent with EWP/beams being carried under the Loose Lumber package for this project.",
+            ""
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "General Terms",
+        items: [
+          item(
+            "Bid valid 30 days from proposal date",
+            "needs_clarification",
+            "Standard per BFS's proposal format.",
+            "Submission was 6/8/26 - reconfirm current pricing is still valid before issuing the subcontract."
+          ),
+          item(
+            "Pricing based on delivery by a stated date",
+            "needs_clarification",
+            "BFS's standard proposal format ties pricing to a delivery-by date (Parker II reference: priced for delivery on/before a stated date, tied to a specific jobsite-delivered date).",
+            "Get Alta Vista's specific delivery-by date tied to the project schedule, and confirm pricing holds through that date."
+          ),
+          item("All trusses plated and engineered (stamped)", "confirmed_included", "Standard per BFS's proposal format.", ""),
+          item(
+            "Pricing represents site-delivered, freight included",
+            "confirmed_included",
+            "\"These prices represent by building site delivered all freight included\" - BFS's standard proposal format.",
+            ""
+          ),
+        ],
+      },
+    ],
+  };
+}
