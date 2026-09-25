@@ -2971,3 +2971,372 @@ function buildBfsExampleChecklist() {
     ],
   };
 }
+
+
+function buildKoneExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "Centennial, CO",
+      jobNo: "RC26015",
+      date: "2026-07-07",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "O: 317.886.7923 / M: 303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "KONE Inc.",
+      trade: "14 2100 - Elevators (7 Traction Passenger Elevators)",
+      contact: "Karen Waite, New Construction Sales Consultant",
+      phone: "303-874-8429",
+      email: "karen.waite@kone.com",
+      amount: "$924,000.00 total (7 elevators @ $132,000.00 each), net including 4% CO sales tax, per KONE's REVISED \"CityView-Alta Vista\" proposal (Proposal No. T-0009742562, Rev 1 dated 7/7/2026) - down from $936,250.00 ($133,750.00/elevator) on the original 6/2/2026 version. This revised total now matches the bid tracker's base Proposal Amount row exactly. The tracker's second row ($924,700.00) and category TOTAL ($991,000.00) still don't reconcile - see Pricing section. REV1 also adds a quantified tariff exposure: KONE states that if the elevators shipped as of 7/7/2026, an additional $6,030.00/elevator ($42,210.00 total) in tariffs would apply on top of the price above.",
+    },
+    generalNotes:
+      "REVISED to KONE's Rev 1 proposal (dated 7/7/2026, same Proposal No. T-0009742562), which lowered the price " +
+      "from $133,750.00/elevator ($936,250.00 total) to $132,000.00/elevator ($924,000.00 total) - a $12,250.00 " +
+      "reduction with no accompanying explanation letter and, as far as can be told, no scope change driving it. " +
+      "This revision resolves the earlier pricing-reconciliation flag: the new $924,000.00 total now matches the " +
+      "bid tracker's base Proposal Amount row exactly (the tracker's second figure, $924,700.00, and its separate " +
+      "$991,000.00 category TOTAL still don't reconcile - lower priority). REV1 also adds a new, quantified tariff " +
+      "disclosure not present in the original: \"if the elevators were to ship today (7/7/2026) an additional " +
+      "$6,030.00 per elevator in tariffs would be applied for a total of $42,210.00\" - budget for this as a real, " +
+      "near-term exposure rather than the original's generic tariff-risk language. One scope item was also quietly " +
+      "removed between versions: \"Protection pads\" changed from \"KONE standard pads and hooks included\" (original) " +
+      "to \"Not included\" (REV1) - confirm this was intentional and, if pads are still needed for move-in/construction " +
+      "protection, get them priced. PRIORITY (carried over, unchanged in REV1): KONE's proposal explicitly substitutes " +
+      "150 fpm car speed \"in lieu of 200fpm,\" noting the KONE MonoSpace 300 model \"is similar to BOD Schindler 3300 " +
+      "which only allows for maximum speed of 150fpm\" - the master scope statement's own wording (\"Rated Speed: " +
+      "150 fpm, ALTERNATE FOR 200 fpm - 14 2100 - 3 states 200 fpm\") confirms 200 fpm is what the spec/basis-of-design " +
+      "actually calls for. This is a real functional deviation and needs design-team sign-off before award. Related: " +
+      "the bid tracker marks \"Bid is per spec 14-21-00 Electric Traction Elevators\" as \"N - $50,000.00 - Excluding\" " +
+      "for KONE - get written clarification on what that $50,000 figure represents and whether the KONE MonoSpace 300 " +
+      "DX substitution is an acceptable or-equal. KONE also proposes stainless steel 441 in lieu of 304, and 12 months " +
+      "of manufacturer warranty specifically because \"KONE manufacturer warranty of 24 months is not available\" - if " +
+      "24 months was expected, flag this gap to ownership. This REV1 proposal's own 30-day validity window (from " +
+      "7/7/2026) has also since expired - get current, re-confirmed pricing before issuing a subcontract. Given the " +
+      "project's extended schedule (construction runs into 2029 per the original ITB), watch Alternate No. 1 (2029 " +
+      "installation labor rate escalation, +$1,350/elevator) and the temporary construction use / operator time " +
+      "exclusions closely, since both are highly likely to come into play on a multi-year, phased job. Finally, KONE " +
+      "requires the hoistway width reduced to a maximum of 8'-8\" and 13'-2\" clear overhead (inclusive of KONE's own " +
+      "8\" fixed hoistbeam) - confirm this is achievable against Drawing A3130 and the current framing/structural " +
+      "design, and confirm the Integrated Control System's 8.65\" minimum wall depth requirement at the top floor " +
+      "entrance is accommodated.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Total price reconciled against bid tracker",
+            "confirmed_included",
+            "REV1 proposal (dated 7/7/2026): $924,000.00 (7 elevators @ $132,000.00, net including 4% CO tax) - down from the original 6/2/2026 proposal's $936,250.00. This REV1 total matches the bid tracker's base Proposal Amount row for KONE exactly.",
+            "Resolved for the base row. The tracker's second figure ($924,700.00) and its separate category TOTAL ($991,000.00) still don't reconcile - get those explained, but this is now a lower-priority cleanup item rather than a base-price discrepancy."
+          ),
+          item(
+            "Correct sales tax percentage on materials only at 4%",
+            "confirmed_included",
+            "REV1 proposal states \"Total Sales Price, net including 4% CO TAX: $924,000.00\" directly.",
+            ""
+          ),
+          item(
+            "Hoist beam amounts included",
+            "needs_clarification",
+            "Bid tracker shows \"Y $(16,800.00)\" for KONE - a negative/credit figure whose basis isn't explained in the proposal itself (the proposal states the hoist beam and safety beam are furnished by KONE and cut to size per approved layout drawings, with no separate credit called out).",
+            "Get KONE to explain what the $(16,800.00) figure represents before relying on it."
+          ),
+          item(
+            "Cart Operation, Fire Caulking, Grout, etc.",
+            "needs_clarification",
+            "Bid tracker shows \"Plug $17,500.00\" for KONE - reads as a GC placeholder estimate, not a KONE quote. KONE's proposal states no additional time or cost is included for coordination with life safety, security, or other trades.",
+            "Get an actual number from KONE if this scope belongs to them, or confirm it's carried by another trade/allowance."
+          ),
+          item(
+            "Proposal pricing validity",
+            "needs_clarification",
+            "\"This Proposal is valid for 30 days\" from the REV1 proposal date of 7/7/2026.",
+            "This window has since expired - get current, re-confirmed pricing from KONE before issuing a subcontract."
+          ),
+          item(
+            "Tariff exclusion / price adjustment risk",
+            "needs_clarification",
+            "REV1 quantifies this for the first time: \"If the elevators were to ship today (7/7/2026) an additional $6,030.00 per elevator in tariffs would be applied for a total of $42,210.00.\" The proposal separately states \"KONE shall be entitled to an equitable adjustment in the Price... resulting from any change in law... or any increase in duties or tariffs on imported materials.\"",
+            "This is now a concrete, near-term number rather than an open-ended risk - confirm whether Garrett wants to carry the $42,210.00 (or an updated figure as of actual ship date) as a contingency allowance."
+          ),
+          item(
+            "Payment terms",
+            "acknowledged",
+            "30% Engineering & Site Management, 50% Material, 20% Installation. Payment due 30 days net from KONE's electronic invoice date.",
+            ""
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope Confirmation (per 14-2100 Elevators bid tracker)",
+        items: [
+          item(
+            "Design-Build contract to furnish design, installation, and commissioning",
+            "confirmed_included",
+            "\"The KONE solution includes design, manufacturing, supply and installation of the following...\"",
+            ""
+          ),
+          item(
+            "Includes fire-rated belts",
+            "needs_clarification",
+            "Not addressed anywhere in KONE's proposal.",
+            "Confirm with KONE whether fire-rated belts are included or need to be added."
+          ),
+          item(
+            "Includes furnish and install elevator pit ladders",
+            "needs_clarification",
+            "Bid tracker row present; KONE's specific answer isn't clearly attributable from the source table, and pit ladders aren't mentioned in the proposal.",
+            "Get explicit written confirmation from KONE."
+          ),
+          item(
+            "Includes current and upcoming code changes",
+            "needs_clarification",
+            "Not explicitly addressed in the proposal beyond the stated regulation baseline (ASME A17.1-2022).",
+            "Confirm KONE's responsibility for code changes that occur between now and installation, given the multi-year project schedule."
+          ),
+          item(
+            "Includes all labor rate for 24 months from bid",
+            "confirmed_included",
+            "\"Through 2028 ONLY\" per the bid tracker. Matches the proposal directly: price is based on KONE completing its work by 12/31/2028, with 2028 installation labor rates included in the project total.",
+            "See Alternates - if installation slips into 2029, a $1,350.00/elevator labor rate escalation applies."
+          ),
+          item(
+            "Verified building power matches proposed elevation",
+            "needs_clarification",
+            "Bid tracker marks this \"?\" for KONE. Proposal specifies 208V/60Hz power supply for machinery at every building.",
+            "Confirm the actual building electrical design matches 208V/60Hz before proceeding."
+          ),
+          item(
+            "As-equal for the basis of design - verify with Division 14 specification",
+            "needs_clarification",
+            "Not affirmatively confirmed on the tracker. KONE's proposal itself flags several deviations from what reads as the base spec: 150 fpm in lieu of 200 fpm, stainless steel 441 in lieu of 304, and integrated control system requiring a minimum 8.65\" wall depth at the top floor entrance.",
+            "This needs a formal as-equal/substitution review by the design team given the number of flagged deviations - don't treat this as a simple checkbox."
+          ),
+          item(
+            "Elevator type: geared traction with no machine room",
+            "needs_clarification",
+            "KONE proposes the KONE MonoSpace 300 DX, a machine-room-less (MRL) traction elevator - satisfies the \"no machine room\" requirement, but MonoSpace models typically use a gearless (not geared) hoisting machine.",
+            "Confirm with KONE whether \"geared\" vs. \"gearless\" traction matters to the spec intent (e.g. for future serviceability/parts) before treating this as a like-for-like match."
+          ),
+          item(
+            "Rated load: 3,500 lbs",
+            "confirmed_included",
+            "\"Y - 3500 Included\" on the bid tracker. Matches the proposal's Capacity/Speed spec for all 7 elevators.",
+            ""
+          ),
+          item(
+            "Rated speed: 150 fpm (alternate for 200 fpm per 14 2100-3, states 200 fpm)",
+            "confirmed_excluded",
+            "\"Y - 150 FPM Included\" on the bid tracker, but this itself is the deviation - KONE's proposal explicitly states \"150 fpm has been proposed in lieu of 200fpm... KONE Monospace 300 product model... only allows for maximum speed of 150fpm.\"",
+            "The master scope statement's own language confirms 200 fpm is the design intent - get explicit design-team sign-off on the 150 fpm substitution before award."
+          ),
+          item(
+            "Bid is per architectural drawings for shaft size - see Drawing A3130",
+            "needs_clarification",
+            "Not affirmatively confirmed on the tracker. KONE's proposal states hoistway width \"will need to be reduced to 8'-8\" which is KONE maximum width allowed,\" with 13'-2\" clear overhead required (inclusive of KONE's own 8\" fixed hoistbeam).",
+            "Confirm the current shaft dimensions on Drawing A3130 already reflect KONE's 8'-8\" maximum width and 13'-2\" clear overhead requirement, or that framing will be adjusted to match."
+          ),
+          item(
+            "Bid is per spec 14-21-00 Electric Traction Elevators",
+            "needs_clarification",
+            "\"N - $50,000.00 - Excluding\" on the bid tracker for KONE.",
+            "PRIORITY - get KONE to clarify in writing what the $50,000.00 figure represents (credit vs. cost to comply with the base spec) and whether their proposed machine-room-less substitution is an acceptable or-equal."
+          ),
+          item(
+            "Bid included 7 elevators with 28 stops total",
+            "confirmed_included",
+            "7 buildings x 4 stops each = 28 stops, matching the proposal's building-by-building landing count exactly.",
+            ""
+          ),
+          item(
+            "Included battery backup power and hall position indicator",
+            "confirmed_included",
+            "\"Y - Included\" on the bid tracker. Matches the proposal: Hall Lantern/Position Indicator at every landing, plus 4-hour battery backup for in-car communication devices, wireless data, and voice network as part of the 24/7 Emergency Communications package.",
+            ""
+          ),
+          item(
+            "Do you require a working platform? Or additional disconnect?",
+            "needs_clarification",
+            "\"Y - Included\" on the bid tracker for KONE, but the proposal's own Site Preparation section lists \"permanent or temporary three-phase and single-phase power... with disconnect switches\" as a customer-furnished requirement, not something KONE supplies.",
+            "Resolve this apparent conflict directly with KONE before assuming disconnects are in their scope."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Technical Specification (per KONE Proposal)",
+        items: [
+          item("KONE MonoSpace 300 DX, machine-room-less traction, all 7 buildings", "confirmed_included", "", ""),
+          item("Machinery location: guiderail-mounted in overhead of hoistway", "confirmed_included", "", ""),
+          item("Travel height 31'-11.25\"; 4 stops; 4 front entrances, 0 rear entrances per elevator", "confirmed_included", "", ""),
+          item("Control system: Full Collective Control Simplex", "confirmed_included", "", ""),
+          item(
+            "IBC seismic design category: Non-Seismic B",
+            "needs_clarification",
+            "Stated across all 7 buildings.",
+            "Confirm this matches the project's actual structural/seismic design category before relying on it."
+          ),
+          item("Regulations: ASME A17.1-2022", "acknowledged", "", ""),
+          item("Shaft size 8'-8\" x 6'-11.75\"; pit depth 5'-0\"; clear height under ceiling 13'-2\"", "confirmed_included", "", "See the shaft-size/Drawing A3130 flag in Scope Confirmation."),
+          item("Car size 7' W x 3'-6\" D; door opening 3'-6\" x 7'", "confirmed_included", "", ""),
+          item(
+            "Integrated Control Solution (ICS), controller located at 4th floor",
+            "needs_clarification",
+            "Proposal notes: \"Integrated control system (jamb mounted on top floor entrance) has been included, the wall depth on the top floor must be a minimum of 8.65\" in order to accommodate controller.\"",
+            "Confirm the top-floor wall design accommodates this 8.65\" minimum depth requirement."
+          ),
+          item(
+            "Stainless steel 441 in lieu of 304",
+            "needs_clarification",
+            "\"Stainless steel 441 has been proposed in lieu of 304\" - applies to front wall, ceiling, handrail, skirting, door, and signalization finishes.",
+            "Confirm this substitution is acceptable to the design team/spec, consistent with the broader as-equal review."
+          ),
+          item("Car walls: KONE Standard Applied laminate selections (non-removable)", "confirmed_included", "", "Removable panels available as Alternate No. 3 - see Alternates section."),
+          item("24/7 Emergency Communications (audio + text-based two-way, video verification)", "confirmed_included", "", "Requires customer-provided LAN/internet with 4-hour battery backup and DHCP service; router delivery/configuration and cabling to KONE's installed location are NOT in KONE's scope."),
+          item("Priority call in car: independent service", "confirmed_included", "", ""),
+          item("Car ventilation: KONE standard fan", "confirmed_included", "", ""),
+          item(
+            "Protection pads",
+            "confirmed_excluded",
+            "REV1 (7/7/2026) states protection pads are \"Not included.\" The original 6/2/2026 proposal stated \"KONE standard pads and hooks included.\"",
+            "Scope reduction between proposal versions - confirm this removal was intentional, and if pads are still needed for move-in/construction protection, get them priced separately."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Alternates (per KONE Proposal)",
+        items: [
+          item(
+            "Alternate No. 1 - 2029 installation labor rate escalation",
+            "needs_clarification",
+            "2028 installation labor rates are included in the base price. If installation occurs in 2029, ADD $1,350.00 per elevator.",
+            "Given the project's known multi-year schedule, confirm whether installation is realistically expected to complete within 2028 or budget for this escalation."
+          ),
+          item(
+            "Alternate No. 2 - emergency battery lowering",
+            "needs_clarification",
+            "NOT included in the base price. To add: $3,250.00 per elevator. Not code-required; without it, a power outage lowers the elevator to the nearest floor only (not necessarily ground level) and it remains inoperable until power is restored.",
+            "Flag to ownership/GC as a life-safety and tenant-experience decision, not just a cost line."
+          ),
+          item(
+            "Alternate No. 3 - removable cab interior panels",
+            "needs_clarification",
+            "Base price includes non-removable KONE applied laminate. To add removable panels: $1,500.00 per elevator.",
+            "Confirm whether removable panels are desired/required for future ease of refinishing or damage repair."
+          ),
+          item(
+            "Alternate No. 4 - temporary construction use",
+            "needs_clarification",
+            "NOT included in the base price. If added: $2,500.00/month plus $1,500.00 per re-inspection (required every 90 days); change-order rates increase to $3,500.00/month and $2,500.00/re-inspection if added later. GC must provide protection, temporary car enclosure, electrical service, an operator, and two-way voice communication boxes at each landing. A minimum two-week refurbishment to \"like new\" condition is required before final turnover.",
+            "Given the extended construction schedule, evaluate whether temporary elevator use for material handling is worth the ongoing monthly cost and refurbishment requirement."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Site Preparation & Coordination (per KONE Proposal)",
+        items: [
+          item("Adequate access for delivery + clean/dry 21' x 56' storage space per elevator", "acknowledged", "", "Customer/GC responsibility."),
+          item(
+            "Hoistway, pit, and machine room clean, dry, and constructed per approved KONE final layout drawings",
+            "acknowledged",
+            "Guide rail bracket, divider beam, and divider screen support (pit floor to top of hoistway) provided by others; hoistway must be plumb per KONE tolerances.",
+            ""
+          ),
+          item("OSHA-approved removable barricades/entrance protection at all hoistway openings", "acknowledged", "", "Customer/GC to provide and install per OSHA 1926.502(j)."),
+          item(
+            "Permanent or temporary three-phase and single-phase power with disconnect switches",
+            "needs_clarification",
+            "Listed as a customer/GC responsibility in KONE's Site Preparation section.",
+            "Cross-reference against the bid tracker's \"working platform / additional disconnect\" item, which shows KONE marked \"Included\" - resolve which party actually provides disconnects."
+          ),
+          item(
+            "Hoist beam and safety beam furnished by KONE, cut to size and installed per approved layout",
+            "confirmed_included",
+            "\"A hoist beam and safety beam (furnished by KONE) must be cut to size and installed in the elevator overhead per the approved KONE final layout drawings.\"",
+            "See the $(16,800.00) hoist beam credit flagged in Pricing - confirm how it relates to this furnished scope."
+          ),
+          item("Adequate lighting at applicable work areas", "acknowledged", "", "Customer/GC responsibility."),
+          item("Finished floor marks visible from hoistway openings at all landings", "acknowledged", "", "Customer/GC responsibility."),
+          item(
+            "Operator time",
+            "confirmed_excluded",
+            "\"No operator time is included in this proposal.\" If GC or another trade needs shaft/platform access before Final Acceptance, KONE will provide an operator at $250/hr straight time or $500/hr overtime, availability permitting.",
+            "Coordinate with other trades' schedules (e.g. any overhead work near the shaft) to anticipate this cost."
+          ),
+          item(
+            "Other trade coordination",
+            "needs_clarification",
+            "\"No additional time or costs... have been included in this proposal for coordination with the life safety system, security system, or any other trades.\" KONE is entitled to a time/cost extension for delays caused by such coordination.",
+            "Flag as a schedule and cost risk if life-safety/security trade coordination runs long."
+          ),
+          item(
+            "Storage/delivery/remobilization risk",
+            "needs_clarification",
+            "If the site isn't ready on the agreed date, off-site storage costs $3,000/month per unit plus $4,000 double-handling labor charge; remobilization is $4,000 per crew.",
+            "Confirm site readiness milestones are realistic given the overall project schedule to avoid triggering these charges."
+          ),
+          item(
+            "Final inspection",
+            "confirmed_included",
+            "One final inspection by the elevator code authority (AHJ) per elevator is included, during normal working hours. Building life safety (fire alarm, dedicated phone lines) must be fully operational first.",
+            "If re-inspection is required due to deficiencies by others, GC is responsible for that cost."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "General Terms & Risk Items",
+        items: [
+          item(
+            "Warranty",
+            "needs_clarification",
+            "\"12 months Manufacturer warranty is included (KONE manufacturer warranty of 24 months is not available).\" 12 months of KONE standard maintenance with 24/7 Connected Services and regular time callback service is included.",
+            "If a 24-month manufacturer warranty was expected/specified, this is a real gap - confirm with the design team/ownership whether the 12-month term is acceptable."
+          ),
+          item(
+            "Completion date condition",
+            "needs_clarification",
+            "\"The price is based on KONE completing its work by December 31, 2028,\" with a material manufacturing start no later than 6 months from the proposal date. If KONE's on-site work isn't completed within that calendar year due to delays by others, the customer is responsible for the resulting labor rate increase.",
+            "See Alternate No. 1 - track this date closely given the project's overall schedule."
+          ),
+          item(
+            "Proposal supersedes conflicting contract documents",
+            "acknowledged",
+            "\"In the event of conflicts or inconsistencies between this Proposal and any other contract document... this Proposal shall supersede and prevail.\"",
+            "Legal/risk review recommended given how many technical deviations (speed, warranty, materials) are embedded in this proposal."
+          ),
+          item(
+            "Changes to the work",
+            "acknowledged",
+            "KONE not required to proceed with Extra Work until a mutually acceptable Change Order is signed, with some exceptions for Construction Change Directives/Field Orders up to 10% of the subcontract price.",
+            ""
+          ),
+        ],
+      },
+    ],
+  };
+}
