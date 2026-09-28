@@ -3340,3 +3340,782 @@ function buildKoneExampleChecklist() {
     ],
   };
 }
+
+
+// Example checklist seeded from a real buyout scope discussion package:
+// Alta Vista (Centennial, CO) - CSI 06 2000 Finish Carpentry
+// GC: Garrett Construction | Bidder: Pete's Custom Trim
+//
+// Built entirely from the "06-2000 Finish Carpentry" bid comparison tracker
+// (7 bidder columns) - no standalone Pete's Custom Trim proposal letter was
+// provided, so row-level attribution follows the tracker's own layout and
+// is flagged honestly wherever a cell's bidder column isn't clearly legible.
+
+function buildPeteCustomTrimExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "Centennial, CO",
+      jobNo: "RC26015",
+      date: "2026-06-17",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "O: 317.886.7923 / M: 303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "Pete's Custom Trim",
+      trade: "06 2000 - Finish Carpentry",
+      contact: "Victor Pete",
+      phone: "347-206-5490 (per tracker - last digit partially cut off in source)",
+      email: "victor@peteconstruction.com",
+      amount: "$867,101.43 (revised Proposal Amount per bid tracker) - originally $739,080.00 on an earlier submission. The bid tracker's separate TOTAL/budget figure of $810,357.75 doesn't match either of Pete's own two tracker figures - see Pricing section.",
+    },
+    generalNotes:
+      "No standalone signed proposal letter from Pete's Custom Trim was provided for this trade - everything here is " +
+      "sourced from the GC's own 06-2000 Finish Carpentry bid tracker, so row-level bidder attribution follows the " +
+      "tracker's column layout and is flagged as unclear wherever a figure isn't cleanly legible against Pete's " +
+      "column specifically. Get an actual signed proposal/scope letter from Pete's Custom Trim for the file. " +
+      "PRIORITY: the tracker shows two different Proposal Amount figures for Pete's Custom Trim ($739,080.00 and " +
+      "$867,101.43) with no dated revision note explaining the $128,021.43 increase, and neither figure matches the " +
+      "tracker's own separate TOTAL/budget line of $810,357.75 - get a single current, reconciled number in writing " +
+      "before contract. Also flag: Builders FirstSource (competing bidder on this same tracker) shows a materially " +
+      "higher number on the Bench Install line ($14,821.43 vs Pete's own unclear figure) and BFS's own itemized " +
+      "proposal for other cost codes (reviewed separately) explicitly lists \"Mirrors?\" and \"Shower Doors Install\" " +
+      "as excluded/redirected to \"DIV 08\" - cross-check that this Finish Carpentry package and the separate BFS " +
+      "Division 08 package don't both assume the other is covering mirrors/shower door installation, since neither " +
+      "package's own bid tracker currently shows a firm number for it. Master Trim Interior Carpentry submitted the " +
+      "earliest bid (5/19/2026) and appears to be pricing a large chunk of unit/common-area trim installation " +
+      "labor separately from Pete's own base bid - confirm this is a true competing bid and not a scope split.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Proposal Amount reconciled",
+            "needs_clarification",
+            "Tracker shows two figures for Pete's Custom Trim: $739,080.00 and $867,101.43 (a $128,021.43 delta). The tracker's separate TOTAL/budget line for this cost code shows $810,357.75, which matches neither.",
+            "Get a single, current, written proposal amount from Pete's Custom Trim before carrying a number to contract."
+          ),
+          item(
+            "Correct sales tax percentage on materials only at 4%",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Pete's Custom Trim.",
+            ""
+          ),
+          item(
+            "Provide T&M rates (hourly labor $; equipment $; material $)",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Pete's Custom Trim.",
+            "Request T&M rates for any add/change-order work."
+          ),
+          item(
+            "Bench Install pricing",
+            "needs_clarification",
+            "Tracker shows a \"?-Plug $14,821.43\" figure attributed to Pete's Custom Trim's column - reads as a GC placeholder estimate rather than Pete's own firm quote. A competing figure of $9,960.00 also appears on the same row under a different bidder's column.",
+            "Get an actual firm number directly from Pete's Custom Trim for bench install scope."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope Confirmation (per 06-2000 Finish Carpentry bid tracker)",
+        items: [
+          item(
+            "Take-off completed per plans",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Pete's Custom Trim specifically; a \"Y\" appears further along the row under a different bidder's column.",
+            ""
+          ),
+          item(
+            "Includes installation of postal boxes, as detailed per plan",
+            "confirmed_included",
+            "\"Y - $2,500.00\" shown against Pete's Custom Trim.",
+            ""
+          ),
+          item(
+            "Includes installation of fire extinguisher cabinets & fire extinguishers, as detailed per plan",
+            "confirmed_included",
+            "\"Y\" shown against Pete's Custom Trim, with no unit price broken out on this row.",
+            "Cross-check against the separate Fire Extinguishers bid tracker/BFS pricing so this scope isn't priced twice."
+          ),
+          item(
+            "Includes installation of knox boxes",
+            "confirmed_included",
+            "\"Y\" shown against Pete's Custom Trim.",
+            ""
+          ),
+          item(
+            "Includes installation of common area trim, doors and door hardware",
+            "needs_clarification",
+            "Tracker shows \"Y?\" against Pete's Custom Trim (not affirmatively confirmed). A separate $60,000.00 figure appears further along the same row, attributable to Master Trim Interior Carpentry's column rather than Pete's.",
+            "Get Pete's Custom Trim to confirm this scope and price directly in writing."
+          ),
+          item(
+            "Includes installation of unit trim, doors and door hardware",
+            "confirmed_included",
+            "\"Y\" shown against Pete's Custom Trim. A separate $404,950.00 figure further along the row is attributable to Master Trim Interior Carpentry's column, not Pete's.",
+            ""
+          ),
+          item(
+            "Includes installation of trim, door hardware, excluding mirrors",
+            "needs_clarification",
+            "Tracker shows \"Y?\" against Pete's Custom Trim. The row's own scope statement explicitly excludes mirrors - consistent with mirrors being a separately-tracked, currently-unpriced item across this project (see General Notes).",
+            "Confirm mirror installation is genuinely carried by another trade/package, since it's excluded here too."
+          ),
+          item(
+            "Includes installation of clubhouse bathroom accessories",
+            "needs_clarification",
+            "Tracker shows \"Y?\" against Pete's Custom Trim.",
+            "Cross-check against BFS's Division 10 Specialties toilet-accessories lot for the clubhouse to avoid double-award."
+          ),
+          item(
+            "Install shelving in units",
+            "confirmed_included",
+            "\"Y\" shown against Pete's Custom Trim. A separate $49,840.00 figure further along the row is attributable to Master Trim Interior Carpentry's column, not Pete's.",
+            ""
+          ),
+          item(
+            "Install shelving in amenity",
+            "needs_clarification",
+            "Tracker shows \"Y?\" against Pete's Custom Trim.",
+            ""
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Alternates (per bid tracker)",
+        items: [
+          item(
+            "Misc amenity items such as wood panel and wall molding",
+            "needs_clarification",
+            "Tracker shows \"N\" against Pete's Custom Trim with a \"$2,000 - Clubhouse Allowance\" note nearby. A separate $50,000.00 Y-Plug figure appears attributable to a different bidder's column on this same row.",
+            "Confirm whether the $2,000 clubhouse allowance is Pete's actual number or a GC placeholder."
+          ),
+          item(
+            "Install for patio doors including threshold and hardware",
+            "needs_clarification",
+            "Tracker shows \"Y - $66,900.00\" against Pete's Custom Trim.",
+            "Cross-check against BFS's Wood Doors & Frames patio-door alternates (08-1400) so scope/cost isn't split unexpectedly between packages."
+          ),
+          item(
+            "Install of all exterior doors including HM: threshold and door hardware",
+            "confirmed_included",
+            "\"Y - $43,800.00\" shown against Pete's Custom Trim.",
+            ""
+          ),
+          item(
+            "Mirrors?",
+            "needs_clarification",
+            "Tracker shows \"N\" against Pete's Custom Trim, with a note \"$11,150 - DIV 08\" nearby redirecting this cost to the Division 08 doors/hardware package. A separate figure of $66,096.00 (\"By DIV 08\") also appears on this row.",
+                "PRIORITY - see General Notes. Neither Pete's Custom Trim nor BFS's Division 08 package currently shows a firm, priced mirror-installation line - get this resolved directly with both bidders before assuming it's covered."
+          ),
+          item(
+            "Shower Doors Install",
+            "needs_clarification",
+            "Tracker shows \"N\" against Pete's Custom Trim, with a note \"$65,900 - DIV 08\" nearby redirecting this cost to the Division 08 doors/hardware package.",
+            "PRIORITY - same gap as Mirrors above. This is the exact scope you flagged as missing/previously done by BFS on your other project - get a firm quote from BFS or Pete's Custom Trim directly, since it currently appears in neither bidder's actual priced scope."
+          ),
+        ],
+      },
+    ],
+  };
+}
+
+
+// Example checklist seeded from a real buyout scope discussion package:
+// Alta Vista (Centennial, CO) - CSI 10 5523 Mail Boxes
+// GC: Garrett Construction | Bidder: Hart National Sales
+//
+// Built entirely from the "10-5523 Mail Boxes" bid comparison tracker (6
+// bidder columns, spanning both traditional mailbox suppliers and separate
+// electronic package-locker vendors) - no standalone Hart National Sales
+// proposal letter was provided.
+
+function buildHartMailboxesExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "Centennial, CO",
+      jobNo: "RC26015",
+      date: "2026-05-20",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "O: 317.886.7923 / M: 303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "Hart National Sales",
+      trade: "10 5523 - Mail Boxes",
+      contact: "Lee Hard",
+      phone: "325-337-7839 (per tracker - digits partially cut off in source)",
+      email: "lee@hartmailboxes.com",
+      amount: "$75,140.00, per the 10-5523 Mail Boxes bid tracker (submitted 5/20/2026). The tracker's separate TOTAL/budget line shows $93,000.00, which doesn't match Hart's own figure - see Pricing section.",
+    },
+    generalNotes:
+      "No standalone signed proposal letter from Hart National Sales was provided - everything here is sourced from " +
+      "the GC's own 10-5523 Mail Boxes bid tracker. This tracker mixes two genuinely different scopes across its six " +
+      "bidder columns: traditional cluster mailboxes (Hart National Sales, Page Specialty Company, and Builders " +
+      "FirstSource all bid this) and electronic package-locker systems (Luxer One and Parcel Pending bid this " +
+      "instead, at notably lower prices - $30,214.00 and $25,386.00 respectively - consistent with a locker-only " +
+      "scope, not full mailboxes). PRIORITY: confirm which of these two scopes (or both) the GC actually needs - if " +
+      "package lockers are wanted in addition to mail delivery boxes, that is a separate award to Luxer One or " +
+      "Parcel Pending, not something Hart National Sales' mailbox price covers. Cross-reference: Builders FirstSource " +
+      "also bid mailboxes on this same tracker ($87,615.00, itemized in its own separate multi-trade proposal as " +
+      "\"Mailboxes by Auth Florence... (50: 4CADD-09)... EXCLUDES Electronic Lockers and Package System\") - BFS's " +
+      "own exclusion language confirms the same locker/mailbox scope split. The tracker's separate TOTAL/budget " +
+      "figure of $93,000.00 doesn't match Hart's own $75,140.00, BFS's $87,615.00, or any other single bidder's " +
+      "figure - get this reconciled. Also get a current, signed proposal letter from Hart National Sales on file, " +
+      "since this entire checklist is presently built from tracker data alone.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Proposal Amount reconciled against bid tracker TOTAL",
+            "needs_clarification",
+            "Hart National Sales: $75,140.00. Tracker's separate TOTAL/budget line: $93,000.00.",
+            "Get Hart to confirm $75,140.00 is current and firm, and get the GC's $93,000.00 budget figure explained/reconciled."
+          ),
+          item(
+            "Correct sales tax percentage on materials only at 4%",
+            "needs_clarification",
+            "Tracker shows a pre-tax figure of $95,123.00 for a bidder column adjacent to Hart's - not clearly attributable to Hart National Sales specifically given the tracker's layout; Hart's own $75,140.00 figure may already be tax-inclusive or tax-exclusive.",
+            "Get explicit written confirmation from Hart of whether $75,140.00 includes 4% sales tax on materials."
+          ),
+          item(
+            "Provide T&M rates (hourly labor $; equipment $; material $)",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Hart National Sales.",
+            "Request T&M rates for any add/change-order work."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope Confirmation (per 10-5523 Mail Boxes bid tracker)",
+        items: [
+          item(
+            "Materials per plans and specification",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Hart National Sales.",
+            ""
+          ),
+          item(
+            "Includes key keeper for USPS access if mailboxes are located in building",
+            "confirmed_included",
+            "\"$75,140.00\" shown directly against Hart National Sales on this line - reads as Hart's full scope/price being captured here.",
+            ""
+          ),
+          item(
+            "Excludes leasing rent collection / dropbox",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Hart National Sales.",
+            "Confirm this exclusion applies consistently with the other traditional-mailbox bidders (BFS explicitly excludes electronic lockers/package system, a related but distinct exclusion)."
+          ),
+          item(
+            "Package Locker",
+            "confirmed_excluded",
+            "Not priced by Hart National Sales at all - this scope instead sits with Luxer One ($30,214.00) and Parcel Pending ($25,386.00, marked \"Y\") on this same tracker.",
+            "Confirm whether package lockers are being awarded separately to Luxer One or Parcel Pending, or whether the project is proceeding with traditional mailboxes only."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Cross-Reference / Competing Bidders (per bid tracker)",
+        items: [
+          item(
+            "Luxer One - Package Locker",
+            "acknowledged",
+            "$30,214.00 (pre-tax $31,146.62). Zacch Stottsberry, 740-581-2427, zacch@lockerrevolution.com. Submitted 5/26/2026.",
+            "Electronic package-locker scope only, not a competing mailbox bid."
+          ),
+          item(
+            "Parcel Pending - Package Locker",
+            "acknowledged",
+            "$25,386.00 (\"Y\", pre-tax $27,475.49). Barbara Merrill, 949-923-1547, bara.merrill@parcelpending.com. Submitted 5/19/2026.",
+            "Electronic package-locker scope only, not a competing mailbox bid."
+          ),
+          item(
+            "Central Florida Specialties",
+            "needs_clarification",
+            "No proposal amount shown on the tracker for this bidder; contact Mary Ann Johnson, musc123560@aol.com.",
+            "Unclear whether this bidder ever submitted pricing - confirm status or drop from consideration."
+          ),
+          item(
+            "Builders FirstSource",
+            "needs_clarification",
+            "$87,615.00 material (pre-tax $91,119.60 per tracker), per BFS's own multi-trade itemized proposal: \"Mailboxes by Auth Florence (Excludes Electronic Lockers and Package System) (50: 4CADD-09) (Standard Engraved Numbering)\" - $87,615.00 material + $9,637.65 labor = $97,252.65 combined. Kevin Lynch, 970-581-9902, kevin.lynch@bldr.com. Submitted 7/28/2026.",
+            "BFS's own exclusion language (\"Excludes Electronic Lockers and Package System\") confirms the same mailbox-vs-locker scope split flagged above. If Hart National Sales remains the selected bidder, confirm BFS's mailbox scope/pricing is fully dropped from BFS's combined proposal so it isn't double-counted."
+          ),
+          item(
+            "Page Specialty Company",
+            "acknowledged",
+            "$95,123.00 (pre-tax, per tracker). Jill Page, 803-594-8807, pagespecialty@msn.com. Submitted 5/28/2026.",
+            ""
+          ),
+        ],
+      },
+    ],
+  };
+}
+
+
+// Example checklist seeded from a real buyout scope discussion package:
+// Alta Vista (Centennial, CO) - Builders FirstSource multi-trade interior
+// finishes package, spanning six GC cost codes: 08-1400 Wood Doors &
+// Frames, 08-1113 Steel Doors & Frames, 06-4000 Interior Trim, 08-7100
+// Door Hardware, 10-2813 Toilet & Bath Accessories, and the Fire
+// Extinguishers / Mail Boxes lines under Division 10 Specialties.
+//
+// Built from BFS's own signed, itemized 8-page proposal (dated 6/2/2026,
+// "Alta Vista", Grand Total $3,274,561.00 - Terms/Qualifications page +
+// full material/labor take-off, salesman Kevin Lynch), cross-referenced
+// against each cost code's individual bid comparison tracker (all showing
+// BFS as the Selected Bidder except 06-2200 Clubhouse Specialties, where
+// BFS's own bid is incomplete - see the dedicated Clubhouse Specialties
+// notes below).
+
+function buildBfsFinishesExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "Englewood, CO",
+      jobNo: "RC26015",
+      date: "2026-06-02",
+      preparedBy: "Madisyn Costin",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "O: 317.886.7923 / M: 303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "Builders FirstSource (BFS)",
+      trade: "06 4000 / 08 1113 / 08 1400 / 08 7100 / 10 2813 - Interior Trim, Steel & Wood Doors/Frames, Door Hardware, Toilet Accessories, Fire Extinguishers & Mail Boxes",
+      contact: "Kevin Lynch",
+      phone: "970-581-9902",
+      email: "Kevin.Lynch@BLDR.com",
+      amount: "$3,274,561.00 Grand Total (Material Subtotal $2,325,376.60 + 4% Sales Tax $93,015.06 + Installation Labor $831,168.71 + Delivery, based on 50 full trucks, $25,000.00), per BFS's signed 6/2/2026 proposal covering Exterior Doors, Interior Doors, Trim, Hardware, and Labor. This total does NOT include: Unit Mirrors (quantities listed with no price - see Priority Gaps), 06-2200 Clubhouse Specialties (a separate, incomplete BFS bid - see its own section), or shower door installation (not present anywhere in this proposal).",
+    },
+    generalNotes:
+      "This is a single combined BFS proposal spanning six separate GC cost codes (06-4000 Interior Trim, 08-1113 " +
+      "Steel Doors & Frames, 08-1400 Wood Doors & Frames, 08-7100 Door Hardware, 10-2813 Toilet & Bath Accessories, " +
+      "and Fire Extinguishers/Mail Boxes under Division 10 Specialties) - each cost code's own bid tracker shows a " +
+      "\"Proposal Amount\" figure for BFS that does not cleanly reconcile line-for-line against this itemized " +
+      "proposal's material/labor split by section; get an itemized cost-code-by-cost-code reconciliation from BFS " +
+      "before allocating this Grand Total across the GC's individual budget lines - see Pricing section for the " +
+      "specific gaps. THREE PRIORITY GAPS, in order of what you flagged: (1) SHOWER DOOR INSTALLATION does not " +
+      "appear anywhere in this 8-page proposal - no line item, no exclusion, nothing - despite BFS having priced " +
+      "this scope on your other project. The only trace of it anywhere in the bid packages is on the separate " +
+      "Finish Carpentry (06-2000) tracker, where it's marked excluded by Pete's Custom Trim with a note redirecting " +
+      "$65,900 in cost to \"DIV 08\" - but that cost never shows up in BFS's Division 08 pricing here either. This " +
+      "needs a direct, explicit quote request to BFS. (2) UNIT MIRRORS are listed with full quantities (743 units " +
+      "total: 30\"x40\" and 60\"x40\", Satin Nickel and Black, by Precision Frameworks) but the Material and Labor " +
+      "columns are both BLANK - meaning BFS took off the mirror quantities but never priced them. (3) BFS's proposal " +
+      "explicitly states \"EXCLUDES FITNESS MIRRORS\" under the Division 10 Specialties lot - a second, distinct " +
+      "mirror gap on top of the unpriced unit mirrors. Also flag: 08-1113 Steel Doors & Frames has its own bid " +
+      "tracker showing BFS as Selected Bidder at $220,500.00, but no dedicated steel/hollow-metal door line item or " +
+      "section total appears anywhere in this itemized proposal - the only HM reference is a general assumption " +
+      "that \"all welded hollow metal frames in CMU walls shall be furnished by BFS and installed by others.\" Get " +
+      "BFS to confirm where steel door/frame pricing actually sits within this proposal, or get a separate itemized " +
+      "quote for it. Standing items from the Terms & Qualifications page: this is an open-shop proposal (prevailing " +
+      "wage/union standards excluded); pricing is good for 30 days with a 6% annual escalator thereafter, and this " +
+      "6/2/2026 proposal has long since expired - get current pricing before contract; BFS is not responsible for " +
+      "retagging fire extinguishers once installed; and freight assumes full-load, multi-building deliveries - " +
+      "confirm the project's actual phasing supports that assumption or expect a freight adjustment.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Grand Total build-up verified",
+            "confirmed_included",
+            "Material Subtotal $2,325,376.60 + Sales Tax (4.000%) $93,015.06 = Material Total $2,418,391.66. + Installation Labor Total $831,168.71 + Delivery (50 full trucks) $25,000.00 = Grand Total $3,274,561.00.",
+            "Arithmetic checks out internally. Tax is correctly applied at 4% (materials only), consistent with the project's ITB requirement - unlike the earlier-reviewed BFS wood truss package, which had overstated tax at 6.75%."
+          ),
+          item(
+            "Proposal pricing validity",
+            "needs_clarification",
+            "\"Bids are good for 30 days, unless otherwise stated. A 6% increase will be added for each calendar year.\" Proposal dated 6/2/2026.",
+            "This window has long since expired - get current, re-confirmed pricing from BFS before issuing a subcontract, and confirm whether the 6% annual escalator has already been triggered given the elapsed time."
+          ),
+          item(
+            "Wood Doors & Frames (08-1400) total reconciled against bid tracker",
+            "needs_clarification",
+            "BFS itemized (Unit Exterior + Unit Interior Doors, material+labor, pre-tax): $1,575,243.91. Tracker 08-1400 total (GC budget figure): $1,739,029.51. Tracker's own \"BFS Proposal Amount\" row: $1,830,875.43.",
+            "None of these three figures match cleanly - get an itemized reconciliation from BFS/GC showing exactly what the tracker's $1,830,875.43 represents relative to this proposal's door pricing."
+          ),
+          item(
+            "Steel Doors & Frames (08-1113) - no itemized pricing found in this proposal",
+            "needs_clarification",
+            "Tracker 08-1113 shows BFS as Selected Bidder at $220,500.00 (proposal amount $213,198.17). This 8-page BFS proposal has no dedicated steel/hollow-metal door section or total anywhere in it.",
+            "PRIORITY - get BFS to identify exactly where this $220,500.00 in steel door/frame scope sits within (or alongside) this combined proposal, since it isn't visible in the itemized breakdown reviewed here."
+          ),
+          item(
+            "Interior Trim (06-4000) total reconciled against bid tracker",
+            "needs_clarification",
+            "BFS itemized (Unit Trim + Unit Shelving + Unit Misc/mud bench, material+labor, pre-tax): $569,195.37. Tracker 06-4000 total (GC budget figure): $586,794.50. Tracker's own \"BFS Proposal Amount\" row: $386,241.10 - notably lower than BFS's own itemized total, suggesting the tracker may be isolating only part of this scope.",
+            "Get BFS/GC to confirm exactly which line items the tracker's $386,241.10 figure represents."
+          ),
+          item(
+            "Door Hardware (08-7100) total reconciled against bid tracker",
+            "needs_clarification",
+            "BFS itemized (Unit + Common Area + Clubhouse Door Hardware, material+labor, pre-tax): $459,438.69. Tracker 08-7100 total (GC budget figure): $431,500.00. Tracker's own \"BFS Proposal Amount\" row: $434,006.83, with a tax line of $12,366.96 shown separately (implying roughly $309,174 of materials taxed at 4%, matching this proposal's door-hardware materials subtotal closely).",
+            "The tax figure reconciles reasonably well against materials-only; get the full labor-inclusive number confirmed directly with BFS since it doesn't match this proposal's combined total."
+          ),
+          item(
+            "Toilet & Bath Accessories (10-2813) total reconciled against bid tracker",
+            "needs_clarification",
+            "BFS itemized (Unit Toilet Accessories + Division 10 Clubhouse toilet-accessories lot, material+labor, pre-tax): $101,534.71. Tracker 10-2813 total (GC budget figure): $66,400.00. Tracker's own \"BFS Proposal Amount\" row: $67,941.67.",
+            "BFS's own itemized total runs well above both tracker figures - get this reconciled; the tracker may only be capturing the unit-level toilet accessories line, not the separate clubhouse lot."
+          ),
+          item(
+            "Fire Extinguishers total reconciled against bid tracker",
+            "needs_clarification",
+            "BFS itemized (2.5lb + 10lb extinguishers + both cabinet types, material+labor, pre-tax): $63,914.50. Tracker total (GC budget figure): $51,750.00. Tracker's own \"BFS Proposal Amount\" row: $51,131.60.",
+            "Get BFS/GC to confirm whether the tracker figure is materials-only or reflects a different scope subset than this proposal's full fire-extinguisher take-off."
+          ),
+          item(
+            "Mailboxes pricing (informational - not the selected bidder)",
+            "acknowledged",
+            "BFS itemized: $87,615.00 material + $9,637.65 labor = $97,252.65, explicitly \"Excludes Electronic Lockers and Package System.\" Hart National Sales is the tracker's actual Selected Bidder at $75,140.00 for this cost code - see the dedicated Hart National Sales / Mail Boxes checklist.",
+            ""
+          ),
+          item(
+            "Delivery based on 50 full truckloads",
+            "acknowledged",
+            "$25,000.00 flat, contingent on full-load, multi-building freight per the Terms & Qualifications page.",
+            "Confirm the project's phasing/staging actually supports full-truckload deliveries, or expect BFS to adjust this figure."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "PRIORITY Gaps - Mirrors & Shower Doors",
+        items: [
+          item(
+            "Shower door installation",
+            "needs_clarification",
+            "Does not appear anywhere in BFS's 8-page proposal - no line item, price, or exclusion. The only reference anywhere in the bid packages is on the separate 06-2000 Finish Carpentry tracker, where Pete's Custom Trim marks it excluded with a note redirecting $65,900.00 in cost to \"DIV 08\" - a cost that never actually surfaces in this Division 08 (BFS) proposal.",
+            "PRIORITY - this is the exact gap you flagged: BFS priced this scope on your other project but it's absent here. Send BFS a direct, explicit request to quote shower door installation before assuming it's covered by any package currently under review."
+          ),
+          item(
+            "Unit Mirrors - quantities taken off but not priced",
+            "needs_clarification",
+            "BFS's proposal lists full unit mirror quantities under its own \"Unit Mirrors\" section - 284 EA 30\"x40\" Satin Nickel, 87 EA 60\"x40\" Satin Nickel, 284 EA 30\"x40\" Black, 88 EA 60\"x40\" Black (743 total, by Precision Frameworks 711 Metal Series) - but the Material and Labor columns for this entire section are blank.",
+            "PRIORITY - get BFS to price this section; the quantities and spec are already defined, so this should be a straightforward add to the proposal rather than a new take-off."
+          ),
+          item(
+            "Fitness/clubhouse mirrors",
+            "confirmed_excluded",
+            "BFS's Division 10 Specialties lot explicitly states \"EXCLUDES FITNESS MIRRORS\" directly beneath the combined toilet-accessories/fire-extinguisher/mailbox pricing line.",
+            "A second, distinct mirror gap from the unpriced unit mirrors above - get fitness/clubhouse mirrors priced from BFS or confirm another trade (e.g. the incomplete 06-2200 Clubhouse Specialties package) is carrying this scope."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Clubhouse Specialties (06-2200) - separate, incomplete BFS bid",
+        items: [
+          item(
+            "06-2200 Clubhouse Specialties status",
+            "needs_clarification",
+            "The 06-2200 bid tracker shows only Builders FirstSource, marked \"Unselected Bidder\" (not \"Selected\"), with a Proposal Amount of $0.00 on the first row and only $32,754.19 on a second row - against a GC target/budget TOTAL of $1,350,000.00. Individual scope rows (Acoustic Wall Panels, Breezeblock Mistral Black Stand, Poplar base, Acoufelt Acoustic panels, MDF mirror backing at fitness, Stone @ Fireplace, Metal planters, corridor built-in metal shelves) are almost all marked \"Bid not complete.\"",
+            "PRIORITY - this cost code is essentially unbid. Get BFS to complete a full, priced proposal for clubhouse specialties, or solicit additional bidders - the $1,350,000.00 figure on the tracker is a GC placeholder, not a real quote."
+          ),
+          item(
+            "MDF mirror backing at fitness",
+            "needs_clarification",
+            "Marked \"Bid not complete\" on the 06-2200 tracker.",
+            "Cross-reference against the \"EXCLUDES FITNESS MIRRORS\" exclusion in BFS's Division 10 Specialties lot (see Priority Gaps) - confirm whether fitness mirrors are meant to land in this Clubhouse Specialties package instead."
+          ),
+          item(
+            "#6 Quartz Cap, #7 Quartz Shelves and in-wall metal brackets in the Dog Wash Room",
+            "needs_clarification",
+            "Tracker row left \"Y\\N\" (unconfirmed) for BFS.",
+            ""
+          ),
+          item(
+            "Items not included",
+            "acknowledged",
+            "Tracker note: \"Does not include book shelves, seating area, and wall paneling and casework.\"",
+            "Confirm who is carrying this scope."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Wood Doors & Frames / 08-1400 (per BFS Proposal)",
+        items: [
+          item(
+            "Unit Exterior Doors - full take-off per door schedule",
+            "confirmed_included",
+            "$680,411.43 material + $152,338.24 labor. Includes Door #1 (384 EA, 2-panel shaker w/ 20 MIN rating), #1a (62 EA fiberglass full lite), #3 (243 EA fiberglass full lite standard STC), #14 (144 EA w/ 36\" sidelite), #8 (62 EA SC shaker 20 MIN), #3-STC (84 EA STC insert), plus 979 EA sealant.",
+            ""
+          ),
+          item(
+            "Exterior door STC alternate options",
+            "needs_clarification",
+            "\"Alt Option 1: Standard STC All Buildings, DEDUCT $76,440.00; Alt Options 2 or 3, STC 30 or STC 34, All Buildings, ADD $539,630.00.\"",
+            "Confirm which STC option (base bid, deduct, or the $539,630.00 add) the GC intends to carry - a roughly $616,000 swing between the deduct and add options."
+          ),
+          item(
+            "Unit Interior Doors - full take-off per door schedule",
+            "confirmed_included",
+            "$561,170.71 material + $181,323.53 labor. 13 distinct door types (#2, #4-#19) covering standard shaker doors, double-doors, and a flush barn door - 3,830+ units total across all types.",
+            ""
+          ),
+          item(
+            "Extended plumbing/shear wall jamb upcharge",
+            "acknowledged",
+            "\"Additional cost included for extended plumbing/shear wall jambs - 10% total interior doors.\"",
+            ""
+          ),
+          item(
+            "Common Area Doors",
+            "needs_clarification",
+            "$187,831.43 material + $39,728.57 labor. Several door numbers (30, 38, 39) explicitly marked EXCLUDED with $0 quantity - confirm these are genuinely not needed or are being scoped elsewhere.",
+            "Get written confirmation on doors #30, #38, #39 before assuming no cost/scope gap exists there."
+          ),
+          item(
+            "Clubhouse & Amenities Doors",
+            "needs_clarification",
+            "$7,551.43 material + $2,357.14 labor. Numerous door numbers (101, 105-108, 111, 112, 114/114a/114b/114c, 37) explicitly marked EXCLUDED.",
+            "Given the high number of excluded clubhouse door numbers, confirm with the architect/GC that these are intentional (e.g. openings without doors, or doors furnished by another trade) rather than an oversight."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Steel Doors & Frames / 08-1113 (bid tracker only - not itemized in BFS proposal)",
+        items: [
+          item(
+            "Bid tracker Selected Bidder amount",
+            "needs_clarification",
+            "$220,500.00 (proposal amount $213,198.17), per the 08-1113 Steel Doors & Frames bid tracker. No corresponding line item found in BFS's itemized 8-page proposal.",
+            "PRIORITY - see Pricing section. Get BFS to confirm where this scope/pricing lives."
+          ),
+          item("Access panels for fire-rated shafts", "needs_clarification", "Tracker row left \"Y\\N\" (unconfirmed) for BFS.", ""),
+          item("Common area doors", "needs_clarification", "No specific BFS figure found; competing bidders (Olathe $185,872.96, Frontier Door $101,148.32) show pricing on this line.", "Get BFS's specific steel-door pricing directly."),
+          item("Clubhouse & amenities doors", "needs_clarification", "No specific BFS figure found on this line.", ""),
+          item("Freight/material handling/misc", "needs_clarification", "Tracker row left \"Y\\N\" (unconfirmed) for BFS.", ""),
+          item("Attic access/roof access", "needs_clarification", "Tracker row left \"Y\\N\" (unconfirmed) for BFS.", ""),
+          item("Glass lites at all doors per plans", "needs_clarification", "Tracker row left \"Y\\N\" (unconfirmed) for BFS.", ""),
+          item("Bid per drawing A7010/A7011", "needs_clarification", "Tracker row left \"Y\\N\" (unconfirmed) for BFS.", ""),
+          item(
+            "Alternate - glass lites at all doors including the elevator slam doors",
+            "needs_clarification",
+            "Tracker row left \"Y\\N\" (unconfirmed) for BFS.",
+            "Cross-check against the KONE elevator checklist's own door/hoistway scope so nothing is double-priced."
+          ),
+          item("Alternate - elevator smoke doors", "needs_clarification", "Tracker row left \"Y\\N\" (unconfirmed) for BFS.", "Cross-check against the KONE elevator checklist."),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Interior Trim / 06-4000 (per BFS Proposal)",
+        items: [
+          item(
+            "Unit Trim - base, casing, window sill, window apron, base shoe",
+            "confirmed_included",
+            "$258,316.32 material + $186,095.26 labor. 150,302 LFT of MDF base, 169,187 LFT of door casing, plus window sill/apron and base shoe quantities.",
+            ""
+          ),
+          item(
+            "Unit Shelving - closet, linen/pantry, laundry",
+            "confirmed_included",
+            "$55,395.27 material + $22,208.09 labor. Melamine shelving, MDF cleats, closet rod and rod sockets across coat closets, linen/pantry, and laundry areas.",
+            "Explicitly excludes bedroom shelving - confirm who carries that scope."
+          ),
+          item(
+            "Excludes bedroom shelving",
+            "confirmed_excluded",
+            "Stated directly on the proposal.",
+            "Confirm bedroom shelving is carried by another trade or is genuinely not part of the design."
+          ),
+          item(
+            "Unit Miscellaneous - drop zone/mud bench",
+            "confirmed_included",
+            "$31,923.08 material + $15,257.35 labor. \"MDF Shelf, 3 Hooks Mounted on 1x4, Open MDF Cubbies & Top, Finish By Others\" - 83 EA at Units B1, B2 (drawn, not labeled) & D3a.",
+            "Confirm the finish (paint/stain) scope and trade responsible, since BFS explicitly excludes finishing this item."
+          ),
+          item(
+            "Common Area, Clubhouse & Amenities Trim",
+            "confirmed_included",
+            "$31,494.41 material + $21,002.50 labor. Includes base trim at building-enclosed corridors, case at adjustable metal/PFJ kerfed frames, conference room case, window trim, and clubhouse base (both paint-grade MDF and stain-grade maple, finish by others).",
+            ""
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Door Hardware / 08-7100 (per BFS Proposal)",
+        items: [
+          item(
+            "Unit Door Hardware",
+            "confirmed_included",
+            "$244,391.94 material + $100,764.71 labor. Full Pamex hardware set per unit door type - ball catches, barn door hardware, door sweeps, viewers, dummy levers, floor/overhead stops, deadbolts, latchsets, hinges, privacy locks, smoke/perimeter seals, thresholds, weatherstripping. Keying cost included.",
+            ""
+          ),
+          item(
+            "Common Area Door Hardware",
+            "confirmed_included",
+            "$61,251.01 material + $47,364.29 labor. Includes exit devices, closers, magnetic hold-opens, panic hardware, storeroom/passage locksets, thresholds, and security astragals.",
+            ""
+          ),
+          item(
+            "Clubhouse & Amenities Door Hardware",
+            "confirmed_included",
+            "$3,531.03 material + $2,135.71 labor. Includes barn door hardware, closers, kick plates, push/pull plates, and leversets.",
+            ""
+          ),
+          item(
+            "Credential readers, power supplies, electric strikes at clubhouse doors",
+            "confirmed_excluded",
+            "Explicitly marked \"EXCLUDED by DIV 28\" for 2 EA credential readers and 2 EA power supplies on the Clubhouse & Amenities Door Hardware schedule.",
+            "Confirm Division 28 (Electronic Safety & Security) is actually carrying this scope - matches the same DIV 28 carve-out pattern seen on the SCE electrical checklist's Emergency Responder System."
+          ),
+          item(
+            "Pamex to Kwikset revision",
+            "needs_clarification",
+            "Tracker shows a \"$(7,998.00)\" deduct against BFS tied to a \"Pamex to Kwikset\" line, with tracker notes elsewhere referencing an unresolved \"revision Pamex vs Kwikset\" discussion for other bidders.",
+            "Confirm whether this hardware-brand substitution and its deduct value are finalized with BFS."
+          ),
+          item(
+            "Closers to Spring Hinges VE option",
+            "needs_clarification",
+            "Listed as an alternate on the 08-7100 tracker; no BFS-specific dollar figure clearly identified.",
+            "Get a firm VE credit number from BFS if this substitution is being considered."
+          ),
+          item(
+            "Unit Electronic Deadbolt alternate",
+            "needs_clarification",
+            "Tracker shows \"Y-Plug $120,463.89\" against BFS - reads as a GC placeholder estimate, not a firm BFS quote.",
+            "Get an actual number from BFS if electronic deadbolts are being considered as an upgrade."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Toilet & Bath Accessories, Fire Extinguishers & Mail Boxes / 10-2813 & Div 10 Specialties (per BFS Proposal)",
+        items: [
+          item(
+            "Unit Toilet Accessories",
+            "confirmed_included",
+            "$44,668.53 material + $31,041.18 labor. Design House Millbridge toilet paper holders, robe hooks, towel bars, and curved shower rods in both Satin Nickel and Matte Black finishes, plus toilet grab bars, tub grab bars, and tub seats (9 EA each).",
+            ""
+          ),
+          item(
+            "Clubhouse toilet/bath accessories lot",
+            "confirmed_included",
+            "$20,660.00 material + $5,165.00 labor. \"Commercial Toilet Accessories by Bobrick (Matte Black) (Grab Bars 18\", 36\", 42\", TP's, SND's, PT/Waste, LED Mirrors (24\"x48\"), Soap Dispensers, Hooks, Hand Dryers, Shelf & Mop Holder)\" - priced as a single lot.",
+            "Note this lot DOES include 24\"x48\" LED mirrors at the clubhouse specifically - distinct from the unpriced Unit Mirrors and the separately-excluded Fitness Mirrors (see Priority Gaps)."
+          ),
+          item(
+            "Excludes baby changers",
+            "confirmed_excluded",
+            "Stated directly against the clubhouse toilet accessories lot.",
+            "Confirm who furnishes baby changing stations if required by code/spec."
+          ),
+          item(
+            "Fire extinguishers, cabinets, and unit kitchen extinguishers",
+            "confirmed_included",
+            "446 EA 2.5lb ABC ($26,760.00/$8,028.00) + 67 EA 10lb ABC ($7,370.00/$2,211.00) + 5 EA non-rated cabinets ($775.00/$232.50) + 62 EA fire-rated cabinets ($14,260.00/$4,278.00).",
+            "BFS is not responsible for retagging fire extinguishers once installed, per the Terms & Qualifications page - confirm who owns that ongoing maintenance obligation."
+          ),
+          item(
+            "Mail Boxes (informational - not the selected bidder)",
+            "acknowledged",
+            "$87,615.00 material + $9,637.65 labor, per BFS's proposal - explicitly \"Excludes Electronic Lockers and Package System.\"",
+            "Hart National Sales is the actual Selected Bidder on the 10-5523 tracker - see the dedicated Hart National Sales / Mail Boxes checklist for that award."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Exclusions & General Qualifications (per BFS Terms & Conditions page)",
+        items: [
+          item("Open-shop proposal; prevailing wage/union standards excluded", "acknowledged"),
+          item("Retainage not held on materials", "acknowledged"),
+          item("Storefront doors, frames, hardware; all aluminum doors/frames", "confirmed_excluded"),
+          item("Remote access controls, key card readers, electric latch retention, electric strikes/handlesets/panic devices, power supplies, motion detectors, door contacts, transformers, automatic door openers", "confirmed_excluded", "", "Consistent with the DIV 28 carve-outs seen elsewhere in this proposal."),
+          item("Gate hardware; vinyl patio doors, frames and hardware; temporary frames, doors and hardware", "confirmed_excluded"),
+          item("Underlavatory guards", "confirmed_excluded"),
+          item("Base trim in exterior areas (storage closets, maintenance closets, detached garages)", "confirmed_excluded"),
+          item("Stair risers, skirts, handrail and other stair components", "confirmed_excluded", "", "Cross-check against W Baker Steel's stair scope (Division 5 Metals, reviewed separately) to confirm full coverage."),
+          item("Putty/caulk, Bondo/spackle of trade-damaged doors and frames", "confirmed_excluded"),
+          item("Sill pans and weatherproofing", "confirmed_excluded"),
+          item("Attic access panels, draft stops, roof hatches", "confirmed_excluded"),
+          item("Knox boxes, fire hose and valve cabinets", "confirmed_excluded", "", "Cross-check against Pete's Custom Trim's Finish Carpentry scope, which includes knox box installation - confirm no gap between the two packages."),
+          item("Key cabinets; brick moulding; medicine cabinets", "confirmed_excluded"),
+          item("All hardware on doors & frames not supplied by BFS", "confirmed_excluded"),
+          item("Wood veneer finishes, wall coverings, laminate", "confirmed_excluded"),
+          item(
+            "Schedule delay / price adjustment protection",
+            "acknowledged",
+            "\"If the project is delayed more than 30 days, BFS will be entitled to a price adjustment for any price increase arising out of that delay.\" Also reserves the right to adjust price/delivery for tariffs, code changes, or lumber value changes.",
+            "Flag for budget awareness given this project's known multi-year, phased schedule."
+          ),
+          item(
+            "Preliminary bid qualifier",
+            "needs_clarification",
+            "\"This is a preliminary bid. Updated plans, schedules and specifications are required in order to provide an accurate bid.\"",
+            "Confirm whether the 5/7/2026 plan set and GMP set used for this bid are still current, or whether a re-priced proposal is needed."
+          ),
+        ],
+      },
+    ],
+  };
+}

@@ -479,6 +479,18 @@ function wireStaticButtons() {
     createChecklist(buildKoneExampleChecklist());
   });
 
+  document.getElementById("btn-example-pete").addEventListener("click", () => {
+    createChecklist(buildPeteCustomTrimExampleChecklist());
+  });
+
+  document.getElementById("btn-example-hart").addEventListener("click", () => {
+    createChecklist(buildHartMailboxesExampleChecklist());
+  });
+
+  document.getElementById("btn-example-bfsfinishes").addEventListener("click", () => {
+    createChecklist(buildBfsFinishesExampleChecklist());
+  });
+
   document.getElementById("btn-add-section").addEventListener("click", () => {
     const cl = getActive();
     if (!cl) return;
@@ -524,7 +536,10 @@ function init() {
     const kgExample = buildKgExampleChecklist();
     const bfsExample = buildBfsExampleChecklist();
     const koneExample = buildKoneExampleChecklist();
-    state.checklists.push(concreteExample, esiExample, ctfExample, bakerExample, insulationExample, fireProtectionExample, sceExample, pjdExample, kgExample, bfsExample, koneExample);
+    const peteExample = buildPeteCustomTrimExampleChecklist();
+    const hartExample = buildHartMailboxesExampleChecklist();
+    const bfsFinishesExample = buildBfsFinishesExampleChecklist();
+    state.checklists.push(concreteExample, esiExample, ctfExample, bakerExample, insulationExample, fireProtectionExample, sceExample, pjdExample, kgExample, bfsExample, koneExample, peteExample, hartExample, bfsFinishesExample);
     state.activeId = concreteExample.id;
     persist();
   }
