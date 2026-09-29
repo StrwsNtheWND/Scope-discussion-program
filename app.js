@@ -491,6 +491,10 @@ function wireStaticButtons() {
     createChecklist(buildBfsFinishesExampleChecklist());
   });
 
+  document.getElementById("btn-example-rkglass").addEventListener("click", () => {
+    createChecklist(buildRkGlassExampleChecklist());
+  });
+
   document.getElementById("btn-add-section").addEventListener("click", () => {
     const cl = getActive();
     if (!cl) return;
@@ -539,7 +543,8 @@ function init() {
     const peteExample = buildPeteCustomTrimExampleChecklist();
     const hartExample = buildHartMailboxesExampleChecklist();
     const bfsFinishesExample = buildBfsFinishesExampleChecklist();
-    state.checklists.push(concreteExample, esiExample, ctfExample, bakerExample, insulationExample, fireProtectionExample, sceExample, pjdExample, kgExample, bfsExample, koneExample, peteExample, hartExample, bfsFinishesExample);
+    const rkGlassExample = buildRkGlassExampleChecklist();
+    state.checklists.push(concreteExample, esiExample, ctfExample, bakerExample, insulationExample, fireProtectionExample, sceExample, pjdExample, kgExample, bfsExample, koneExample, peteExample, hartExample, bfsFinishesExample, rkGlassExample);
     state.activeId = concreteExample.id;
     persist();
   }

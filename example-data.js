@@ -4119,3 +4119,297 @@ function buildBfsFinishesExampleChecklist() {
     ],
   };
 }
+
+
+// Example checklist seeded from a real buyout scope discussion package:
+// Alta Vista (Centennial, CO) - CSI 08 4113 Storefront & Storefront Doors
+// GC: Garrett Construction | Bidder: RK Glass
+//
+// Built from RK Glass's three successive proposal versions (Job #26-SD57):
+// original (6/4/2026), REV1 (6/24/2026, added dark bronze anodized upcharge
+// options), and REV2 (7/31/2026, the current/selected version - added an
+// entirely new "Interior Clubhouse Glass Doors" CRL system and baked a
+// dark bronze anodized finish into the Interior Clubhouse Storefront at a
+// LOWER price than the prior clear-anodized version), cross-referenced
+// against the 08-4113 Storefront & Storefront Doors bid comparison tracker.
+
+function buildRkGlassExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "7400 S Alton St, Centennial, CO 80112",
+      jobNo: "RC26015",
+      date: "2026-07-31",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "O: 317.886.7923 / M: 303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "RK Glass",
+      trade: "08 4113 - Storefront & Storefront Doors",
+      contact: "Steve Dreaden",
+      phone: "303-426-9100",
+      email: "steve.dreaden@rkglass.com",
+      amount: "$345,532.80, per RK Glass's REV2 proposal (Job #26-SD57, dated 7/31/2026, 4% tax included on each line) - reconciles exactly against the bid tracker's Proposal Amount figure once the full scope is totaled: Clubhouse Storefront $106,155.00 + Apartment Building Entry $90,510.00 + Clubhouse Exterior Bi-folds $43,050.00 + Interior Clubhouse Storefront $41,970.00 + Interior Clubhouse Glass Doors $25,210.00 + a second Leasing/Fitness door system at the same $25,210.00 (see Pricing) + Dark Bronze Anodized upcharges $1,810.00 + $1,015.00 + A6040 flashing detail $10,602.80 = $345,532.80. The tracker's separate leftmost TOTAL of $344,335.00 is $1,197.80 lower and doesn't exactly match - see Pricing.",
+    },
+    generalNotes:
+      "This is RK Glass's third proposal version: original (6/4/2026) -> REV1 (6/24/2026) -> REV2 (7/31/2026, current). " +
+      "REV1 added two Dark Bronze Anodized upcharge options ($1,810.00 at the clubhouse exterior, $1,015.00 at the " +
+      "apartment building entry) with no other changes from the original. REV2 made two more substantive changes: " +
+      "(1) it added an entirely new \"Interior Clubhouse Glass Doors\" scope - a CRL hardware system (matte black " +
+      "finish) at the leasing/fitness entries, totaling $25,210.00, that did not exist in either prior version; and " +
+      "(2) it changed the Interior Clubhouse Storefront's finish from \"Standard Clear Anodized\" to \"Standard Dark " +
+      "Bronze Anodized\" directly in the base scope description - but the price for that same, unchanged door/frame " +
+      "schedule (identical quantities and marks AA-AG) DROPPED from $61,825.00 to $41,970.00, a $19,855.00 decrease, " +
+      "despite upgrading to a finish that costs extra everywhere else in this same proposal (the $1,810/$1,015 " +
+      "bronze upcharges above are proof bronze isn't free). PRIORITY - get RK to explain this price drop in writing " +
+      "before relying on it; it's the opposite of what the rest of the proposal's own pricing logic would predict. " +
+      "PRIORITY - the tracker shows \"Leasing and fitness entry door Systems\" as two separate line items (a \"Base\" " +
+      "row and an \"Add\" row), each at $25,210.00, and the full reconciliation to RK's own Proposal Amount only " +
+      "works if BOTH are counted (i.e., two separate $25,210.00 systems, presumably one at the leasing office and " +
+      "one at the fitness center) - but RK's REV2 proposal only describes ONE such CRL door system in its own text " +
+      "and door schedule (marks AA/AB/AC). Get RK to confirm in writing whether this scope covers one location or " +
+      "both before assuming the second $25,210.00 is actually included. Also flag: the tracker's \"A6040 storefront " +
+      "flashing details\" line shows \"Y-Plug $10,602.80\" for RK - this reads as a GC placeholder estimate rather " +
+      "than RK's own firm number, yet it's required to make the full reconciliation land exactly on $345,532.80 - " +
+      "get RK's own written confirmation of this figure. Separately, the tracker's \"Building Storefront\" line " +
+      "shows $30,510.00 for RK, while RK's own signed proposal states \"Total: $90,510 4% tax included\" for the " +
+      "Apartment Building Entry scope directly beneath its own take-off table - almost certainly a tracker data-entry " +
+      "error (dropped/mistyped leading digit) rather than a real pricing discrepancy, but worth a quick confirmation. " +
+      "Standing items: this REV2 proposal's 30-day price-protection window (from 7/31/2026) has since expired - get " +
+      "current pricing before contract; material escalation is explicitly NOT included in the quoted pricing and " +
+      "could add cost if triggered before material order; and wiring, connections, card readers, and power supply " +
+      "are explicitly excluded from every storefront/door system in this proposal - confirm Division 28 or the " +
+      "electrical package is carrying that scope, consistent with the DIV 28 carve-outs seen on the BFS door " +
+      "hardware and KONE elevator checklists.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Full proposal total reconciled against bid tracker",
+            "needs_clarification",
+            "RK's REV2 line items sum to $345,532.80 exactly matching the tracker's Proposal Amount for RK, but only if the \"Leasing and fitness entry door Systems\" line is counted twice ($25,210.00 base + $25,210.00 add) and the $10,602.80 A6040 flashing plug is included. RK's own proposal document only shows one $25,210.00 CRL door system explicitly.",
+            "PRIORITY - get RK to confirm in writing whether the leasing/fitness door system scope covers one location or two, and confirm the $10,602.80 flashing figure directly with RK rather than relying on the tracker's plug estimate."
+          ),
+          item(
+            "Tracker TOTAL vs. Proposal Amount",
+            "needs_clarification",
+            "Tracker's leftmost TOTAL (budget/selected figure): $344,335.00. Tracker's own \"Proposal Amount\" row for RK: $345,532.80 - a $1,197.80 difference.",
+            "Minor gap - confirm which figure is being carried to contract."
+          ),
+          item(
+            "Correct sales tax percentage on materials only at 4%",
+            "confirmed_included",
+            "Every section total in RK's proposal is stated as \"4% tax included\" directly beneath its own take-off table.",
+            ""
+          ),
+          item(
+            "Interior Clubhouse Storefront - price decreased despite finish upgrade",
+            "needs_clarification",
+            "REV1 (Standard Clear Anodized, same AA-AG door/frame schedule): $61,825.00. REV2 (Standard Dark Bronze Anodized, identical schedule): $41,970.00 - a $19,855.00 decrease.",
+            "PRIORITY - get RK to explain this in writing. Every other bronze upgrade in this same proposal costs extra ($1,810.00 and $1,015.00 add-ons) - a lower price for an upgraded finish on identical scope is a red flag for either an error or a silent scope reduction."
+          ),
+          item(
+            "Dark Bronze Anodized upcharges (Clubhouse exterior + Apartment Building Entry)",
+            "needs_clarification",
+            "ADD $1,810.00 for standard dark bronze anodized at the clubhouse exterior storefront; ADD $1,015.00 at the apartment building entry - both added in REV1 and unchanged through REV2. Matches the tracker's \"Bronze at the storefront???\" line for RK exactly ($2,825.00 combined).",
+            "Confirm whether these two adds are being carried (tracker marks them \"Y\", suggesting yes) and that the finish is consistent across all storefront locations project-wide."
+          ),
+          item(
+            "A6040 storefront flashing details",
+            "needs_clarification",
+            "Tracker shows \"Y-Plug $10,602.80\" for RK - not itemized anywhere in RK's own two-page proposal document.",
+            "Get a firm, written number directly from RK for this scope rather than relying on the tracker's plug figure."
+          ),
+          item(
+            "Proposal pricing validity",
+            "needs_clarification",
+            "\"All accepted proposals are subject to our approval and placement of orders with us within 30 days from date of bid... After company review, an extension may be granted at original prices or a new quotation issued.\" REV2 dated 7/31/2026.",
+            "This window has since expired - get current, re-confirmed pricing from RK before issuing a subcontract."
+          ),
+          item(
+            "Material escalation not included",
+            "needs_clarification",
+            "\"Material escalation is not included in the above pricing. Additional cost may apply should material escalation occur prior to material order.\"",
+            "Flag for budget awareness given the elapsed time since REV2 and the project's known multi-year schedule."
+          ),
+          item(
+            "Storage fees may apply",
+            "acknowledged",
+            "\"Storage fees may apply for materials ordered in advance.\"",
+            ""
+          ),
+          item(
+            "Payment terms",
+            "acknowledged",
+            "\"No 'pay when paid' or 'pay if paid' clauses will be included in this contract. Full payment is due on completion.\" 2%/month (24% annum) service charge on past-due accounts.",
+            "The no-pay-when-paid/pay-if-paid position is favorable to Garrett - confirm the \"full payment due on completion\" term (vs. progress payments) works with the project's billing cycle."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Exterior Storefront & Bi-folds (per RK Proposal, REV2)",
+        items: [
+          item(
+            "Clubhouse Exterior Storefront - Arcadia 2\" x 4-1/2\" thermal front-glazed system",
+            "confirmed_included",
+            "$106,155.00. 8 mark types (T, T Upper, U, V, W, X, Y, Z, 114a) across the clubhouse, thermal medium-stile doors with Arcadia continuous hinge, Adams Rite panic hardware, SFIC cylinders, LCN closers, 1\" Solarban 60 insulated glazing, Standard Clear Anodized finish.",
+            "Unchanged across all three proposal versions."
+          ),
+          item(
+            "Apartment Building Entry - 7 buildings",
+            "confirmed_included",
+            "$90,510.00. 2 EA per building x 7 buildings (14 total), 40\"x98\" storefront with 36\"x96\" doors (Door Mark 30), consistent across all 7 apartment buildings.",
+            "Tracker shows $30,510.00 for this line - likely a data-entry error against RK's own stated $90,510.00 total; confirm the correct figure directly with RK/GC."
+          ),
+          item(
+            "Clubhouse Exterior Bi-folds - Arcadia Oasis 10000 thermal bi-folds",
+            "confirmed_included",
+            "$43,050.00. 2 units (Door Marks 114b, 114c), 116\"x99\", Standard Clear Anodized, same 1\" Solarban 60 glazing as the exterior storefront.",
+            "Unchanged across all three proposal versions."
+          ),
+          item(
+            "Heavy wall mullions required to meet wind load",
+            "acknowledged",
+            "Stated directly in the Exterior Storefront scope description.",
+            ""
+          ),
+          item(
+            "Wiring, connections, card reader, and power supply not included",
+            "confirmed_excluded",
+            "Stated in bold directly in both the Exterior Storefront and Interior Clubhouse Storefront scope descriptions.",
+            "Confirm Division 28 (Electronic Safety & Security) or the electrical package is carrying this scope - consistent with the same carve-out pattern seen on BFS's door hardware and KONE's credential-reader exclusions."
+          ),
+          item(
+            "Storefront doors not designed to be water tight",
+            "acknowledged",
+            "Stated directly in RK's proposal notes.",
+            "Flag to the design team/architect if water-tightness was assumed at any storefront condition."
+          ),
+          item(
+            "No energy report in the plans to meet a specific U-factor",
+            "needs_clarification",
+            "Stated directly in RK's proposal notes.",
+            "Cross-references the tracker's \"Thermal Values: U-Factor per plans/energy report\" and \"SHGC per plans/energy report\" rows, both left unconfirmed for every bidder including RK - get an energy report issued if a specific U-factor/SHGC is required by code or spec."
+          ),
+          item(
+            "Automatic operators at doors",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for RK. Not mentioned in RK's proposal (ADA automatic openers are explicitly excluded - see Exclusions).",
+            "Confirm whether any doors require automatic operators and, if so, get a specific quote - RK excludes ADA automatic openers by default."
+          ),
+          item(
+            "Hardware / electrified hardware where required",
+            "needs_clarification",
+            "Tracker marks this \"?\" for RK.",
+            "Confirm scope directly with RK given wiring/power supply is excluded across the board."
+          ),
+          item(
+            "Sill seal, as detailed on plans",
+            "needs_clarification",
+            "Not explicitly addressed in RK's proposal beyond the general storefront description (\"manufacturers high performance sub sill with end dams\").",
+            ""
+          ),
+          item(
+            "Metal color per plan",
+            "needs_clarification",
+            "RK's base proposal specifies Standard Clear Anodized (exterior) with Dark Bronze Anodized available as an add - confirm this matches the architectural finish schedule.",
+            ""
+          ),
+          item(
+            "Wind rated / DP per structural drawings",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for RK, though the proposal does state \"heavy wall mullions required to meet wind load.\"",
+            "Confirm the specific design pressure (DP) rating against the structural drawings."
+          ),
+          item(
+            "Storefront jambs compatible with access control hardware",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for RK.",
+            "Coordinate with the Division 28 access control scope given RK's own wiring/card-reader exclusion."
+          ),
+          item(
+            "Tempered glass where required",
+            "confirmed_included",
+            "\"Safety glass where required to meet code\" stated in every storefront/door scope section of RK's proposal.",
+            ""
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Interior Clubhouse Storefront & Glass Doors (per RK Proposal, REV2)",
+        items: [
+          item(
+            "Interior Clubhouse Storefront - Arcadia 1-3/4\" x 4-1/2\" non-thermal center-glazed system",
+            "needs_clarification",
+            "$41,970.00 (REV2, Standard Dark Bronze Anodized) - down from $61,825.00 in the original/REV1 (Standard Clear Anodized) on the identical AA-AG door/frame schedule (162x96, 192x96, 60x96, 58x96 x3, 54x96 x2, 60x78 x4, 72x55).",
+            "PRIORITY - see Pricing section. Get this price drop explained in writing before relying on it."
+          ),
+          item(
+            "Interior Clubhouse Glass Doors - CRL system, matte black hardware",
+            "confirmed_included",
+            "$25,210.00 (new in REV2). Marks AA (162x98, Door 102), AB (192x98, Door 107a), AC (60x98). 1/2\" clear tempered glass doors and sidelites in CRL WU1DU/WU3DU channel, matte black hardware (24LPMBL panics, DCH4MBLD closers, AMR215MBL locks, push/pull plates).",
+            "Confirm whether this single system satisfies the tracker's \"Leasing and fitness entry door Systems\" scope at both the leasing office AND the fitness center, or whether a second, equally-priced system is needed - see Pricing section."
+          ),
+          item(
+            "Interior storefront hardware options (panics, push/pull, office locks)",
+            "confirmed_included",
+            "Adams Rite 8600 CVR panics on pairs; Adams Rite 8800 rim panics with HES electric strikes, Rockwood push/pull sets, or Schlage office locks on singles - per-opening hardware noted directly on the door schedule (Panics at AA/AB, Push/Pull+MS lock at AD, Panic at AD-114, Office lock at AE).",
+            ""
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Exclusions & Qualifications (per RK Proposal Terms)",
+        items: [
+          item("Work not specifically called out above", "confirmed_excluded"),
+          item("Cleaning or protection of the glass or aluminum", "confirmed_excluded"),
+          item("Engineering, bonding, testing, or permit", "confirmed_excluded"),
+          item("Temporary enclosures or weather protection", "confirmed_excluded"),
+          item("Any metal flashing not specifically included", "confirmed_excluded", "", "See the A6040 flashing detail flag in Pricing."),
+          item("Any flexible or membrane flashing", "confirmed_excluded"),
+          item("Special warranties", "confirmed_excluded", "", "1-year workmanship warranty and 5-year exterior aluminum finish warranty are the only warranties included."),
+          item("Core drilling or x-ray of floor", "confirmed_excluded"),
+          item("Caulking interior of the exterior storefront", "confirmed_excluded", "", "Only 1 exterior bead of caulking (storefront to building finish) is included."),
+          item("Davis Bacon wages", "confirmed_excluded"),
+          item("Attic stock", "confirmed_excluded"),
+          item("ROW / traffic closures", "confirmed_excluded"),
+          item(
+            "More than 2 shop drawing revisions",
+            "acknowledged",
+            "\"Additional fees may apply\" beyond 2 shop drawing revisions.",
+            ""
+          ),
+          item(
+            "ADA automatic openers",
+            "confirmed_excluded",
+            "Explicitly excluded per proposal notes.",
+            "Cross-check against the Automatic Operators scope item above - confirm whether any doors actually require ADA-compliant automatic operation."
+          ),
+        ],
+      },
+    ],
+  };
+}
