@@ -4167,9 +4167,16 @@ function buildRkGlassExampleChecklist() {
       contact: "Steve Dreaden",
       phone: "303-426-9100",
       email: "steve.dreaden@rkglass.com",
-      amount: "$345,532.80, per RK Glass's REV2 proposal (Job #26-SD57, dated 7/31/2026, 4% tax included on each line) - reconciles exactly against the bid tracker's Proposal Amount figure once the full scope is totaled: Clubhouse Storefront $106,155.00 + Apartment Building Entry $90,510.00 + Clubhouse Exterior Bi-folds $43,050.00 + Interior Clubhouse Storefront $41,970.00 + Interior Clubhouse Glass Doors $25,210.00 + a second Leasing/Fitness door system at the same $25,210.00 (see Pricing) + Dark Bronze Anodized upcharges $1,810.00 + $1,015.00 + A6040 flashing detail $10,602.80 = $345,532.80. The tracker's separate leftmost TOTAL of $344,335.00 is $1,197.80 lower and doesn't exactly match - see Pricing.",
+      amount: "$345,532.80 per the bid tracker's Proposal Amount for RK Glass. Reconstructing the full scope from RK's REV2 proposal plus their firm A6040 flashing clarification comes to $345,125.00 (Clubhouse Storefront $106,155.00 + Apartment Building Entry $90,510.00 + Clubhouse Exterior Bi-folds $43,050.00 + Interior Clubhouse Storefront $41,970.00 + Interior Clubhouse Glass Doors $25,210.00 + a second Leasing/Fitness door system at the same $25,210.00 + Dark Bronze Anodized upcharges $1,810.00 + $1,015.00 + A6040 flashing at the clubhouse, firm-quoted $10,195.00) - $407.80 under the tracker's Proposal Amount and $790.00 over its separate leftmost TOTAL of $344,335.00. See Pricing.",
     },
     generalNotes:
+      "RESOLVED: RK Glass has since sent a written clarification email to Nathan confirming a firm number for the " +
+      "A6040 storefront flashing scope - $10,195.00 for .040 Black Anodized aluminum break metal at 3 details on the " +
+      "clubhouse (Storefront Glazing Head, Jamb, and Sill - details 21/22/23 on sheet A6040, marked \"Prefinished " +
+      "aluminum closure flashing is storefront scope\"). RK notes black is the best color match to the Dark Bronze " +
+      "anodized framing, not a literal bronze match - confirm this is acceptable to the design team. This replaces " +
+      "the tracker's earlier $10,602.80 GC placeholder figure and is $407.80 lower than what would be needed to land " +
+      "exactly on the tracker's $345,532.80 Proposal Amount - a small, low-priority gap now that a firm number exists. " +
       "This is RK Glass's third proposal version: original (6/4/2026) -> REV1 (6/24/2026) -> REV2 (7/31/2026, current). " +
       "REV1 added two Dark Bronze Anodized upcharge options ($1,810.00 at the clubhouse exterior, $1,015.00 at the " +
       "apartment building entry) with no other changes from the original. REV2 made two more substantive changes: " +
@@ -4186,10 +4193,7 @@ function buildRkGlassExampleChecklist() {
       "works if BOTH are counted (i.e., two separate $25,210.00 systems, presumably one at the leasing office and " +
       "one at the fitness center) - but RK's REV2 proposal only describes ONE such CRL door system in its own text " +
       "and door schedule (marks AA/AB/AC). Get RK to confirm in writing whether this scope covers one location or " +
-      "both before assuming the second $25,210.00 is actually included. Also flag: the tracker's \"A6040 storefront " +
-      "flashing details\" line shows \"Y-Plug $10,602.80\" for RK - this reads as a GC placeholder estimate rather " +
-      "than RK's own firm number, yet it's required to make the full reconciliation land exactly on $345,532.80 - " +
-      "get RK's own written confirmation of this figure. Separately, the tracker's \"Building Storefront\" line " +
+      "both before assuming the second $25,210.00 is actually included. Separately, the tracker's \"Building Storefront\" line " +
       "shows $30,510.00 for RK, while RK's own signed proposal states \"Total: $90,510 4% tax included\" for the " +
       "Apartment Building Entry scope directly beneath its own take-off table - almost certainly a tracker data-entry " +
       "error (dropped/mistyped leading digit) rather than a real pricing discrepancy, but worth a quick confirmation. " +
@@ -4207,8 +4211,14 @@ function buildRkGlassExampleChecklist() {
           item(
             "Full proposal total reconciled against bid tracker",
             "needs_clarification",
-            "RK's REV2 line items sum to $345,532.80 exactly matching the tracker's Proposal Amount for RK, but only if the \"Leasing and fitness entry door Systems\" line is counted twice ($25,210.00 base + $25,210.00 add) and the $10,602.80 A6040 flashing plug is included. RK's own proposal document only shows one $25,210.00 CRL door system explicitly.",
-            "PRIORITY - get RK to confirm in writing whether the leasing/fitness door system scope covers one location or two, and confirm the $10,602.80 flashing figure directly with RK rather than relying on the tracker's plug estimate."
+            "RK's REV2 line items plus the firm A6040 flashing quote sum to $345,125.00 - $407.80 under the tracker's $345,532.80 Proposal Amount, and $790.00 over its separate leftmost TOTAL of $344,335.00 - but only if the \"Leasing and fitness entry door Systems\" line is counted twice ($25,210.00 base + $25,210.00 add). RK's own proposal document only shows one $25,210.00 CRL door system explicitly.",
+            "The remaining ~$400-800 gap is minor and likely rounding/plug-figure noise - get RK to confirm in writing whether the leasing/fitness door system scope covers one location or two, which is the larger open question."
+          ),
+          item(
+            "A6040 storefront flashing details - firm number received",
+            "confirmed_included",
+            "$10,195.00 for .040 Black Anodized aluminum break metal at 3 clubhouse details (Storefront Glazing Head/Jamb/Sill, details 21/22/23 on sheet A6040), per RK Glass's written email clarification to Nathan. Replaces the tracker's earlier $10,602.80 GC placeholder.",
+            "Confirm the design team is fine with Black (RK's stated best match) rather than a literal Dark Bronze anodized match on this specific flashing scope, since the two aren't the same finish."
           ),
           item(
             "Tracker TOTAL vs. Proposal Amount",
@@ -4233,12 +4243,6 @@ function buildRkGlassExampleChecklist() {
             "needs_clarification",
             "ADD $1,810.00 for standard dark bronze anodized at the clubhouse exterior storefront; ADD $1,015.00 at the apartment building entry - both added in REV1 and unchanged through REV2. Matches the tracker's \"Bronze at the storefront???\" line for RK exactly ($2,825.00 combined).",
             "Confirm whether these two adds are being carried (tracker marks them \"Y\", suggesting yes) and that the finish is consistent across all storefront locations project-wide."
-          ),
-          item(
-            "A6040 storefront flashing details",
-            "needs_clarification",
-            "Tracker shows \"Y-Plug $10,602.80\" for RK - not itemized anywhere in RK's own two-page proposal document.",
-            "Get a firm, written number directly from RK for this scope rather than relying on the tracker's plug figure."
           ),
           item(
             "Proposal pricing validity",
