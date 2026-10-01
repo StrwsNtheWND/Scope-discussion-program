@@ -4216,9 +4216,9 @@ function buildRkGlassExampleChecklist() {
           ),
           item(
             "A6040 storefront flashing details - firm number received",
-            "confirmed_included",
+            "needs_clarification",
             "$10,195.00 for .040 Black Anodized aluminum break metal at 3 clubhouse details (Storefront Glazing Head/Jamb/Sill, details 21/22/23 on sheet A6040), per RK Glass's written email clarification to Nathan. Replaces the tracker's earlier $10,602.80 GC placeholder.",
-            "Confirm the design team is fine with Black (RK's stated best match) rather than a literal Dark Bronze anodized match on this specific flashing scope, since the two aren't the same finish."
+            "Confirm the design team is fine with Black (RK's stated best match) rather than a literal Dark Bronze anodized match on this specific flashing scope, since the two aren't the same finish. PRIORITY - a separate email thread (\"Re: Flashing - Alta Vista\") shows Nathan has also asked Apex Lumber & Materials to supply pre-finished aluminum closure flashing at these exact same detail numbers (21/22/23, same sheet A6040), color-matched to the fiber cement panel instead of the storefront framing - see the Apex Siding & Trim checklist. Get this reconciled before paying for it twice: confirm whether Apex's request covers the same clubhouse condition RK already quoted, or additional buildings/locations."
           ),
           item(
             "Tracker TOTAL vs. Proposal Amount",
@@ -4411,6 +4411,297 @@ function buildRkGlassExampleChecklist() {
             "confirmed_excluded",
             "Explicitly excluded per proposal notes.",
             "Cross-check against the Automatic Operators scope item above - confirm whether any doors actually require ADA-compliant automatic operation."
+          ),
+        ],
+      },
+    ],
+  };
+}
+
+
+// Example checklist seeded from a real buyout scope discussion package:
+// Alta Vista (Centennial, CO) - CSI 07 4000 Siding & Trim (materials only)
+// GC: Garrett Construction | Bidder: Apex Lumber & Materials
+//
+// Apex supplies MATERIALS ONLY for this cost code - KG Exterior Solutions
+// (reviewed separately) is the install-only labor bidder on the same
+// 07-4000 Siding & Trim tracker. Built from the 07-4000 bid tracker, Apex's
+// own itemized Metal Flashings pricing schedule, and an email thread
+// ("Re: Flashing - Alta Vista") between Nathan Orfanedes and Eric Selvidge
+// (Apex) regarding a separate, not-yet-priced storefront closure flashing
+// coordination item.
+
+function buildApexSidingTrimExampleChecklist() {
+  const now = new Date().toISOString();
+
+  const item = (text, status, bidderResponse, notes) => ({
+    id: uid(),
+    text,
+    status,
+    bidderResponse: bidderResponse || "",
+    notes: notes || "",
+  });
+
+  return {
+    id: uid(),
+    createdAt: now,
+    updatedAt: now,
+    project: {
+      name: "Alta Vista",
+      location: "Centennial, CO",
+      jobNo: "RC26015",
+      date: "2026-08-31",
+      preparedBy: "",
+    },
+    gc: {
+      company: "Garrett Construction",
+      contact: "Nathan Orfanedes, Preconstruction Manager",
+      phone: "O: 317.886.7923 / M: 303.827.5515",
+      email: "norfanedes@thegarrettco.com",
+    },
+    bidder: {
+      company: "Apex Lumber & Materials",
+      trade: "07 4000 - Siding & Trim (materials only)",
+      contact: "Eric Selvidge, Account Manager",
+      phone: "Direct: 317.886.7923 / Mobile: 765.520.0974",
+      email: "eselvidge@apexlumbermaterials.com",
+      amount: "$1,318,676.51 per the 07-4000 Siding & Trim bid tracker's higher Proposal Amount row (base materials $1,156,596.51 + metal flashing placeholder $130,000.00 + scope-creep adds $32,080.00). The tracker's separate leftmost TOTAL/budget figure of $2,416,015.00 is far higher and doesn't reconcile with either Proposal Amount row - see Pricing. Apex supplies MATERIALS ONLY; KG Exterior Solutions (reviewed separately) is the install-only labor bidder on this same cost code.",
+    },
+    generalNotes:
+      "Apex is a MATERIALS-ONLY supplier on this cost code - KG Exterior Solutions holds the companion install-only " +
+      "labor award on the same 07-4000 Siding & Trim tracker (reviewed separately); several scope-creep items below " +
+      "appear on both trackers since material and install naturally pair up. PRIORITY: Apex has since provided a real, " +
+      "itemized Metal Flashings quote - $105,895.87 pre-tax, $110,131.70 with 4% tax included - which replaces the " +
+      "tracker's \"Y-Plug $130,000.00\" placeholder for \"materials/Metal Flashing/Flashing for Fascia, Rake, Soffit\" " +
+      "with a real number roughly $19,868.30 LOWER than the plug. The tracker's higher Proposal Amount row " +
+      "($1,318,676.51) was built using the $130,000.00 plug, not this real figure - get the row updated. Confirm with " +
+      "Apex directly whether freight/delivery is included in the $105,895.87 itemized total, since no separate " +
+      "freight line appears anywhere in their pricing schedule (unlike, e.g., BFS's door/hardware proposal, which " +
+      "itemized a $25,000.00 delivery line separately). PRIORITY: a separate, NOT-YET-PRICED coordination item is in " +
+      "progress between Nathan and Eric Selvidge - Apex has been asked to supply pre-finished aluminum closure " +
+      "flashing at the storefront glazing head/jamb/sill (sheet A6040, details 21/22/23, marked \"Prefinished aluminum " +
+      "closure flashing is storefront scope\") color-matched to the FIBER CEMENT PANEL, to be installed by the " +
+      "storefront contractor (RK Glass). This is the SAME detail sheet and detail numbers (21/22/23) that RK Glass " +
+      "already firm-quoted at $10,195.00 for 3 clubhouse details, color-matched instead to the Dark Bronze anodized " +
+      "storefront FRAMING (Black Anodized, RK's stated best match) - see the RK Glass checklist. Get this reconciled " +
+      "before both scopes are paid for: confirm whether Apex's new request covers the SAME clubhouse condition RK " +
+      "already quoted (a double-award risk) or a DIFFERENT location/building where the flashing instead needs to " +
+      "match adjacent fiber cement panel rather than the storefront framing. As of the email thread, Apex has not " +
+      "priced this - Eric Selvidge is waiting on a linear-footage takeoff from the project team (referencing a " +
+      "similar scope on the County Line project: ~60 LF quoted at under $200 total) - get the LF count and a firm " +
+      "quote once the overlap question above is resolved. Also note: the tracker's NOTES row separately references " +
+      "\"Carried $822,334.97 Plug in previously for prefinished metals\" - a third, much larger figure that doesn't " +
+      "reconcile with either the $130,000.00 flashing plug or Apex's real $110,131.70 quote - likely a stale, " +
+      "broader early-budget placeholder; confirm it's been superseded and isn't still sitting in the project budget " +
+      "alongside the real numbers.",
+    sections: [
+      {
+        id: uid(),
+        title: "Pricing",
+        items: [
+          item(
+            "Base materials Proposal Amount vs. tracker TOTAL",
+            "needs_clarification",
+            "Tracker shows two Proposal Amount rows for Apex: $1,156,596.51 (base) and $1,318,676.51 (base + the $130,000.00 flashing plug + $32,080.00 in scope-creep adds - the arithmetic reconciles exactly). The tracker's separate leftmost TOTAL/budget figure is $2,416,015.00, roughly $1.1M higher than either Proposal Amount row.",
+            "Get the GC's $2,416,015.00 budget figure explained - it may include KG's companion labor award or other scope not captured in Apex's own materials-only numbers."
+          ),
+          item(
+            "Metal Flashings - real itemized quote supersedes tracker plug",
+            "confirmed_included",
+            "$105,895.87 pre-tax ($110,131.70 with 4% tax), itemized across 9 line items (Profiles A/B/C/H/L/M-Z, Door Pans, Saddle Flashing, Additional Flashing at A6030) - see the Metal Flashings section below for the full breakdown.",
+            "Replaces the tracker's \"Y-Plug $130,000.00\" line - a real savings of roughly $19,868.30 once the tracker's higher Proposal Amount row is updated to use this figure instead of the plug."
+          ),
+          item(
+            "Correct sales tax percentage on materials only at 4%",
+            "confirmed_included",
+            "Marked \"Y - 4% Included\" on the bid tracker, and confirmed again on Apex's own Metal Flashings schedule (subtotal $105,895.87 extends to $110,131.70 at exactly 4%).",
+            ""
+          ),
+          item(
+            "Freight / delivery included in pricing",
+            "needs_clarification",
+            "No freight or delivery line appears anywhere on Apex's Metal Flashings pricing schedule.",
+            "Confirm directly with Apex whether freight is bundled into the per-unit pricing shown or will be billed separately."
+          ),
+          item(
+            "Provide T&M rates (hourly labor $; equipment $; material $)",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Apex.",
+            "Request rates for any add/change-order work."
+          ),
+          item(
+            "Stale early-budget placeholder still in the tracker notes",
+            "needs_clarification",
+            "Tracker NOTES row: \"Carried $822,334.97 Plug in previously for prefinished metals.\"",
+            "Confirm this figure has been fully superseded by the current $130,000.00 (now $110,131.70 real) flashing number and isn't double-counted elsewhere in the project budget."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Siding & Trim Materials (per 07-4000 bid tracker)",
+        items: [
+          item(
+            "Take-off completed per plans",
+            "acknowledged",
+            "Tracker note: \"Hardie Board Product.\"",
+            ""
+          ),
+          item(
+            "Includes exterior trim for doors, windows, accents",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Apex.",
+            "Confirm this material scope is captured in the base $1,156,596.51 figure."
+          ),
+          item(
+            "Includes caulking between components and dissimilar materials",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Apex.",
+            "Materials-only supplier - confirm whether caulking material (vs. install) is included here or carried by KG."
+          ),
+          item(
+            "Includes metal flashing for base, windows, & doors",
+            "confirmed_included",
+            "Covered under the itemized Metal Flashings schedule - see Profile B (base flashing) and Profile C (window/door head trim) below.",
+            ""
+          ),
+          item(
+            "Includes complete system as detailed on plans (lap, panel, board & batten, etc.)",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Apex.",
+            ""
+          ),
+          item(
+            "Preferred materials \"ready for paint\"",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Apex.",
+            ""
+          ),
+          item(
+            "Includes mock-up material and labor",
+            "needs_clarification",
+            "Tracker row left blank/unconfirmed for Apex. Materials-only supplier - any mock-up \"labor\" would need to come from KG or another trade.",
+            ""
+          ),
+          item(
+            "Alternate - Blue Horseshoe Framing, 6% markup",
+            "acknowledged",
+            "Marked \"n/a\" for Apex on the bid tracker.",
+            "Confirm this alternate genuinely doesn't apply to Apex's materials-only scope."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope - Metal Flashings (per Apex's itemized pricing schedule)",
+        items: [
+          item(
+            "Profile A - 26ga Galvanized, transition @ siding/trim above stone veneer",
+            "confirmed_included",
+            "750 pieces @ 120\" @ $10.80/unit = $8,100.00.",
+            ""
+          ),
+          item(
+            "Profile B - 26ga Galvanized, base flashing to cover foundation insulation",
+            "confirmed_included",
+            "700 pieces @ 120\" @ $29.02/unit = $20,314.00.",
+            ""
+          ),
+          item(
+            "Profile C - 28ga Galvanized, flashing above windows, window/door head trim, above horizontal trim and siding transition (band boards)",
+            "confirmed_included",
+            "2,500 pieces @ 120\" @ $9.72/unit = $24,300.00.",
+            ""
+          ),
+          item(
+            "Profile H - 28ga Galvanized, balcony ledger flashing",
+            "confirmed_included",
+            "700 pieces @ 120\" @ $7.66/unit = $5,362.00.",
+            ""
+          ),
+          item(
+            "Profile L - 26ga Galvanized, concrete tension flashing (1st level concrete patios & elevated LT weight concrete balconies)",
+            "confirmed_included",
+            "700 pieces @ 120\" @ $12.82/unit = $8,974.00.",
+            ""
+          ),
+          item(
+            "Profile M/Z - 28ga Galvanized, horizontal panel flashing",
+            "confirmed_included",
+            "650 pieces @ 120\" @ $5.99/unit = $3,893.50.",
+            ""
+          ),
+          item(
+            "Door Pans - lightweight concrete deck door pan",
+            "confirmed_included",
+            "309 units (2 pieces right and left each, 26\" long) @ $65.93/unit = $20,372.37.",
+            ""
+          ),
+          item(
+            "Saddle Flashing - varies per project per balcony beam lengths/widths and details",
+            "confirmed_included",
+            "Estimated at $30.00 per unit x 446 units = $13,380.00.",
+            "Confirmed as an estimate, not a hard take-off - actual balcony beam details could move this number."
+          ),
+          item(
+            "Additional Flashing (A6030) - Detail 21 at 2nd floor townhomes",
+            "confirmed_included",
+            "100 pieces @ $12.00/unit = $1,200.00.",
+            "Distinct from the storefront A6040 coordination item below - this is a different detail sheet."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Scope Creep / Amenity Items (per bid tracker)",
+        items: [
+          item(
+            "Prefinished materials",
+            "confirmed_included",
+            "Marked \"Y - Included Above\" for Apex.",
+            ""
+          ),
+          item(
+            "Fiber cement siding at back of outdoor kitchen wall / faux wood at barbeque area",
+            "needs_clarification",
+            "Marked \"Y-Plug $10,000.00\" for Apex - reads as a GC placeholder, not a firm Apex quote.",
+            "Same item flagged on the KG Exterior Solutions (install) checklist - confirm the material number directly with Apex, not just the plug figure."
+          ),
+          item(
+            "Decorative metal panel - spa accent wall, fireplace, kitchen accent wall (see LC.B)",
+            "needs_clarification",
+            "Marked \"Y-Plug $20,000.00\" for Apex - reads as a GC placeholder. This is a metal panel scope, not fiber cement siding - may not belong to Apex at all.",
+            "Cross-check against W Baker Steel's metals scope (which separately prices steel at the spa accent wall and outdoor kitchen) - avoid a gap or double-award between the two, consistent with the same flag raised on the KG checklist."
+          ),
+          item(
+            "Stucco panel siding",
+            "acknowledged",
+            "Marked \"Y - Included Above\" for Apex.",
+            "KG's checklist flagged this material type as not mentioned in KG's own install scope - confirm KG is pricing install for whatever stucco panel material Apex is supplying here."
+          ),
+          item(
+            "Primer for cut ends at PK2 - cost per Matt Anderson on 9/14",
+            "confirmed_included",
+            "$2,080.00, referencing a cost conversation with \"Matt Anderson\" on 9/14 not otherwise documented here.",
+            "Get the underlying 9/14 conversation/approval in writing for the file."
+          ),
+        ],
+      },
+      {
+        id: uid(),
+        title: "Cross-Reference / Open Items",
+        items: [
+          item(
+            "Storefront glazing closure flashing coordination (Apex / RK Glass)",
+            "needs_clarification",
+            "Email thread \"Re: Flashing - Alta Vista\": Nathan asked Apex (Eric Selvidge, cc James Prince, Jason Foster) to pick up pre-finished aluminum closure flashing at the storefront glazing head/jamb/sill (sheet A6040, details 21/22/23) color-matched to the fiber cement panel, for the storefront contractor to install. Eric's reply: Apex doesn't typically take off this flashing profile themselves - on the comparable County Line project, the project team provided the LF takeoff (~60 LF, quoted at under $200 total) - and he's asking \"What's the LF needed?\" for Alta Vista. Not yet priced.",
+            "PRIORITY - this references the exact same sheet and detail numbers (21/22/23) that RK Glass already firm-quoted at $10,195.00 for 3 clubhouse details in Black Anodized (to match the Dark Bronze framing) - see the RK Glass checklist. Get written confirmation of whether this Apex request is for the SAME clubhouse condition (double-award risk) or additional buildings/locations needing fiber-cement-matched flashing instead of framing-matched flashing, before getting a takeoff and quote from Apex."
+          ),
+          item(
+            "Tracker reference number \"567975\"",
+            "needs_clarification",
+            "Appears in the NOTES row with no label or context, same pattern seen on the KG Exterior Solutions tracker's notes row.",
+            "Confirm what this number refers to (PO number, internal reference, etc.) before relying on it."
           ),
         ],
       },
